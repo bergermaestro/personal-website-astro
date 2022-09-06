@@ -1,6 +1,7 @@
 ---
 import Nav from "../../components/Nav.astro";
 import ProjectCardFull from "../../components/ProjectCardFull.astro";
+import Layout from "../../layouts/Layout.astro";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob('./*.{md,mdx}')).sort(
@@ -8,15 +9,15 @@ const posts = (await Astro.glob('./*.{md,mdx}')).sort(
 );
 ---
 
-<html>
-    <Nav/>
-    {posts.map((post) => (
-        <ProjectCardFull
-            title={post.frontmatter.title}
-            summary={post.frontmatter.summary}
-            image={post.frontmatter.image}
-            slug={post.url}
-            projectLinks={post.frontmatter.projectLinks}
-        />
-    ))}
-</html>
+<Layout title="Matthew Berger | Projects">
+        <h1 class="text-4xl font-crete-round py-8">Projects</h1>
+        {posts.map((post) => (
+            <ProjectCardFull
+                title={post.frontmatter.title}
+                summary={post.frontmatter.summary}
+                image={post.frontmatter.image}
+                slug={post.url}
+                projectLinks={post.frontmatter.projectLinks}
+            />
+        ))}
+</Layout>

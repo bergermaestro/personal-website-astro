@@ -1,0 +1,18 @@
+---
+import type { ComponentInstance } from 'astro';
+
+export interface Props {
+  text: string;
+  icon: ComponentInstance;
+  path: string;
+  additionalProps: string;
+}
+
+const { text, icon, path, additionalProps } = Astro.props;
+---
+
+<a href={path} class={additionalProps + ' hover:cursor-pointer uppercase text-default-900 rounded-lg tracking-wider border border-default-900 hover:text-brandTeal hover:border-brandTeal transition-all px-4 py-3'}>
+    {icon}
+    {text}
+</a>
+
