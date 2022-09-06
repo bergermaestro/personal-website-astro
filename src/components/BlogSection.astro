@@ -1,0 +1,39 @@
+---
+export interface Props {
+	posts: any;
+    sectionInfo: any;
+    sectionNumber: string;
+}
+
+const {posts, sectionInfo, sectionNumber } = Astro.props;
+---
+
+        <div class="flex flex-col md:flex-row items-center">
+
+        {/* Left Section */}
+        <div class="bg-default-900 basis-1/2">
+            <div class="px-3 sm:px-8 py-12 space-y-4 bg-[url('../public/images/blog-background.png')] bg-contain bg-no-repeat bg-opacity-30">
+            <h4 class="uppercase text-xl tracking-wider">{sectionInfo[parseInt(sectionNumber)].Name}</h4>
+            <h2 class="font-bold text-4xl">{sectionInfo[parseInt(sectionNumber)].Title}</h2>
+            <p class='md:w-3/4 text-md md:text-lg lg:text-base'>{sectionInfo[parseInt(sectionNumber)].Summary}</p>
+            <!-- <SolidButton text={sectionInfo[parseInt(sectionNumber)].ButtonText} path="./blog"/> -->
+            </div>
+        </div>
+       
+       {/* Right Section */}
+        <div class='basis-1/2'>
+            {posts && posts.data.slice(0,2).map((post:any) => (
+              // <div key={post.id}>
+              //   <h2>{post.attributes.title}</h2>
+              // </div>
+              <div key={post.id} >
+                <BlogCard title={post.attributes.title} summary={post.attributes.summary} image={post.attributes.Image.data.attributes.url} slug={"blog/" + post.attributes.Slug}/>
+                <div class='h-6'/>
+              </div>
+
+            ))}
+
+        </div>
+      
+      
+      </div>

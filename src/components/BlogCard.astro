@@ -1,0 +1,23 @@
+---
+export interface Props {
+	title: string;
+	summary: string;
+    image: string;
+    slug: string;
+}
+
+const {title, summary, image, slug } = Astro.props;
+---
+
+
+<a href={"./" + slug} class='bg-white text-default-400 rounded-lg shadow-lg flex flex-col md:flex-row transition transform hover:-translate-y-[0.25rem] hover:-translate-x-[-0.25rem] duration-300 motion-reduce:transition-none motion-reduce:transform-none'>
+    <div class='basis-5/12 bg-default-400'>
+        <div class="w-full h-full relative bg-default-400">
+            <img src={image} class='rounded-l-lg'/>
+        </div>
+    </div>
+    <div class="p-6 basis-7/12">
+    <h3 class="text-3xl my-4 font-semibold">{title}</h3>
+    <p class="text-md md:text-lg lg:text-base">{summary}</p>
+    </div>
+</a>
