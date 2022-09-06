@@ -1,13 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import BlogSection from '../components/BlogSection.astro';
 import Hero from '../components/Hero.astro';
-import Nav from '../components/Nav.astro';
+import ProjectCardFull from '../components/ProjectCardFull.astro';
+import ProjectSection from '../components/ProjectSection.astro';
+import Spacer from '../components/Spacer.astro';
+import Layout from '../layouts/Layout.astro';
+
+
+const projects = (await Astro.glob('./projects/*.{md,mdx}')).sort(
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+);
+
+const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+);
 ---
 
-<Layout title="Welcome to Astro.">
-	<Nav/>
-	<main class="text-white font-poppins px-6 md:px-14 lg:px-6 lg:max-w-5xl mx-auto">
-		<Hero/>
-	</main>
+<Layout title="Matthew Berger">
+	<Hero/>
+
+	<ProjectSection projects={projects}/>
+
+	<Spacer/>
+
+	<BlogSection posts={posts}/>
+
+	<Spacer/>
+
+	
+
 </Layout>
