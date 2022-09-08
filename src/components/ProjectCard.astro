@@ -1,62 +1,74 @@
 ---
-import OutlineButton from './Buttons/OutlineButton.astro';
-import { Icon } from 'astro-icon'
+import { Image } from "@astrojs/image/components";
+import OutlineButton from "./Buttons/OutlineButton.astro";
+import Icon from "astro-icon";
+import SolidButton from "./Buttons/SolidButton.astro";
 
 export interface Props {
-  title: string;
-  summary: string;
-  image: string;
-  slug: string;
-  projectLinks: Array<{url: string, displayText: string}>;
+    title: string;
+    summary: string;
+    image: string;
+    slug: string;
+    projectLinks: Array<{url: string, displayText: string}>;
 }
+
+// function addIcon(url:string, displayText:string, id:string) {
+//     if(displayText == null) {
+//         // do nothing
+//     }
+//     else if(displayText.toLowerCase().includes("github")) {
+//         return <OutlineButton text={displayText} icon={<Icon name="akar-icons:github-fill" class='inline mr-3 text-2xl'/>} path={url} 
+//         additionalProps="transition-all duration-300 md:my-0 md:opacity-0 md:h-0 md:group-hover:opacity-100 md:group-hover:h-full"/>
+//     }
+//     else if(displayText.toLowerCase().includes("site")) {
+//         return <OutlineButton text={displayText} icon={<Icon name="icon-park-outline:new-computer" class='inline mr-3 text-2xl'/>} path={url} 
+//         additionalProps="transition-all duration-300 md:my-0 md:opacity-0 md:h-0 md:group-hover:opacity-100 md:group-hover:h-full"/>
+//     }
+//     else if(displayText.toLowerCase().includes("figma")) {
+//         return <OutlineButton text={displayText} icon={<Icon name="fa-brands:figma" class='inline mr-3 text-2xl'/>} path={url} 
+//         additionalProps="transition-all duration-300 my-0 opacity-0 h-0 group-hover:opacity-100 group-hover:h-full group-hover:my-6"/>
+//     }
+//     else {
+//         return <OutlineButton text={displayText} icon={<span/>} path={url} 
+//         additionalProps="transition-all duration-300 my-0 opacity-0 h-0 group-hover:opacity-100 group-hover:h-full group-hover:my-6"/>
+//     }
+//     // return null;
+// }
+
+
+// const rosetta = 
+// {'figma': 'fa-brands:figma', 
+// 'github': 'akar-icons:github-fill',
+// 'site': 'icon-park-outline:new-computer'};
 
 const { title, summary, image, slug, projectLinks } = Astro.props;
-
-
-function addIcon(url:string, displayText:string, id:string) {
-    // if(displayText == null) {
-    //     // do nothing
-    // }
-    // else if(displayText.toLowerCase().includes("github")) {
-    //     return <OutlineButton text={displayText} icon={<Icon name="akar-icons:github-fill" class='inline mr-3 text-2xl'/>} path={url} 
-    //     additionalProps="transition-all duration-300 md:my-0 md:opacity-0 md:h-0 md:group-hover:opacity-100 md:group-hover:h-full"/>
-    // }
-    // else if(displayText.toLowerCase().includes("site")) {
-    //     return <OutlineButton text={displayText} icon={<Icon name="icon-park-outline:new-computer" class='inline mr-3 text-2xl'/>} path={url} 
-    //     additionalProps="transition-all duration-300 md:my-0 md:opacity-0 md:h-0 md:group-hover:opacity-100 md:group-hover:h-full"/>
-    // }
-    // else if(displayText.toLowerCase().includes("figma")) {
-    //     return <OutlineButton text={displayText} icon={<Icon name="fa-brands:figma" class='inline mr-3 text-2xl'/>} path={url} 
-    //     additionalProps="transition-all duration-300 my-0 opacity-0 h-0 group-hover:opacity-100 group-hover:h-full group-hover:my-6"/>
-    // }
-    // else {
-    //     return <OutlineButton text={displayText} icon={<span/>} path={url} 
-    //     additionalProps="transition-all duration-300 my-0 opacity-0 h-0 group-hover:opacity-100 group-hover:h-full group-hover:my-6"/>
-    // }
-    return null;
-}
 ---
 
 
 <a href={slug} class='group bg-white text-default-400 rounded-lg shadow-lg flex flex-col hover:translate-y-[-1.3rem] transition-all duration-300 motion-reduce:transition-none motion-reduce:transform-none h-full'>
-        <div class="w-full h-56 relative">
-            <!-- <Image src={image} layout='fill' objectFit='cover' class='rounded-t-lg'/> -->
-        </div>
+    <div class="w-full h-56 overflow-hidden">
+        <Image src={image} class='rounded-t-lg' width={'auto'} height={'auto'}/>
+    </div>
     <div class="p-6 basis-1/2">
         <h3 class="text-3xl mb-4 font-semibold">{title}</h3>
         <p class="text-md md:text-lg lg:text-base pb-6">{summary}</p>
-
         
-        <div class='inline-flex flex-col space-y-4 sm:block sm:space-y-0 sm:space-x-4 lg:inline-flex lg:flex-col lg:space-x-0 lg:space-y-4'>
-        {/* loop over the links and show them */}
-        {projectLinks && projectLinks.map((link:any) => (
-            addIcon(link.url, link.displayText, link.id)
-            ))}   
-    </div>
-
+        
+        <!-- <div class='inline-flex flex-col space-y-4 sm:block sm:space-y-0 sm:space-x-4 lg:inline-flex lg:flex-col lg:space-x-0 lg:space-y-4'> -->
+            {/* loop over the links and show them */}
+            <!-- {projectLinks && projectLinks.map((link:any) => (
+                // <h1>{link.url} {link.name}</h1>
+                // <SolidButton path={link.url} text={link.name} />
+                // addIcon(link.url, link.displayText, link.id)
+                <OutlineButton text={link.name} icon={"test"} path={link.url} 
+                    additionalProps="transition-all duration-300 my-0 opacity-0 h-0 group-hover:opacity-100 group-hover:h-full group-hover:my-6"/>
+            ))}    -->
+            <!-- </div> -->
+            
     </div>
 </a>
-
-
-
-
+    
+    
+    
+    
+    

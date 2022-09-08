@@ -1,32 +1,44 @@
 ---
-import BlogCard from './BlogCard.astro';
+import BlogCard from "./BlogCard.astro";
+import SolidButton from "./Buttons/SolidButton.astro";
 
 export interface Props {
-	posts: any;
+  posts: any;
 }
 
-const {posts } = Astro.props;
+const { posts } = Astro.props;
 ---
 
-        <div class="flex flex-col md:flex-row items-center">
+<div class="flex flex-col md:flex-row items-center">
+  {/* Left Section */}
+  <div class="bg-default-900 basis-1/2">
+    <div
+      class="px-3 sm:px-8 py-12 space-y-4 bg-[url('../images/blog-background.png')] bg-contain bg-no-repeat bg-opacity-30"
+    >
+      <h4 class="uppercase text-xl tracking-wider">The Blog</h4>
+      <h2 class="font-bold text-4xl">What's on my mind</h2>
+      <p class="md:w-3/4 text-md md:text-lg lg:text-base">
+        Take a look at the things I've learned and the experiences I've written
+        about
+      </p>
+      <SolidButton text="See My Thoughts" path="./blog" />
+    </div>
+  </div>
 
-        {/* Left Section */}
-        <div class="bg-default-900 basis-1/2">
-            <div class="px-3 sm:px-8 py-12 space-y-4 bg-[url('../public/images/blog-background.png')] bg-contain bg-no-repeat bg-opacity-30">
-            <h4 class="uppercase text-xl tracking-wider">The Blog</h4>
-            <h2 class="font-bold text-4xl">What's on my mind</h2>
-            <p class='md:w-3/4 text-md md:text-lg lg:text-base'>Take a look at the things I've learned and the experiences I've written about</p>
-            <!-- <SolidButton text={sectionInfo[parseInt(sectionNumber)].ButtonText} path="./blog"/> -->
-            </div>
-        </div>
-       
-       {/* Right Section */}
-        <div class='basis-1/2 space-y-3'>
-            {posts && posts.slice(0,2).map((post:any) => (
-                <BlogCard title={post.frontmatter.title} summary={post.frontmatter.summary} image={post.frontmatter.image} slug={"blog/" + post.frontmatter.slug}/>
-            ))}
-
-        </div>
-      
-      
-      </div>
+  {/* Right Section */}
+  <div class="basis-1/2 space-y-6">
+    {
+      posts &&
+        posts
+          .slice(0, 2)
+          .map((post: any) => (
+            <BlogCard
+              title={post.frontmatter.title}
+              summary={post.frontmatter.summary}
+              image={post.frontmatter.image}
+              slug={post.url}
+            />
+          ))
+    }
+  </div>
+</div>

@@ -1,10 +1,11 @@
 ---
 import BlogSection from '../components/BlogSection.astro';
+import Footer from '../components/Footer.astro';
+import GallerySection from '../components/GallerySection.astro';
 import Hero from '../components/Hero.astro';
-import ProjectCardFull from '../components/ProjectCardFull.astro';
 import ProjectSection from '../components/ProjectSection.astro';
 import Spacer from '../components/Spacer.astro';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
 
 const projects = (await Astro.glob('./projects/*.{md,mdx}')).sort(
@@ -16,7 +17,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 );
 ---
 
-<Layout title="Matthew Berger">
+<MainLayout title="Matthew Berger">
 	<Hero/>
 
 	<ProjectSection projects={projects}/>
@@ -27,6 +28,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 
 	<Spacer/>
 
-	
+	<GallerySection images={null}/>
 
-</Layout>
+	<Spacer/>
+</MainLayout>

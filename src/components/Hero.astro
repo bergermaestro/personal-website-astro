@@ -1,5 +1,6 @@
 ---
-import { Image } from '@astrojs/image/components';
+import { Image } from "@astrojs/image/components";
+import Icon from "astro-icon";
 ---
 
 <div class="flex flex-col-reverse md:flex-row mt-12">
@@ -8,14 +9,14 @@ import { Image } from '@astrojs/image/components';
       Hi, I'm Matthew & I'm A Full Stack Creative
     </h1>
     <p class="md:text-base text-sm md:mr-16 leading-relaxed">
-      I'm a first year mathematics student at the University of Waterloo, and
-      this is my small corner of the internet. This summer I'll be working at
+      I'm a second-year mathematics student at the University of Waterloo, and
+      this is my small corner of the internet. This past summer I worked at
       Tradable Bits Media as a Full-Stack Web Developer, and if you would like
       to work with me in the future, or simply ask me a question, please reach
       out to me using any of the social icons below. Failing that, I've heard
       that pigeons work well.
     </p>
-    <ul class="flex space-x-6 my-6 items-center">
+    <ul class="flex space-x-2 my-6 items-center">
       <li>
         <a
           class="hover:text-brandTeal transition-all"
@@ -23,7 +24,7 @@ import { Image } from '@astrojs/image/components';
           target="_blank"
           rel="noreferrer"
         >
-          <!-- <BsTwitter size={25} /> -->
+          <Icon name="fa-brands:twitter" class="inline mr-3 w-8 h-8" />
         </a>
       </li>
       <li>
@@ -33,7 +34,7 @@ import { Image } from '@astrojs/image/components';
           target="_blank"
           rel="noreferrer"
         >
-          <!-- <BsGithub size={25} /> -->
+          <Icon name="akar-icons:github-fill" class="inline mr-3 w-8 h-8" />
         </a>
       </li>
       <li>
@@ -43,7 +44,7 @@ import { Image } from '@astrojs/image/components';
           target="_blank"
           rel="noreferrer"
         >
-          <!-- <BsLinkedin size={25} /> -->
+          <Icon name="fa-brands:linkedin" class="inline mr-3 w-8 h-8" />
         </a>
       </li>
       <li>
@@ -53,16 +54,18 @@ import { Image } from '@astrojs/image/components';
           target="_blank"
           rel="noreferrer"
         >
-          <!-- <HiOutlineMail size={35} /> -->
+          <Icon name="heroicons-outline:mail" class="inline mr-3 w-10" />
         </a>
       </li>
     </ul>
   </div>
   <div class="basis-1/2 md:pl-12 px-8 mx-auto">
-    <img
+    <Image
       src="/images/hero-image.png"
       alt="A navy blue tower with conveyor belts holding hamburgers passing through it"
       class="mx-auto"
+      height={'auto'}
+      width={'auto'}
     />
   </div>
 </div>

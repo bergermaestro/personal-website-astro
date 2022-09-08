@@ -1,5 +1,6 @@
 ---
 import { Image } from "@astrojs/image/components";
+import logo from '../images/logo.svg';
 ---
 
 <nav class="py-6 bg-gradient-to-b from-default-900">
@@ -8,7 +9,7 @@ import { Image } from "@astrojs/image/components";
   >
     <span class="pb-3 sm:py-0 cursor-pointer">
       <a href="/">
-        <Image src="/images/logo.svg" alt="Logo of an orange M and a blue B" width={80} height={60}/>
+        <Image src={logo} alt="Logo of an orange M and a blue B" width={'auto'} height={'auto'}/>
       </a>
     </span>
     <div

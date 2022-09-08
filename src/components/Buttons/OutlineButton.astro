@@ -11,7 +11,7 @@ export interface Props {
 const { text, icon, path, additionalProps } = Astro.props;
 ---
 
-<a href={path} class={additionalProps + ' hover:cursor-pointer uppercase text-default-900 rounded-lg tracking-wider border border-default-900 hover:text-brandTeal hover:border-brandTeal transition-all px-4 py-3'}>
+<a href={path} class={additionalProps + ' hover:cursor-pointer uppercase text-default-900 rounded-lg tracking-wider border border-default-900 hover:text-brandTeal hover:border-brandTeal transition-all px-4 py-3 inline-block'}>
     {icon}
     {text}
 </a>
