@@ -1,0 +1,14 @@
+---
+export interface Props {
+  text: string;
+  path: string;
+}
+
+const { text, path } = Astro.props;
+---
+
+        <a href={path}>
+            <div class='pt-4 cursor-pointer'> 
+                <span class='uppercase p-4 bg-white text-default-400 rounded-lg tracking-wider hover:bg-brandTeal transition-all inline-block'>{text} &rarr;</span>
+            </div>
+        </a>
