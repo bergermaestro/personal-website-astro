@@ -1,18 +1,29 @@
 ---
 import type { ComponentInstance } from 'astro';
+import Icon from 'astro-icon';
 
 export interface Props {
   text: string;
-  icon: ComponentInstance;
+  icon?: ComponentInstance;
   path: string;
-  additionalProps: string;
+  additionalProps?: string;
+  theme?: string;
 }
 
-const { text, icon, path, additionalProps } = Astro.props;
+
+if (Astro.props.theme === 'dark') {
+  const themeProps = 'text-default-900 border-default-900';
+} else {
+  const themeProps = 'text-white border-white';
+}
+
+const { text, icon, path, additionalProps, themeProps } = Astro.props;
 ---
 
-<a href={path} class={additionalProps + ' hover:cursor-pointer uppercase text-default-900 rounded-lg tracking-wider border border-default-900 hover:text-brandTeal hover:border-brandTeal transition-all px-4 py-3 inline-block'}>
-    {icon}
+<a href={path} class={`${themeProps} hover:cursor-pointer uppercase rounded-lg tracking-wider 
+                      border hover:text-brandTeal hover:border-brandTeal transition-all 
+                      px-4 py-3 inline-block ${additionalProps}`}>
+    <Icon name={icon} class="h-6 w-6 inline mr-2"/>
     {text}
 </a>
 

@@ -1,4 +1,7 @@
 ---
+import Icon from "astro-icon";
+import OutlineButton from "../components/Buttons/OutlineButton.astro";
+import SolidButton from "../components/Buttons/SolidButton.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import Spacer from "../components/Spacer.astro";
@@ -10,12 +13,23 @@ export interface Props {
     pubDate?: string;
     updatedDate?: string;
     heroImage?: string;
+    projectLinks: Array<{url: string, displayText: string}>;
+    rosetta: object;
   };
 }
 
+const rosetta:any = {
+      'github': {icon: 'akar-icons:github-fill', text: 'View Source Code'},
+      'figma': {icon: 'akar-icons:figma-fill', text: 'View on Figma'},
+      null: {icon: 'akar-icons:link', text: 'View Project 2 electric boogaloo'},
+      'site': {icon: 'akar-icons:link', text: 'View Project'},
+    };
+
 const {
-  content: { title, summary, pubDate, updatedDate, heroImage },
+  content: { title, summary, pubDate, updatedDate, heroImage, projectLinks },
 } = Astro.props;
+
+console.log(rosetta);
 ---
 
 <!DOCTYPE html>
@@ -37,12 +51,19 @@ const {
       <h1 class="text-5xl font-crete-round mb-1 mt-12 leading-[1.2]">
         {title}
       </h1>
-      <h2 class="text-1xl mb-6">{pubDate}</h2>
+      <h2 class="text-1xl mb-6 text-brandTeal">{pubDate}</h2>
+      <div class="space-x-6 mt-16 mb-20 ">
+        {projectLinks && projectLinks.map((link:any) => (
+          // <h1>{rosetta[link.name].text}  {rosetta[link.name].icon} {link.url}</h1>
+          // <SolidButton path={link.url} text={link.name} />
+          // addIcon(link.url, link.displayText, link.id)
+          <OutlineButton text={rosetta[link.name].text} path={link.url} icon={rosetta[link.name].icon} theme='light'/>
+          ))}   
+      </div>
       <article class="prose prose-invert prose-cyan">
-        <!-- <ReactMarkdown>{post.content}</ReactMarkdown> -->
         <slot />
       </article>
-    </div>
+    </>
     <Spacer />
     <Footer />
   </body>

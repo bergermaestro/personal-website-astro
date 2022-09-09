@@ -6,13 +6,9 @@ image: "https://res.cloudinary.com/matthewberger/image/upload/v1647296065/justin
 pubDate: "April 13 2021"
 projectLinks: [
   {
-    "name": "View the Website",
-    "url": "https://matthewberger.com"
+    "name": "site",
+    "url": "https://matthewberger.ca"
   },
-  {
-    "name": "View the Source Code",
-    "url": "",
-  }
 ]
 ---
 
