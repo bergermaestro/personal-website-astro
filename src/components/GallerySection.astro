@@ -6,9 +6,6 @@ export interface Props {
   images: any;
 }
 
-// const { images } = Astro.props;
-
-
 const images = [
   {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106582962_313374366366248_4478339207149697437_n_6832f4393b.jpg"}, 
   {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116246982_294903704902043_5912067855605461718_n_17a1172ab1.jpg"}, 
@@ -50,7 +47,7 @@ const images = [
     <div
       class="px-3 sm:px-8 py-12 space-y-4 bg-[url('../images/gallery-background.png')] bg-cover bg-no-repeat bg-opacity-30"
     >
-      <h4 class="uppercase text-xl tracking-wider">The Gallery</h4>
+      <p class="uppercase text-xl tracking-wider">The Gallery</p>
       <h2 class="font-bold text-4xl">Life through the lens</h2>
       <p class="md:w-3/4 text-md md:text-lg lg:text-base">
         Take a look at the places I've been and the photographs I've taken
