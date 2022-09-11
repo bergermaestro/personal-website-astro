@@ -35,8 +35,10 @@ const images = [
           .map((image: any) => (
             <Image
               src={image.url}
-              width={"auto"}
-              height={"auto"}
+              alt="Image"
+              format={"webp"} 
+              width={"200"}
+              height={"200"}
               class="rounded-md hover:-scale-[-0.25rem] duration-300 motion-reduce:transition-none motion-reduce:transform-none aspect-square object-cover"
             />
           ))

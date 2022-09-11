@@ -16,12 +16,12 @@ const { title, summary, image, slug } = Astro.props;
 
 
 <a href={slug} class='group bg-white text-default-400 rounded-lg shadow-lg flex flex-col hover:translate-y-[-1.3rem] transition-all duration-300 motion-reduce:transition-none motion-reduce:transform-none h-full'>
-    <div class="w-full h-56 overflow-hidden">
-        <Image src={image} class='rounded-t-lg' width={'auto'} height={'auto'}/>
+    <div class="w-full h-56 basis-5/12 overflow-hidden">
+        <Image src={image} class='rounded-t-lg min-h-96' width={'400'} height={'300'} format={'webp'} alt='Project card image'/>
     </div>
-    <div class="p-6 basis-1/2">
+    <div class="p-6 basis-7/2">
         <h3 class="text-3xl mb-4 font-semibold">{title}</h3>
-        <p class="text-md md:text-lg lg:text-base pb-6">{summary}</p>    
+        <p class="text-md md:text-lg lg:text-base">{summary}</p>    
     </div>
 </a>
     

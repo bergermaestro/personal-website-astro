@@ -10,49 +10,12 @@ export interface Props {
 }
 
 const {title, summary, image, slug, projectLinks } = Astro.props;
-
-
-function addIcon(url:string, displayText:string, id:string) {
-    // if(displayText == null) {
-    //     // do nothing
-    // }
-    // else if(displayText.toLowerCase().includes("github")) {
-    //     return <OutlineButton key={id} text={displayText} icon={<BsGithub class='inline mr-3 text-2xl'/>} path={url} 
-    //     additionalProps="transition-all duration-200 ease-linear
-    //     md:scale-0 md:opacity-0 md:group-hover:opacity-100 md:group-hover:scale-100"/>
-    // }
-    // else if(displayText.toLowerCase().includes("site")) {
-    //     return <OutlineButton key={id} text={displayText} icon={<RiComputerLine class='inline mr-3 text-2xl'/>} path={url}         
-    //     additionalProps="transition-all duration-200 ease-linear
-    //     md:scale-0 md:opacity-0 md:group-hover:opacity-100 md:group-hover:scale-100"/>
-    // }
-    // else if(displayText.toLowerCase().includes("figma")) {
-    //     return <OutlineButton key={id} text={displayText} icon={<SiFigma class='inline mr-3 text-2xl'/>} path={url} 
-    //     additionalProps="transition-all duration-300
-    //     md:my-0 md:opacity-0 h-0 md:group-hover:opacity-100 md:group-hover:h-full md:group-hover:my-3 md:group-hover:py-3 md:group-hover:px-4"/>
-    // }
-    // else {
-    //     return <OutlineButton key={id} text={displayText} icon={""} path={url} 
-    //     additionalProps="transition-all duration-300
-    //     md:my-0 md:opacity-0 h-0 md:group-hover:opacity-100 md:group-hover:h-full md:group-hover:my-3 md:group-hover:py-3 md:group-hover:px-4"/>
-    // }
-    return null;
-}
 ---
 
 <a href={slug} class='group bg-white text-default-400 rounded-lg shadow-lg flex flex-col md:flex-row transition transform hover:-translate-y-[0.25rem] hover:-translate-x-[-0.25rem] duration-300 motion-reduce:transition-none motion-reduce:transform-none'>
-    <Image src={image}  class='basis-5/12 rounded-l-lg overflow-hidden max-h-72 object-cover' width={"auto"} height={"auto"}/>
+    <Image src={image}  class='basis-5/12 rounded-l-lg overflow-hidden max-h-72 object-cover' width={"600"} height={"400"} alt="Project Image" format={'webp'}/>
     <div class="p-6 basis-7/12">
-    {/* <span class='tracking-wider bg-brandTeal rounded-lg my-2 px-2 py-1'>lifestyle</span> */}
     <h3 class="text-3xl my-4 font-semibold">{title}</h3>
     <p class="text-md md:text-lg lg:text-base pb-3">{summary}</p>
-
-    <div class='lg:flex md:space-x-4'>
-        {/* loop over the links and show them */}
-        {projectLinks && projectLinks.map((link:any) => (
-            addIcon(link.url, link.displayText, link.id)
-            /* class='pt-0 my-0 group-hover:pt-4 group-hover:my-5 transition-all duration-300 text-default-400' */
-        ))}   
-    </div>
     </div>
 </a>

@@ -1,6 +1,8 @@
 ---
 import { Image } from "@astrojs/image/components";
 import Icon from "astro-icon";
+
+import heroImage from '../images/hero-image.png';
 ---
 
 <div class="flex flex-col-reverse md:flex-row mt-12">
@@ -61,11 +63,10 @@ import Icon from "astro-icon";
   </div>
   <div class="basis-1/2 md:pl-12 px-8 mx-auto">
     <Image
-      src="/images/hero-image.png"
+      src={heroImage}
       alt="A navy blue tower with conveyor belts holding hamburgers passing through it"
       class="mx-auto"
-      height={'auto'}
-      width={'auto'}
+      format={'webp'}
     />
   </div>
 </div>

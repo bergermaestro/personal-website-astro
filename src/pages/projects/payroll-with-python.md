@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/ProjectLayout.astro"
 title: "Simplifying Payroll with Python"
-summary: "How I simplified the paystub generation process for a business by creating an application which generates employee data into PDF Paystubs."
+summary: "How I simplified a business' payroll process by creating an application which generates employee data into PDF Paystubs."
 image: "https://res.cloudinary.com/matthewberger/image/upload/v1647296712/chris_ried_ieic5_Tq8_Y_Mk_unsplash_34bf008a14.jpg"
 pubDate: "Sept 16 2021"
 ---
