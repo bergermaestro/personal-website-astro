@@ -15,14 +15,17 @@ import OutlineButton from "./Buttons/OutlineButton.astro";
     <div
       class="flex flex-row sm:space-x-12 uppercase text-lg items-center justify-between w-full sm:w-auto sm:justify-center flex-wrap"
     >
-      <a href="/" class="hover:text-brandTeal transition-all">Home</a>
-      <a href="/about" class="hover:text-brandTeal transition-all">About</a>
-      <a href="/projects" class="hover:text-brandTeal transition-all"
+      <a href="/" class="hover:text-brandTeal transition-colors">Home</a>
+      <a href="/about" class="hover:text-brandTeal transition-colors">About</a>
+      <a href="/projects" class="hover:text-brandTeal transition-colors"
         >Projects</a
       >
       <a href="/blog" class="hover:text-brandTeal transition-all">Blog</a>
-      <OutlineButton text="Resume" path="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0"
-      target="_blank"/>
+      <OutlineButton
+        text="Resume"
+        path="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0"
+        target="_blank"
+      />
     </div>
   </div>
 </nav>
