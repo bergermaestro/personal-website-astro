@@ -5,22 +5,43 @@ import OutlineButton from "./Buttons/OutlineButton.astro";
 
 <nav class="py-6 bg-gradient-to-b from-default-900">
   <div
-    class="px-6 md:px-14 lg:px-6 lg:max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center"
+    class="px-6 md:px-14 lg:px-6 lg:max-w-5xl mx-auto flex flex-row justify-between items-center"
   >
-    <span class="pb-3 sm:py-0 cursor-pointer">
+    <span class="pb-3 sm:py-0 cursor-pointer mr-10">
       <a href="/">
         <Icon name="logo" class="w-20" />
       </a>
     </span>
+
+    <label class="lg:hidden relative">
+      <input
+        class="peer hidden"
+        type="checkbox"
+        />
+      <Icon name="eva:menu-fill" class= "cursor-pointer w-10"/>
+      <div class="max-h-0 absolute top-10 right-0 peer-checked:max-h-96 transition-all h- duration-150 uppercase text-lg text-center bg-brandTeal z-10 rounded-lg shadow-2xl overflow-clip">
+        <a href="/" class="hover:bg-default-400/25 transition-colors block py-4 px-10">Home</a>
+        <a href="/about" class="hover:bg-default-400/25 transition-colors block py-4 px-10">About</a>
+        <a href="/projects" class="hover:bg-default-400/25 transition-colors block py-4 px-10">Projects</a>
+        <a href="/blog" class="hover:bg-default-400/25 transition-colors block py-4 px-10">Blog</a>
+        <div class="hover:bg-default-400/25 cursor-pointer pt-2 pb-2">
+          <a href="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0" 
+          target="_blank" class="rounded-lg tracking-wider 
+          border transition-colors 
+          px-4 py-3 inline-block">Resume</a>
+        </div>
+      </div>
+    </label>
+
     <div
-      class="flex flex-row sm:space-x-12 uppercase text-lg items-center justify-between w-full sm:w-auto sm:justify-center flex-wrap"
+      class="hidden lg:flex flex-row sm:space-x-12 uppercase text-lg items-center justify-between w-full sm:w-auto sm:justify-center flex-wrap"
     >
       <a href="/" class="hover:text-brandTeal transition-colors">Home</a>
       <a href="/about" class="hover:text-brandTeal transition-colors">About</a>
       <a href="/projects" class="hover:text-brandTeal transition-colors"
         >Projects</a
       >
-      <a href="/blog" class="hover:text-brandTeal transition-all">Blog</a>
+      <a href="/blog" class="hover:text-brandTeal transition-colors">Blog</a>
       <OutlineButton
         text="Resume"
         path="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0"

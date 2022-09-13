@@ -50,9 +50,11 @@ console.log(rosetta);
         {title}
       </h1>
       <h2 class="text-1xl mb-6 text-brandTeal">{pubDate}</h2>
-      <div class="space-x-6 mt-16 mb-20 ">
+      <div class="mt-16 mb-20">
         {projectLinks && projectLinks.map((link:any) => (
-          <OutlineButton text={rosetta[link.name].text} path={link.url} icon={rosetta[link.name].icon} theme='light'/>
+          <div class="inline-block mr-6 mb-6">
+            <OutlineButton text={rosetta[link.name].text} path={link.url} icon={rosetta[link.name].icon} theme='light'/>
+          </div>
           ))}   
       </div>
       <article class="prose prose-invert prose-cyan">
