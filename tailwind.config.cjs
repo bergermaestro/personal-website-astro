@@ -14,8 +14,10 @@ module.exports = {
 			brandOrange: "#ED9665"
 		  },
 		  fontFamily: {
-			'poppins': ["Poppins", 'sans-serif'],
-			'crete-round': ['"Crete Round"', 'serif']
+			// 'poppins': ["Poppins", 'sans-serif'],
+			// 'crete-round': ['"Crete Round"', 'serif']
+			  'poppins': ["'Plus Jakarta Sans'" ,'sans-serif'],
+			  'crete-round': ["'Plus Jakarta Sans'", 'serif']
 		  }
 		},
 		screens: {

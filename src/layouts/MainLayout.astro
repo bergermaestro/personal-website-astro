@@ -9,13 +9,17 @@ export interface Props {
 const { title } = Astro.props;
 ---
 
+
+
 <!DOCTYPE html>
 <html lang="en" class="bg-default-900 text-white font-poppins selection:bg-brandTeal">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link href="https://fonts.googleapis.com/css2?family=Crete+Round&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content="Matthew Berger's personal website">
 		<meta name="author" content="Matthew Berger">
@@ -23,7 +27,7 @@ const { title } = Astro.props;
 	</head>
 	<body class="bg-default-400">
 		<Nav/>
-		<div class="px-6 md:px-14 lg:px-6 lg:max-w-5xl mx-auto">
+		<div class="px-6 md:px-14 lg:px-6 lg:max-w-6xl mx-auto">
 			<slot/>
 		</div>
 		<Footer/>
