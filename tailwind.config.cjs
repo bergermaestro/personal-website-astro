@@ -7,6 +7,7 @@ module.exports = {
 		extend: {
 		  colors: {
 			default: {
+			  300: "#1A3247",
 			  400: "#15293A",
 			  900: "#132434",
 			},
@@ -14,10 +15,7 @@ module.exports = {
 			brandOrange: "#ED9665"
 		  },
 		  fontFamily: {
-			// 'poppins': ["Poppins", 'sans-serif'],
-			// 'crete-round': ['"Crete Round"', 'serif']
-			  'poppins': ["'Plus Jakarta Sans'" ,'sans-serif'],
-			  'crete-round': ["'Plus Jakarta Sans'", 'serif']
+			  'jakarta': ["'Plus Jakarta Sans'" ,'sans-serif'],
 		  }
 		},
 		screens: {
