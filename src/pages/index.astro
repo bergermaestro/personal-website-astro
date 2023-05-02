@@ -8,7 +8,7 @@ import Spacer from '../components/Spacer.astro';
 import heroImage from '../images/hero-image.png';
 import MainLayout from '../layouts/MainLayout.astro';
 
-const articles = (await Astro.glob('./blog/*.{md,mdx}'));
+const articles = await Astro.glob('./blog/*.{md,mdx}');	
 
 const projects = articles.filter(post => post.frontmatter.type === "Development").sort(
 	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
