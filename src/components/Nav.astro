@@ -1,6 +1,7 @@
 ---
 import Icon from "astro-icon";
 import OutlineButton from "./Buttons/OutlineButton.astro";
+import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf"
 ---
 
 <nav class="py-6 bg-gradient-to-b from-default-900">
@@ -24,7 +25,7 @@ import OutlineButton from "./Buttons/OutlineButton.astro";
         <a href="/blog" class="hover:bg-default-400/25 transition-colors block py-4 px-10">Blog</a>
         <a href="/about" class="hover:bg-default-400/25 transition-colors block py-4 px-10">About</a>
         <div class="hover:bg-default-400/25 cursor-pointer pt-2 pb-2">
-          <a href="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0" 
+          <a href={Resume}
           target="_blank" class="rounded-lg tracking-wider 
           border transition-colors 
           px-4 py-3 inline-block">Resume</a>
@@ -40,7 +41,7 @@ import OutlineButton from "./Buttons/OutlineButton.astro";
       <a href="/about" class="hover:text-brandTeal transition-colors">About</a>
       <OutlineButton
         text="Resume"
-        path="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0"
+        path={Resume}
         target="_blank"
       />
     </div>
