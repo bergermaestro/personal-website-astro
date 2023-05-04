@@ -2,6 +2,7 @@
 import { Image } from "@astrojs/image/components";
 import ResumeImage from "../images/resume-mockup.png";
 import SolidButton from "./Buttons/SolidButton.astro";
+import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf"
 ---
 
 <div class="inline-flex bg-default-900 rounded-lg shadow-lg my-6">
@@ -15,7 +16,7 @@ import SolidButton from "./Buttons/SolidButton.astro";
     <h2 class="font-bold text-4xl">See My Resume</h2>
     <SolidButton
       text="Download Here"
-      path="https://drive.google.com/drive/folders/1010N_deelA4P_IftARIBMAxzVX6rdrF0"
+      path={Resume}
       target="_blank"
     />
   </div>
