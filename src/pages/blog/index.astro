@@ -16,11 +16,11 @@ const posts = (await Astro.glob("./*.{md,mdx}")).sort(
 <MainLayout title="Matthew Berger | Blog">
   <h1 class="text-5xl font-semibold pt-24">Blog</h1>
   <div class="py-8">
-    <ul class="flex space-x-12 text-lg">
-      <li class="font-semibold text-xl underline underline-offset-[12px]"><a href="./">All Posts</a></li>
-      <li class="hover:underline hover:underline-offset-[12px]"><a href="/blog/category/development">Development</a></li>
-      <li class="hover:underline hover:underline-offset-[12px]"><a href="/blog/category/tech-adjacent">Tech Adjacent</a></li>
-      <li class="hover:underline hover:underline-offset-[12px]"><a href="/blog/category/miscellaneous">Miscellaneous</a></li>
+    <ul class="flex md:space-x-12 text-lg flex-col md:flex-row">
+      <li class="font-semibold text-xl underline underline-offset-[12px] py-2"><a href="./">All Posts</a></li>
+      <li class="hover:underline hover:underline-offset-[12px] py-2"><a href="/blog/category/development">Development</a></li>
+      <li class="hover:underline hover:underline-offset-[12px] py-2"><a href="/blog/category/tech-adjacent">Tech Adjacent</a></li>
+      <li class="hover:underline hover:underline-offset-[12px] py-2"><a href="/blog/category/miscellaneous">Miscellaneous</a></li>
     </ul>
   </div>
 
@@ -28,9 +28,11 @@ const posts = (await Astro.glob("./*.{md,mdx}")).sort(
     {posts.slice(0,4).map((post, idx) => {
       if (idx === 0) {
         return (
-            <a href={post.url} class="row-span-3 rounded-md overflow-hidden relative group">
-              <img src={post.frontmatter.image} alt='Project card image' class="h-full object-cover aspect-[7/5] group-hover:scale-105 transition-transform duration-300"/>
-              <div class="rounded-md bg-default-300 text-white absolute bottom-4 left-4 w-7/12 p-4">
+            <a href={post.url} class="row-span-3 rounded-md overflow-hidden relative group h-full">
+              <div class="sm:h-full">
+              <img src={post.frontmatter.image} alt='Project card image' class="object-cover group-hover:scale-105 transition-transform duration-300"/>
+              </div>
+              <div class="rounded-md bg-default-300 text-white sm:absolute bottom-4 left-4 sm:w-7/12 p-4">
                 <span class="text-brandTeal uppercase">{post.frontmatter.type}</span>
                 <h2 class="font-bold text-2xl mb-2 mr-6">{post.frontmatter.title}</h2>
                 <p class="mr-12">{post.frontmatter.summary}</p> 
