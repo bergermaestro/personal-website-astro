@@ -1,6 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import Hotjar from '../components/hotjar.astro';
 
 export interface Props {
 	title: string;
@@ -22,6 +23,7 @@ const { title } = Astro.props;
 		<meta name="description" content="Matthew Berger's personal website">
 		<meta name="author" content="Matthew Berger">
 		<title>{title}</title>
+		<Hotjar id="3496449" version="6" />
 	</head>
 	<body class="bg-default-400">
 		<Nav/>
