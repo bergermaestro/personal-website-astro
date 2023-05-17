@@ -7,7 +7,7 @@ export interface Props {
 
 const { id, version } = Astro.props;
 ---
-<script id="astro-plugin-hotjar" define:vars={{id}}>
+<script id="astro-plugin-hotjar" define:vars={{id, version}}>
   (function(h,o,t,j,a,r){
       h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
       h._hjSettings={hjid: id,hjsv: version};
