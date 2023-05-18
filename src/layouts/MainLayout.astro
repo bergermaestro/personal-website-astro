@@ -1,6 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import GoogleAnalytics from '../components/googleAnalytics.astro';
 import Hotjar from '../components/hotjar.astro';
 
 export interface Props {
@@ -24,6 +25,7 @@ const { title } = Astro.props;
 		<meta name="author" content="Matthew Berger">
 		<title>{title}</title>
 		<Hotjar id="3496449" version="6" />
+		<GoogleAnalytics id="G-ZB1JXTKLB7"/>
 	</head>
 	<body class="bg-default-400">
 		<Nav/>
