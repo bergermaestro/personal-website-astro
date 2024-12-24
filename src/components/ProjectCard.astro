@@ -1,28 +1,32 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 export interface Props {
-    title: string;
-    summary: string;
-    image: string;
-    slug: string;
+  title: string;
+  summary: string;
+  image: string;
+  slug: string;
 }
 
 const { title, summary, image, slug } = Astro.props;
 ---
 
-
-<a href={slug} class='group bg-white text-default-400 rounded-lg shadow-lg flex flex-col xs:flex-row md:flex-col hover:translate-y-[-1.3rem] transition-all duration-300 motion-reduce:transition-none motion-reduce:transform-none h-full'>
-    <div class=" overflow-hidden h-full lg:h-64 flex-1">
-        <Image src={image} class='rounded-t-lg' width={400} height={400} format={'webp'} alt='Project card image'/>
-    </div>
-    <div class="p-6 flex-1">
-        <h3 class="text-3xl mb-4 font-semibold">{title}</h3>
-        <p class="text-md md:text-lg lg:text-base">{summary}</p>    
-    </div>
+<a
+  href={slug}
+  class="group flex h-full flex-col rounded-lg bg-white text-default-400 shadow-lg transition-all duration-300 hover:translate-y-[-1.3rem] motion-reduce:transform-none motion-reduce:transition-none xs:flex-row md:flex-col"
+>
+  <div class="h-full flex-1 overflow-hidden lg:h-64">
+    <Image
+      src={image}
+      class="rounded-t-lg"
+      width={400}
+      height={400}
+      format={"webp"}
+      alt="Project card image"
+    />
+  </div>
+  <div class="flex-1 p-6">
+    <h3 class="mb-4 text-3xl font-semibold">{title}</h3>
+    <p class="text-md md:text-lg lg:text-base">{summary}</p>
+  </div>
 </a>
-    
-    
-    
-    
-    

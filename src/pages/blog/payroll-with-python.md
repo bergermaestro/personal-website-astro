@@ -11,7 +11,8 @@ type: "Development"
 
 Recently, I worked on helping a small business simplify and make more efficient their process for running payroll and delivering paystubs to employees.
 
-In the current system, there was a reliance on manual data transfer for generating paystubs, which was a time consuming process, and as with any manual process, left open room for error. These were all areas that I knew the software could improve,  so the guideline I determined to direct this project was to:
+In the current system, there was a reliance on manual data transfer for generating paystubs, which was a time consuming process, and as with any manual process, left open room for error. These were all areas that I knew the software could improve, so the guideline I determined to direct this project was to:
+
 > Simplify the process of running payroll by integrating with existing systems in order to provide a more intuitive and time-efficient method of generating paystubs.
 
 ## Development
@@ -20,11 +21,11 @@ In the current system, there was a reliance on manual data transfer for generati
 
 In order to implement this project, I used a number of python modules, including but not limited to:
 
-*PySimpleGui* in order to create the user interface. Although it does not allow for much in the way of customizability and seems to be mainly geared towards simple form-style interfaces, it fulfilled the needs for this project without overcomplicating the process through the use of a more robust system.
+_PySimpleGui_ in order to create the user interface. Although it does not allow for much in the way of customizability and seems to be mainly geared towards simple form-style interfaces, it fulfilled the needs for this project without overcomplicating the process through the use of a more robust system.
 
-*PyPDF* in order to take the data read from the excel file and output it to a PDF. This was my first time using this Python module, and although most things were straightforward to accomplish, there were a few oddities. For example, when laying out elements on the output PDF, it begins from the bottom left corner, whereas all other layout software I have ever used have begun from the top left, including software such as Photoshop or Figma or even when absolutely positioning elements in HTML.
+_PyPDF_ in order to take the data read from the excel file and output it to a PDF. This was my first time using this Python module, and although most things were straightforward to accomplish, there were a few oddities. For example, when laying out elements on the output PDF, it begins from the bottom left corner, whereas all other layout software I have ever used have begun from the top left, including software such as Photoshop or Figma or even when absolutely positioning elements in HTML.
 
-*Openpyxl* for reading data from an Excel spreadsheet and getting it into python.
+_Openpyxl_ for reading data from an Excel spreadsheet and getting it into python.
 
 ### Challenges
 
@@ -44,7 +45,7 @@ Thus, I ultimately determined that the best way to select what pay period the pa
 
 During testing, I was simply saving the project to the current working directory in order to make sure that information was getting written correctly to the pdf. This worked well for development, but one of the features that was incredibly important for the final version was the ability to save the files to a custom folder.
 
-I had assumed that this would be available via the *.save* function within the PyPDF module, but this was incorrect - the module only comes with the ability to save to the current working directory. This was problematic as I planned to package the file into a .exe in order to easily distribute and install it. Thus, I had to use Python's built in file management system to have the code save the file to the working directory and then take the most recently added file from the working directory and cut and paste it into the specified output directory.
+I had assumed that this would be available via the _.save_ function within the PyPDF module, but this was incorrect - the module only comes with the ability to save to the current working directory. This was problematic as I planned to package the file into a .exe in order to easily distribute and install it. Thus, I had to use Python's built in file management system to have the code save the file to the working directory and then take the most recently added file from the working directory and cut and paste it into the specified output directory.
 
 ## Conclusion
 
@@ -59,5 +60,3 @@ Namely, although at the beginning of the project I spent time researching Python
 ---
 
 Thanks for reading! If you have any thoughts about this article, feel free to tweet me about them @itsmattberger on Twitter. Otherwise, until next time!
-
-

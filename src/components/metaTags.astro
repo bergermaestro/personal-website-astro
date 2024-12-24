@@ -3,30 +3,33 @@ export interface Props {
   title: string;
 }
 
-const description = "Hi, I'm Matthew and I'm a Full Stack Creative"
-const name = "Matthew Berger"
-const url = "https://www.matthewberger.ca"
-const image = "https://res.cloudinary.com/matthewberger/image/upload/v1684506267/social-share_c1mx6m.png"
+const description = "Hi, I'm Matthew and I'm a Full Stack Creative";
+const name = "Matthew Berger";
+const url = "https://www.matthewberger.ca";
+const image =
+  "https://res.cloudinary.com/matthewberger/image/upload/v1684506267/social-share_c1mx6m.png";
 
 const { title } = Astro.props;
 ---
 
-<!-- Primary Meta Tags --> <!-- this is the default metadata which all websites can draw on --> 
+<!-- Primary Meta Tags --><!-- this is the default metadata which all websites can draw on -->
 <meta name="generator" content={Astro.generator} />
-<meta name="description" content={description}>
-<meta name="author" content="Matthew Berger">
-<meta name="title" content={title}>
+<meta name="description" content={description} />
+<meta name="author" content="Matthew Berger" />
+<meta name="title" content={title} />
 
-<!-- Open Graph / Facebook --> <!-- this is what Facebook and other social websites will draw on -->
-<meta property="og:type" content="website">
-<meta property="og:url" content={url}>
-<meta property="og:title" content={name}>
-<meta property="og:description" content={description}>
-<meta property="og:image" content={image}>
+<!-- Open Graph / Facebook -->
+<!-- this is what Facebook and other social websites will draw on -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={name} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
 
-<!-- Twitter --> <!-- You can have different summary for Twitter! -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content={url}>
-<meta property="twitter:title" content={name}>
-<meta property="twitter:description" content={description}>
-<meta property="twitter:image" content={image}>
+<!-- Twitter -->
+<!-- You can have different summary for Twitter! -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={name} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />

@@ -4,17 +4,12 @@ title: "Building My Personal Website with WordPress"
 summary: "Four designs and three platforms later, I finally built my personal portfolio using WordPress"
 image: "https://res.cloudinary.com/matthewberger/image/upload/v1647296065/justin_morgan_Zj_X_z2_Q5zrk_unsplash_92ff5093b3.jpg"
 pubDate: "April 13 2021"
-projectLinks: [
-  {
-    "name": "site",
-    "url": "https://matthewberger.ca"
-  },
-]
+projectLinks: [{ "name": "site", "url": "https://matthewberger.ca" }]
 type: "Development"
 ---
 
 > Update (03/14/22): This site is no longer hosted using WordPress, but instead using Next.js and Strapi (among other tools). I plan to write a post about why I decided to make the switch sometime soon, but thought I'd keep this article up because my thought process and the journey still holds. Thanks!
-> 
+>
 > \- Matthew
 
 Hello Friends!
@@ -27,13 +22,11 @@ Although the trope that web developer exist in a perpetual state of never finish
 
 I say this because the journey to reach this final website took four different designs and about three different platforms – so certainly an adventure, and what could be more fun than going through all of them?
 
-
 ## Part 1: This Should be Easy
 
-The beginning of the journey started all the way back in 2018, when I thought I should brush up on my HTML & CSS skills by building myself a personal website. I do have to admit this era was marked by an overly cavalier attitude towards the complexity of this project, where I was quite confident that having a  general colour scheme and layout in my head would be enough to code it from there. In retrospect, I’m not surprised I didn’t get very far past the header.
+The beginning of the journey started all the way back in 2018, when I thought I should brush up on my HTML & CSS skills by building myself a personal website. I do have to admit this era was marked by an overly cavalier attitude towards the complexity of this project, where I was quite confident that having a general colour scheme and layout in my head would be enough to code it from there. In retrospect, I’m not surprised I didn’t get very far past the header.
 
 ![Picture2.png](https://res.cloudinary.com/matthewberger/image/upload/v1647188543/Picture2_e8ce360937.png)
-
 
 To regain confidence and inspiration, I watched a few Youtube videos from Charli Marie, a Barcelona based designer for the newsletter marketing company Convertkit.
 
@@ -43,7 +36,7 @@ So, after spending some time designing a new layout centered around using assort
 
 ![Picture3.png](https://res.cloudinary.com/matthewberger/image/upload/v1647188543/Picture3_f1b5cbd925.png)
 
-## Part 2: Implementation option Overload 
+## Part 2: Implementation option Overload
 
 Unfortunately, I think this is the moment when the “what platform do I use” bug bit.
 
@@ -53,7 +46,7 @@ So, although I started in Webflow and enjoyed the experience, perhaps it was sim
 
 Yet as I am sure you have figured, this was not the end of the personal website saga. My decision that I needed a website was resurrected when I (and the rest of the world) had little else to do – the quarantine of 2020.
 
-This time, I thought about creating a website under the name of a company – ‘Overpass Creative.’   Perhaps this was because I was trying to convince myself that no, I hadn’t actually abandoned my past personal websites, and that I would find a different use for them. Yet, once the main design was there, the last 10% required to add responsiveness and deploy it just never happened.
+This time, I thought about creating a website under the name of a company – ‘Overpass Creative.’ Perhaps this was because I was trying to convince myself that no, I hadn’t actually abandoned my past personal websites, and that I would find a different use for them. Yet, once the main design was there, the last 10% required to add responsiveness and deploy it just never happened.
 
 ![Picture4.png](https://res.cloudinary.com/matthewberger/image/upload/v1647188543/Picture4_a11518bdc1.png)
 

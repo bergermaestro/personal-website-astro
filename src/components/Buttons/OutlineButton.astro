@@ -27,6 +27,6 @@ const { text, icon, path, additionalProps, themeProps, target } = Astro.props;
                       border hover:text-brandTeal hover:border-brandTeal transition-all 
                       px-4 py-3 inline-block ${additionalProps}`}
 >
-  {icon ? <Icon name={icon} class="h-6 w-6 inline mr-2" /> : null}
+  {icon ? <Icon name={icon} class="mr-2 inline h-6 w-6" /> : null}
   {text}
 </a>

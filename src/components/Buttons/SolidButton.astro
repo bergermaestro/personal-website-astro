@@ -9,9 +9,9 @@ const { text, path, target } = Astro.props;
 ---
 
 <a href={path} target={target ? target : "_self"}>
-  <div class="pt-4 cursor-pointer">
+  <div class="cursor-pointer pt-4">
     <span
-      class="uppercase p-4 bg-white text-default-400 rounded-lg tracking-wider hover:bg-brandTeal transition-all inline-block"
+      class="hover:bg-brandTeal inline-block rounded-lg bg-white p-4 uppercase tracking-wider text-default-400 transition-all"
       >{text} &rarr;</span
     >
   </div>

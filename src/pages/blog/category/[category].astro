@@ -3,42 +3,69 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 
 export function getStaticPaths() {
   return [
-    {params: {category: 'development'}},
-    {params: {category: 'tech-adjacent'}},
-    {params: {category: 'miscellaneous'}},
+    { params: { category: "development" } },
+    { params: { category: "tech-adjacent" } },
+    { params: { category: "miscellaneous" } },
   ];
 }
 
 const { category } = Astro.params;
 
-const posts = (await Astro.glob("./../*.{md,mdx}")).filter(post => post.frontmatter.type.replace(' ', '-').toLowerCase() === category).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
-);
-
+const posts = (await Astro.glob("./../*.{md,mdx}"))
+  .filter(
+    (post) =>
+      post.frontmatter.type.replace(" ", "-").toLowerCase() === category,
+  )
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.pubDate).valueOf() -
+      new Date(a.frontmatter.pubDate).valueOf(),
+  );
 ---
+
 <MainLayout title="Matthew Berger | Blog">
-    <h1 class="text-5xl font-semibold pt-24 capitalize">{ category?.replace('-', ' ') }</h1>
-    <div class="py-8">
-      <ul class="flex md:space-x-12 text-lg flex-col md:flex-row">
-        <li class="hover:underline hover:underline-offset-[12px] py-2"><a href="/blog">All Posts</a></li>
-        <li class={`${category === 'development' ? 'font-semibold text-xl underline underline-offset-[12px]' : ''} hover:underline hover:underline-offset-[12px] py-2`}><a href="/blog/category/development">Development</a></li>
-        <li class={`${category === 'tech-adjacent' ? 'font-semibold text-xl underline underline-offset-[12px]' : ''} hover:underline hover:underline-offset-[12px] py-2`}><a href="/blog/category/tech-adjacent">Tech Adjacent</a></li>
-        <li class={`${category === 'miscellaneous' ? 'font-semibold text-xl underline underline-offset-[12px]' : ''} hover:underline hover:underline-offset-[12px] py-2`}><a href="/blog/category/miscellaneous">Miscellaneous</a></li>
-      </ul>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-6">
-        {posts.map(post => 
-          <a href={post.url} class={`rounded-md text-white border-white overflow-hidden h-96 bg-cover bg-center hover:scale-105 transition-transform duration-300`} style={`background-image: url("${post.frontmatter.image}");`}>
-            <div class="bottom-0 bg-gradient-to-t from-default-300 from-20% p-4 h-96 flex justify-end flex-col">
-              <div/>
-              <div class="pb-4">
-                <h2 class="font-bold text-2xl mb-2">{post.frontmatter.title}</h2>
-                <p>{post.frontmatter.summary}</p>
-              </div>
+  <h1 class="pt-24 text-5xl font-semibold capitalize">
+    {category?.replace("-", " ")}
+  </h1>
+  <div class="py-8">
+    <ul class="flex flex-col text-lg md:flex-row md:space-x-12">
+      <li class="py-2 hover:underline hover:underline-offset-[12px]">
+        <a href="/blog">All Posts</a>
+      </li>
+      <li
+        class={`${category === "development" ? "font-semibold text-xl underline underline-offset-[12px]" : ""} hover:underline hover:underline-offset-[12px] py-2`}
+      >
+        <a href="/blog/category/development">Development</a>
+      </li>
+      <li
+        class={`${category === "tech-adjacent" ? "font-semibold text-xl underline underline-offset-[12px]" : ""} hover:underline hover:underline-offset-[12px] py-2`}
+      >
+        <a href="/blog/category/tech-adjacent">Tech Adjacent</a>
+      </li>
+      <li
+        class={`${category === "miscellaneous" ? "font-semibold text-xl underline underline-offset-[12px]" : ""} hover:underline hover:underline-offset-[12px] py-2`}
+      >
+        <a href="/blog/category/miscellaneous">Miscellaneous</a>
+      </li>
+    </ul>
+  </div>
+  <div class="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 md:grid-cols-3">
+    {
+      posts.map((post) => (
+        <a
+          href={post.url}
+          class={`h-96 overflow-hidden rounded-md border-white bg-cover bg-center text-white transition-transform duration-300 hover:scale-105`}
+          style={`background-image: url("${post.frontmatter.image}");`}
+        >
+          <div class="bottom-0 flex h-96 flex-col justify-end bg-gradient-to-t from-default-300 from-20% p-4">
+            <div />
+            <div class="pb-4">
+              <h2 class="mb-2 text-2xl font-bold">{post.frontmatter.title}</h2>
+              <p>{post.frontmatter.summary}</p>
             </div>
-          </a>
-        )}
-        </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
 </MainLayout>

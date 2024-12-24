@@ -1,225 +1,210 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import Icon from "astro-icon";
 import BlogCard from "../components/BlogCard.astro";
 import SolidButton from "../components/Buttons/SolidButton.astro";
-import ProjectCard from '../components/ProjectCard.astro';
-import Spacer from '../components/Spacer.astro';
-import heroImage from '../images/hero-image.png';
-import MainLayout from '../layouts/MainLayout.astro';
+import ProjectCard from "../components/ProjectCard.astro";
+import Spacer from "../components/Spacer.astro";
+import heroImage from "../images/hero-image.png";
+import MainLayout from "../layouts/MainLayout.astro";
 
-const articles = await Astro.glob('./blog/*.{md,mdx}');	
+const articles = await Astro.glob("./blog/*.{md,mdx}");
 
-const projects = articles.filter(post => post.frontmatter.type === "Development").sort(
-	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-);
+const projects = articles
+  .filter((post) => post.frontmatter.type === "Development")
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.pubDate).valueOf() -
+      new Date(a.frontmatter.pubDate).valueOf(),
+  );
 
-const posts = articles.filter(post => post.frontmatter.type !== "development").sort(
-	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-);
+const posts = articles
+  .filter((post) => post.frontmatter.type !== "development")
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.pubDate).valueOf() -
+      new Date(a.frontmatter.pubDate).valueOf(),
+  );
 
 const images = [
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106582962_313374366366248_4478339207149697437_n_6832f4393b.jpg"}, 
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116246982_294903704902043_5912067855605461718_n_17a1172ab1.jpg"}, 
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116083927_762105837909027_5134881624978116803_n_a79373f408.jpg"},
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116010473_278006043654417_3365401399263332219_n_7d2b91f1fc.jpg"},
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/107821292_271133724183073_3919736138283767027_n_8b0a3e5571.jpg"},
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/112613789_894184617742045_831483574685464405_n_12ca02993c.jpg"},
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/83717780_3963843907023354_43348298014472870_n_08258f2b97.jpg"},
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106809751_719205758863710_1641263503048864519_n_550c131b72.jpg"},
-  {url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106691377_1682772741875942_281587236741181828_n_cf38f7951c.jpg"}
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106582962_313374366366248_4478339207149697437_n_6832f4393b.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116246982_294903704902043_5912067855605461718_n_17a1172ab1.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116083927_762105837909027_5134881624978116803_n_a79373f408.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503518/116010473_278006043654417_3365401399263332219_n_7d2b91f1fc.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/107821292_271133724183073_3919736138283767027_n_8b0a3e5571.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/112613789_894184617742045_831483574685464405_n_12ca02993c.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/83717780_3963843907023354_43348298014472870_n_08258f2b97.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106809751_719205758863710_1641263503048864519_n_550c131b72.jpg",
+  },
+  {
+    url: "https://res.cloudinary.com/matthewberger/image/upload/v1645503517/106691377_1682772741875942_281587236741181828_n_cf38f7951c.jpg",
+  },
 ];
-
 ---
 
 <MainLayout title="Matthew Berger">
-	<div class="flex flex-col-reverse md:flex-row mt-12 items-center">
-		<div class="basis-7/12 mt-0 md:mt-32">
-		  <h1 class="text-3xl md:text-5xl font-semibold mb-6 leading-[1.2] md:leading-[1.2]">
-			Hi, I'm Matthew & I'm A Full Stack Creative
-		  </h1>
-		  <p class="md:mr-16 leading-relaxed">
-			I'm a third-year Combinatorics and Optimization student at the University of Waterloo, and
-			this is my small corner of the internet. This past fall I worked at
-			Spellbook as a Software Developer, and if you would like
-			to work with me in the future, or simply ask me a question, please reach
-			out to me using any of the social icons below. Failing that, I've heard
-			that pigeons work well.
-		  </p>
-		  <ul class="flex space-x-2 my-6 items-center">
-			<li>
-			  <a
-				class="hover:text-brandTeal transition-all"
-				href="https://github.com/bergermaestro"
-				target="_blank"
-				rel="noreferrer"
-			  >
-				<Icon name="akar-icons:github-fill" class="inline mr-3 w-8 h-8" />
-			  </a>
-			</li>
-			<li>
-			  <a
-				class="hover:text-brandTeal transition-all"
-				href="https://www.linkedin.com/in/matthewaberger/"
-				target="_blank"
-				rel="noreferrer"
-			  >
-				<Icon name="fa-brands:linkedin" class="inline mr-3 w-8 h-8" />
-			  </a>
-			</li>
-			<li>
-			  <a
-				class="hover:text-brandTeal transition-all"
-				href="mailto:matthew17berger@gmail.com"
-				target="_blank"
-				rel="noreferrer"
-			  >
-				<Icon name="heroicons-outline:mail" class="inline mr-3 w-10" />
-			  </a>
-			</li>
-			<li>
-			  <a
-				  class="hover:text-brandTeal transition-all"
-				  href="https://twitter.com/itsmattberger"
-				  target="_blank"
-				  rel="noreferrer"
-			  >
-				<Icon name="fa-brands:twitter" class="inline mr-3 w-8 h-8" />
-			  </a>
-			</li>
-		  </ul>
-		</div>
-		<div class="basis-5/12 md:pl-12 px-8 mx-auto mb-0  md:-mb-44">
-		  <Image
-			src={heroImage}
-			alt="A navy blue tower with conveyor belts holding hamburgers passing through it"
-			class="mx-auto"
-			format={'webp'}
-		  />
-		</div>
-	</div>
+  <div class="mt-12 flex flex-col-reverse items-center md:flex-row">
+    <div class="mt-0 basis-7/12 md:mt-32">
+      <h1
+        class="mb-6 text-3xl font-semibold leading-[1.2] md:text-5xl md:leading-[1.2]"
+      >
+        Hi, I'm Matthew & I'm A Full Stack Creative
+      </h1>
+      <p class="leading-relaxed md:mr-16">
+        I'm a second-year mathematics student at the University of Waterloo, and
+        this is my small corner of the internet. This past winter I worked at
+        Tamvoes Health Inc as a Full-Stack Developer, and if you would like to
+        work with me in the future, or simply ask me a question, please reach
+        out to me using any of the social icons below. Failing that, I've heard
+        that pigeons work well.
+      </p>
+      <ul class="my-6 flex items-center space-x-2">
+        <li>
+          <a
+            class="hover:text-brandTeal transition-all"
+            href="https://github.com/bergermaestro"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icon name="akar-icons:github-fill" class="mr-3 inline h-8 w-8" />
+          </a>
+        </li>
+        <li>
+          <a
+            class="hover:text-brandTeal transition-all"
+            href="https://www.linkedin.com/in/matthewaberger/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icon name="fa-brands:linkedin" class="mr-3 inline h-8 w-8" />
+          </a>
+        </li>
+        <li>
+          <a
+            class="hover:text-brandTeal transition-all"
+            href="mailto:matthew17berger@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icon name="heroicons-outline:mail" class="mr-3 inline w-10" />
+          </a>
+        </li>
+        <li>
+          <a
+            class="hover:text-brandTeal transition-all"
+            href="https://twitter.com/itsmattberger"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Icon name="fa-brands:twitter" class="mr-3 inline h-8 w-8" />
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="mx-auto mb-0 basis-5/12 px-8 md:-mb-44 md:pl-12">
+      <Image
+        src={heroImage}
+        alt="A navy blue tower with conveyor belts holding hamburgers passing through it"
+        class="mx-auto"
+        format={"webp"}
+      />
+    </div>
+  </div>
 
-	<Spacer/>
+  <Spacer />
 
-	{/* Project Section */}
-	<div class="flex flex-col">
-		<div>
-		  <p class="uppercase text-xl tracking-wider pb-4">The Projects</p>
-		  <div class="flex flex-col md:flex-row pb-12 md:space-x-4 max-w-3xl">
-			<h2 class="font-bold text-4xl basis-1/2">The things i've worked on</h2>
-			<div class="basis-1/2 md:w-3/4 text-md md:text-lg">
-			  <p class="pb-4">
-				Take a look at the skills I've gained and the mistakes I've made
-				through the awesome projects I've worked on
-			  </p>
-			  <span class="mt-4 pt-4">
-				<a href="./blog/category/development" class="uppercase">See all Projects &rarr;</a>
-			  </span>
-			</div>
-		  </div>
-		</div>
-	  
-		<div
-		  class="flex flex-col space-y-12 lg:space-y-0 md:flex-row md:space-x-6 md:h-[33em]"
-		>
-		  {
-			projects &&
-			  projects.slice(0, 3).map((project: any) => (
-				<div class="basis-1/3 h-full">
-				  <ProjectCard
-				  title={project.frontmatter.title}
-				  summary={project.frontmatter.summary}
-				  image={project.frontmatter.image}
-				  slug={project.url}
-				  />
-				</div>
-			  ))
-		  }
-		</div>
-	</div>
+  {/* Project Section */}
+  <div class="flex flex-col">
+    <div>
+      <p class="pb-4 text-xl uppercase tracking-wider">The Projects</p>
+      <div class="flex max-w-3xl flex-col pb-12 md:flex-row md:space-x-4">
+        <h2 class="basis-1/2 text-4xl font-bold">The things i've worked on</h2>
+        <div class="text-md basis-1/2 md:w-3/4 md:text-lg">
+          <p class="pb-4">
+            Take a look at the skills I've gained and the mistakes I've made
+            through the awesome projects I've worked on
+          </p>
+          <span class="mt-4 pt-4">
+            <a href="./blog/category/development" class="uppercase"
+              >See all Projects &rarr;</a
+            >
+          </span>
+        </div>
+      </div>
+    </div>
 
-	<Spacer/>
+    <div
+      class="flex flex-col space-y-12 md:h-[33em] md:flex-row md:space-x-6 lg:space-y-0"
+    >
+      {
+        projects &&
+          projects.slice(0, 3).map((project: any) => (
+            <div class="h-full basis-1/3">
+              <ProjectCard
+                title={project.frontmatter.title}
+                summary={project.frontmatter.summary}
+                image={project.frontmatter.image}
+                slug={project.url}
+              />
+            </div>
+          ))
+      }
+    </div>
+  </div>
 
-	{/* Blog Section */}
-	<div class="flex flex-col md:flex-row items-center">
-		{/* Left Section */}
-		<div class="bg-default-900 basis-1/2">
-		  <div
-			class="px-3 sm:px-8 py-12 space-y-4 bg-[url('../images/blog-background.png')] bg-contain bg-no-repeat bg-opacity-30"
-		  >
-			<p class="uppercase text-xl tracking-wider">The Blog</p>
-			<h2 class="font-bold text-4xl">What's on my mind</h2>
-			<p class="md:w-3/4 text-md md:text-lg lg:text-base">
-			  Take a look at the things I've learned and the experiences I've written
-			  about
-			</p>
-			<SolidButton text="See My Thoughts" path="./blog" />
-		  </div>
-		</div>
-	  
-		{/* Right Section */}
-		<div class="basis-1/2 space-y-6">
-		  {
-			posts &&
-			  posts
-				.slice(0, 2)
-				.map((post: any) => (
-				  <BlogCard
-					title={post.frontmatter.title}
-					summary={post.frontmatter.summary}
-					image={post.frontmatter.image}
-					slug={post.url}
-				  />
-				))
-		  }
-		</div>
-	  </div>
+  <Spacer />
 
-	<Spacer/>
+  {/* Blog Section */}
+  <div class="flex flex-col items-center md:flex-row">
+    {/* Left Section */}
+    <div class="basis-1/2 bg-default-900">
+      <div
+        class="space-y-4 bg-opacity-30 bg-[url('../images/blog-background.png')] bg-contain bg-no-repeat px-3 py-12 sm:px-8"
+      >
+        <p class="text-xl uppercase tracking-wider">The Blog</p>
+        <h2 class="text-4xl font-bold">What's on my mind</h2>
+        <p class="text-md md:w-3/4 md:text-lg lg:text-base">
+          Take a look at the things I've learned and the experiences I've
+          written about
+        </p>
+        <SolidButton text="See My Thoughts" path="./blog" />
+      </div>
+    </div>
 
+    {/* Right Section */}
+    <div class="basis-1/2 space-y-6">
+      {
+        posts &&
+          posts
+            .slice(0, 2)
+            .map((post: any) => (
+              <BlogCard
+                title={post.frontmatter.title}
+                summary={post.frontmatter.summary}
+                image={post.frontmatter.image}
+                slug={post.url}
+              />
+            ))
+      }
+    </div>
+  </div>
 
-	{/* Gallery Section */}
-	<div class="flex flex-col-reverse md:flex-row items-center">
-		{/* Left Section */}
-		<div
-		  class="bg-white text-default-400 rounded-lg shadow-lg grid grid-cols-3 grid-rows-3 gap-2 p-2 lg:gap-3 lg:p-3 aspect-square basis-1/2"
-		>
-		  {
-			images &&
-			  images
-				.slice(0, 9)
-				.map((image: any) => (
-				  <Image
-					src={image.url}
-					alt="Image"
-					format={"webp"} 
-					width={"200"}
-					height={"200"}
-					class="rounded-md hover:-scale-[-0.25rem] duration-300 motion-reduce:transition-none motion-reduce:transform-none aspect-square object-cover"
-				  />
-				))
-		  }
-		</div>
-	  
-		{/* Right Section */}
-		<div class="bg-default-900 basis-1/2">
-		  <div
-			class="px-3 sm:px-8 py-12 space-y-4 bg-[url('../images/gallery-background.png')] bg-cover bg-no-repeat bg-opacity-30"
-		  >
-			<p class="uppercase text-xl tracking-wider">The Gallery</p>
-			<h2 class="font-bold text-4xl">Life through the lens</h2>
-			<p class="md:w-3/4 text-md md:text-lg lg:text-base">
-			  Take a look at the places I've been and the photographs I've taken
-			</p>
-			<SolidButton
-			  text="See My Photos"
-			  path="https://www.instagram.com/itsmattberger/"
-			  target="_blank"
-			/>
-		  </div>
-		</div>
-	</div>
+  <Spacer />
 
-
-	<Spacer/>
+  <Spacer />
 </MainLayout>

@@ -12,37 +12,44 @@ export interface Props {
     pubDate?: string;
     updatedDate?: string;
     heroImage?: string;
-    projectLinks: Array<{url: string, displayText: string}>;
+    projectLinks: Array<{ url: string; displayText: string }>;
     rosetta: object;
   };
 }
 
-const rosetta:any = {
-      'github': {icon: 'akar-icons:github-fill', text: 'View Source Code'},
-      'figma': {icon: 'akar-icons:figma-fill', text: 'View on Figma'},
-      'site': {icon: 'akar-icons:link', text: 'View Project'},
-    };
+const rosetta: any = {
+  github: { icon: "akar-icons:github-fill", text: "View Source Code" },
+  figma: { icon: "akar-icons:figma-fill", text: "View on Figma" },
+  site: { icon: "akar-icons:link", text: "View Project" },
+};
 
 const {
   content: { title, summary, pubDate, updatedDate, heroImage, projectLinks },
 } = Astro.props;
-
 ---
 
 <MainLayout title={`Matthew Berger | ${title}`}>
-  <div class="px-6 md:px-14 lg:px-6 lg:max-w-6xl mx-auto">
-    <h1 class="text-5xl font-bold mb-1 mt-12 leading-[1.2]">
+  <div class="mx-auto px-6 md:px-14 lg:max-w-6xl lg:px-6">
+    <h1 class="mb-1 mt-12 text-5xl font-bold leading-[1.2]">
       {title}
     </h1>
-    <h2 class="text-1xl mb-6 text-brandTeal">{pubDate}</h2>
-    <div class="mt-16 mb-20">
-      {projectLinks && projectLinks.map((link:any) => (
-          <div class="inline-block mr-6 mb-6">
-            <OutlineButton text={rosetta[link.name].text} path={link.url} icon={rosetta[link.name].icon} theme='light'/>
-          </div>
-      ))}
+    <h2 class="text-1xl text-brandTeal mb-6">{pubDate}</h2>
+    <div class="mb-20 mt-16">
+      {
+        projectLinks &&
+          projectLinks.map((link: any) => (
+            <div class="mb-6 mr-6 inline-block">
+              <OutlineButton
+                text={rosetta[link.name].text}
+                path={link.url}
+                icon={rosetta[link.name].icon}
+                theme="light"
+              />
+            </div>
+          ))
+      }
     </div>
-    <article class="prose prose-invert prose-cyan">
+    <article class="prose prose-cyan prose-invert">
       <slot />
     </article>
   </div>
