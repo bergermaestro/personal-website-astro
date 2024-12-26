@@ -1,18 +1,59 @@
 ---
+import { Icon } from "astro-icon/components";
+import { cva } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
+
 export interface Props {
   text: string;
   path: string;
   target?: string;
+  background: "orange" | "blue" | "yellow" | "livid";
+  foreground: "orange" | "blue" | "yellow" | "livid";
 }
 
-const { text, path, target } = Astro.props;
+const variants = {
+  variants: {
+    background: {
+      orange: "bg-orange-600 group-hover:bg-orange-500",
+      blue: "bg-blue-600 group-hover:bg-blue-500",
+      yellow: "bg-yellow-600 group-hover:bg-yellow-500",
+      livid: "bg-livid-900 group-hover:bg-livid-700",
+    },
+    foreground: {
+      orange: "text-orange-600",
+      blue: "text-blue-600",
+      yellow: "text-yellow-600",
+      livid: "text-livid-900",
+    },
+  },
+  defaultVariants: {
+    background: "yellow" as const,
+    foreground: "orange" as const,
+  },
+};
+
+const buttonClasses = cva(
+  "font-width-[87] rounded-full px-6 py-2 font-bold transition-all group-hover:bg-opacity-90",
+  variants,
+);
+
+const iconClasses = cva(
+  "cursor-pointer rounded-full p-2.5 transition-all group-hover:bg-opacity-90 group-hover:translate-x-1",
+  variants,
+);
+
+const { text, path, target, background, foreground } = Astro.props;
 ---
 
 <a href={path} target={target ? target : "_self"}>
-  <div class="cursor-pointer pt-4">
-    <span
-      class="hover:bg-brandTeal inline-block rounded-lg bg-white p-4 uppercase tracking-wider text-default-400 transition-all"
-      >{text} &rarr;</span
-    >
+  <div class="group inline-flex cursor-pointer items-center gap-1 pt-4">
+    <span class={twMerge(buttonClasses({ background, foreground }))}>
+      {text}
+    </span>
+    <Icon
+      name="ph:arrow-right-bold"
+      size="40"
+      class={twMerge(iconClasses({ background, foreground }))}
+    />
   </div>
 </a>

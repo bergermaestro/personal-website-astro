@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Artemis",
+    "released": 2017,
+    "author": "Andy Weir",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "August 2024",
+    "cover": "../images/books/artemis.jpg"
+  },
+  {
+    "title": "Fractal Noise",
+    "released": 2023,
+    "author": "Christopher Paolini",
+    "status": "finished",
+    "rating": 5,
+    "finished_on": "August 2024",
+    "cover": "../images/books/fractal-noise.jpg"
+  },
+  {
+    "title": "The Apollo Murders",
+    "released": 2021,
+    "author": "Chris Hadfield",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "December 2023",
+    "cover": "../images/books/the-apollo-murders.webp"
+  },
+  {
+    "title": "The Martian",
+    "released": 2011,
+    "author": "Andy Weir",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "July 2024",
+    "cover": "../images/books/the-martian.webp"
+  },
+  {
+    "title": "The Rural Voter",
+    "released": 2023,
+    "author": "Nicholas F. Jacobs and Daniel M. Shea",
+    "status": "finished",
+    "rating": 8,
+    "finished_on": "December 2024",
+    "cover": "../images/books/the-rural-voter.jpg"
+  },
+  {
+    "title": "War",
+    "released": 2024,
+    "author": "Bob Woodward",
+    "status": "to read",
+    "rating": null,
+    "finished_on": null,
+    "cover": "../images/books/war.jpg"
+  },
+  {
+    "title": "The Other Significant Others",
+    "released": 2024,
+    "author": "Rhaina Cohen",
+    "status": "to read",
+    "rating": null,
+    "finished_on": null,
+    "cover": "../images/books/other-significant-others.jpg"
+  },
+  {
+    "title": "Moby Dick",
+    "released": 1851,
+    "author": "Herman Melville",
+    "status": "currently reading",
+    "rating": null,
+    "finished_on": null,
+    "cover": "../images/books/artemis.jpg"
+  },
+  {
+    "title": "The Alchemist",
+    "released": 1988,
+    "author": "Paulo Coelho",
+    "status": "finished",
+    "rating": 7,
+    "finished_on": "October 2022",
+    "cover": "../images/books/artemis.jpg"
+  },
+  {
+    "title": "War and Peace",
+    "released": 1869,
+    "author": "Leo Tolstoy",
+    "status": "to read",
+    "rating": null,
+    "finished_on": null,
+    "cover": "../images/books/artemis.jpg"
+  }
+]

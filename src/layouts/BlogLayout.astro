@@ -8,6 +8,7 @@ export interface Props {
   content: {
     title: string;
     summary: string;
+    type: string;
     pubDate?: string;
     updatedDate?: string;
     heroImage?: string;
@@ -15,19 +16,22 @@ export interface Props {
 }
 
 const {
-  content: { title, summary, pubDate, updatedDate, heroImage },
+  content: { title, summary, type, pubDate, updatedDate, heroImage },
 } = Astro.props;
 ---
 
 <MainLayout title={`Matthew Berger | ${title}`}>
-  <div class="mx-auto px-6 md:px-14 lg:max-w-6xl lg:px-6">
-    <h1 class="mb-1 mt-12 text-5xl font-bold leading-[1.2]">
+  <nav class="pb-4 font-phudu">
+    <a href="/blog">Blog</a> > <a href=`/blog/category/${type}`>{type}</a>
+  </nav>
+  <div class="rounded-3xl bg-blue-600 px-8 py-32">
+    <h1 class="text-left font-phudu text-7xl font-extrabold text-yellow-600">
       {title}
     </h1>
-    <h2 class="text-1xl mb-6">{pubDate}</h2>
-    <article class="prose prose-cyan prose-invert">
-      <slot />
-    </article>
+    <h2 class="font-phudu text-xl">{pubDate}</h2>
   </div>
+  <article class="prose prose-cyan prose-invert pt-16">
+    <slot />
+  </article>
   <Spacer />
 </MainLayout>

@@ -54,10 +54,10 @@ const posts = (await Astro.glob("./../*.{md,mdx}"))
       posts.map((post) => (
         <a
           href={post.url}
-          class={`h-96 overflow-hidden rounded-md border-white bg-cover bg-center text-white transition-transform duration-300 hover:scale-105`}
+          class={`border-white text-white h-96 overflow-hidden rounded-md bg-cover bg-center transition-transform duration-300 hover:scale-105`}
           style={`background-image: url("${post.frontmatter.image}");`}
         >
-          <div class="bottom-0 flex h-96 flex-col justify-end bg-gradient-to-t from-default-300 from-20% p-4">
+          <div class="from-default-300 bottom-0 flex h-96 flex-col justify-end bg-gradient-to-t from-20% p-4">
             <div />
             <div class="pb-4">
               <h2 class="mb-2 text-2xl font-bold">{post.frontmatter.title}</h2>

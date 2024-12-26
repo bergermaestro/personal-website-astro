@@ -2,6 +2,7 @@
 import { Image, Picture } from "astro:assets";
 import Spacer from "../../components/Spacer.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
+import SolidButton from "../../components/Buttons/SolidButton.astro";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob("./*.{md,mdx}")).sort(
@@ -13,89 +14,94 @@ const posts = (await Astro.glob("./*.{md,mdx}")).sort(
 
 <!-- Categories: Development, Tech-Adjacent, Miscellaneous -->
 <MainLayout title="Matthew Berger | Blog">
-  <h1 class="pt-24 text-5xl font-semibold">Blog</h1>
-  <div class="py-8">
-    <ul class="flex flex-col text-lg md:flex-row md:space-x-12">
-      <li class="py-2 text-xl font-semibold underline underline-offset-[12px]">
-        <a href="./">All Posts</a>
-      </li>
-      <li class="py-2 hover:underline hover:underline-offset-[12px]">
-        <a href="/blog/category/development">Development</a>
-      </li>
-      <li class="py-2 hover:underline hover:underline-offset-[12px]">
-        <a href="/blog/category/tech-adjacent">Tech Adjacent</a>
-      </li>
-      <li class="py-2 hover:underline hover:underline-offset-[12px]">
-        <a href="/blog/category/miscellaneous">Miscellaneous</a>
-      </li>
-    </ul>
-  </div>
-
-  <div
-    class="grid-rows-auto grid grid-cols-1 gap-6 lg:grid-cols-[3fr_2fr] lg:grid-rows-3"
-  >
-    {
-      posts.slice(0, 4).map((post, idx) => {
-        if (idx === 0) {
-          return (
-            <a
-              href={post.url}
-              class="group relative row-span-3 h-full overflow-hidden rounded-md"
-            >
-              <img
-                src={post.frontmatter.image}
-                alt="Project card image"
-                class="h-auto w-auto min-w-full object-cover transition-transform duration-300 group-hover:scale-105 md:min-h-full"
-              />
-              <div class="bottom-4 left-4 rounded-md bg-default-300 p-4 text-white sm:absolute sm:w-7/12">
-                <span class="text-brandTeal uppercase">
-                  {post.frontmatter.type}
-                </span>
-                <h2 class="mb-2 mr-6 text-2xl font-bold">
-                  {post.frontmatter.title}
-                </h2>
-                <p class="mr-12">{post.frontmatter.summary}</p>
+  <div class="flex items-start gap-8">
+    <section class="flex basis-2/3 flex-col">
+      {
+        posts.map((post, idx) => {
+          if (idx === 0) {
+            return (
+              <div class="rounded-2xl bg-blue-600 p-4">
+                <img
+                  src={post.frontmatter.image}
+                  alt="Project card image"
+                  class="aspect-video rounded-xl border-blue-600 object-cover"
+                />
+                <div class="p-4">
+                  <h3 class="font-phudu">{post.frontmatter.type}</h3>
+                  <h2 class="font-phudu text-2xl font-medium">
+                    {post.frontmatter.title}
+                  </h2>
+                  <p class="max-w-[55ch] leading-relaxed font-width-[87]">
+                    {post.frontmatter.summary}
+                  </p>
+                  <SolidButton
+                    text="Read More"
+                    background="yellow"
+                    foreground="blue"
+                    path={post.url}
+                  />
+                </div>
               </div>
-            </a>
-          );
-        } else {
-          return (
-            <a
-              href={post.url}
-              class="rounded-md bg-default-300 p-4 text-white transition-transform duration-300 hover:scale-105"
-            >
-              <span class="text-brandTeal uppercase">
-                {post.frontmatter.type}
-              </span>
-              <h2 class="mb-2 text-2xl font-bold">{post.frontmatter.title}</h2>
-              <p class="mr-4">{post.frontmatter.summary}</p>
-            </a>
-          );
-        }
-      })
-    }
-  </div>
-  <div class="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 md:grid-cols-3">
-    {
-      posts.slice(4).map((post) => (
-        <a
-          href={post.url}
-          class={`h-96 overflow-hidden rounded-md border-white bg-cover bg-center text-white transition-transform duration-300 hover:scale-105`}
-          style={`background-image: url("${post.frontmatter.image}");`}
-        >
-          <div class="bottom-0 flex h-96 flex-col justify-end bg-gradient-to-t from-default-300 from-20% p-4">
-            <div />
-            <div class="pb-4">
-              <span class="text-brandTeal uppercase">
-                {post.frontmatter.type}
-              </span>
-              <h2 class="mb-2 text-2xl font-bold">{post.frontmatter.title}</h2>
-              <p>{post.frontmatter.summary}</p>
-            </div>
-          </div>
-        </a>
-      ))
-    }
+            );
+          } else {
+            return (
+              <div class="flex gap-8 border-b border-livid-500 px-4 py-8 transition-transform duration-300">
+                <div class="basis-3/4">
+                  <h3 class="font-phudu">{post.frontmatter.type}</h3>
+                  <h2 class="font-phudu text-2xl font-medium text-yellow-600">
+                    {post.frontmatter.title}
+                  </h2>
+                  <p class="max-w-[55ch] leading-relaxed font-width-[87]">
+                    {post.frontmatter.summary}
+                  </p>
+                  <SolidButton
+                    text="Read More"
+                    background="yellow"
+                    foreground="livid"
+                    path={post.url}
+                  />
+                </div>
+                <div class="basis-1/4">
+                  {post.frontmatter.image && (
+                    <Image
+                      src={post.frontmatter.image}
+                      class="aspect-square rounded-lg object-cover"
+                      width={"200"}
+                      height={"200"}
+                      alt={"Blog Header Image"}
+                      format={"webp"}
+                    />
+                  )}
+                </div>
+              </div>
+            );
+          }
+        })
+      }
+    </section>
+    <aside class="sticky top-8 basis-1/3 rounded-xl bg-orange-600 p-8">
+      <h1
+        class="rotate-180 font-phudu text-6xl font-bold text-yellow-600 [writing-mode:vertical-lr]"
+      >
+        Thoughts On
+      </h1>
+      <ul
+        class="space-y-2 text-right font-phudu text-lg text-yellow-600 md:flex-row md:space-x-12"
+      >
+        <li class="text-xl font-semibold underline underline-offset-[5px]">
+          <a href="./">All Posts</a>
+        </li>
+        <li class="hover:underline hover:underline-offset-[5px]">
+          <a href="/blog/category/development">Development</a>
+        </li>
+        <li class="hover:underline hover:underline-offset-[5px]">
+          <a href="/blog/category/tech-adjacent">Tech Adjacent</a>
+        </li>
+        <li class="hover:underline hover:underline-offset-[5px]">
+          <a href="/blog/category/miscellaneous">Miscellaneous</a>
+        </li>
+      </ul>
+    </aside>
   </div>
   <Spacer />
 </MainLayout>

@@ -1,32 +1,29 @@
 ---
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 ---
 
-<div class="bg-gradient-to-t from-default-900">
+<div class="from-default-900 bg-gradient-to-t">
   <div
-    class="flex max-w-3xl flex-col justify-between space-y-6 px-6 py-16 sm:flex-row md:mx-auto md:px-12 lg:px-0"
+    class="flex max-w-5xl flex-col justify-between space-y-6 px-6 py-16 sm:flex-row md:mx-auto md:px-12 lg:px-0"
   >
-    <div class="flex flex-row justify-between sm:flex-col">
-      <div class="mb-5">
-        <Icon name="logo-white" class="w-24" />
-      </div>
+    <div class="flex justify-between gap-8">
+      <Icon name="logo-white" size="90" />
       <div>
-        <p>Designed and Developed by</p>
-        <p>Matthew Berger</p>
-        <div class="h-6"></div>
-        <div class="inline">
+        <p class="pb-4">Designed and Developed by <br /> Matthew Berger</p>
+        <p class="inline">
           Made with <Icon
-            name="clarity:heart-solid"
-            class="mx-0.5 inline h-6 w-6"
+            name="ph:heart-fill"
+            size="20"
+            class="mx-0.5 inline"
           /> in Toronto
-        </div>
+        </p>
       </div>
     </div>
     <div>
-      <h5 class="mb-4 hidden text-2xl font-bold sm:block">Get in touch!</h5>
-      <ul
-        class="mt-12 flex flex-row justify-between sm:mt-0 sm:flex-col sm:space-y-2 md:text-right"
-      >
+      <h5 class="mb-4 hidden text-right font-phudu text-2xl font-bold sm:block">
+        Let's get in touch!
+      </h5>
+      <ul class="flex justify-between gap-2 md:text-right">
         <li>
           <a
             class="hover:text-brandTeal transition-all"
@@ -34,8 +31,8 @@ import Icon from "astro-icon";
             target="_blank"
             rel="noreferrer"
           >
-            Twitter</a
-          >
+            <Icon name="ri:twitter-fill" size="30" />
+          </a>
         </li>
         <li>
           <a
@@ -44,8 +41,8 @@ import Icon from "astro-icon";
             target="_blank"
             rel="noreferrer"
           >
-            Github</a
-          >
+            <Icon name="ri:github-fill" size="30" />
+          </a>
         </li>
         <li>
           <a
@@ -54,8 +51,8 @@ import Icon from "astro-icon";
             target="_blank"
             rel="noreferrer"
           >
-            LinkedIn</a
-          >
+            <Icon name="ri:linkedin-box-fill" size="30" />
+          </a>
         </li>
         <li>
           <a
@@ -64,8 +61,8 @@ import Icon from "astro-icon";
             target="_blank"
             rel="noreferrer"
           >
-            Email</a
-          >
+            <Icon name="ph:envelope-bold" size="30" />
+          </a>
         </li>
       </ul>
     </div>

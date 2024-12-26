@@ -1,31 +1,48 @@
 ---
-import type { ComponentInstance } from "astro";
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
+import { cva } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
 
 export interface Props {
   text: string;
-  icon?: ComponentInstance;
+  icon?: string;
   path: string;
   additionalProps?: string;
-  theme?: string;
+  theme?: "dark" | "light";
   target?: string;
 }
 
-if (Astro.props.theme === "dark") {
-  const themeProps = "text-default-900 border-default-900";
-} else {
-  const themeProps = "text-white border-white";
-}
+// Define a CVA for the link classes
+const linkClasses = cva(
+  "uppercase rounded-lg tracking-wider border transition-all px-4 py-3 inline-block",
+  {
+    variants: {
+      theme: {
+        dark: "text-default-900 border-default-900 hover:text-brandTeal hover:border-brandTeal",
+        light:
+          "text-white border-white hover:text-brandTeal hover:border-brandTeal",
+      },
+    },
+    defaultVariants: {
+      theme: "light",
+    },
+  },
+);
 
-const { text, icon, path, additionalProps, themeProps, target } = Astro.props;
+const {
+  text,
+  icon,
+  path,
+  additionalProps,
+  theme = "light",
+  target,
+} = Astro.props;
 ---
 
 <a
   href={path}
   target={target ? target : "_self"}
-  class={`${themeProps} hover:cursor-pointer uppercase rounded-lg tracking-wider 
-                      border hover:text-brandTeal hover:border-brandTeal transition-all 
-                      px-4 py-3 inline-block ${additionalProps}`}
+  class={twMerge(linkClasses({ theme }), additionalProps)}
 >
   {icon ? <Icon name={icon} class="mr-2 inline h-6 w-6" /> : null}
   {text}

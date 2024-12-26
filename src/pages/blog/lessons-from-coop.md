@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogLayout.astro"
 title: "Lessons Learned from Co-Op"
 summary: "Some things I’ve learned from my first two co-op experiences"
-image: "https://res.cloudinary.com/matthewberger/image/upload/v1682997555/lessons-from-coop-header_baakk4.jpg"
+# image: "https://res.cloudinary.com/matthewberger/image/upload/v1682997555/lessons-from-coop-header_baakk4.jpg"
 pubDate: "April 30 2023"
 type: "Tech Adjacent"
 ---

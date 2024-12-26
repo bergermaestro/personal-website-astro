@@ -1,19 +1,25 @@
 ---
 import { Image } from "astro:assets";
-import ResumeImage from "../images/resume-mockup.png";
+import ResumeImage from "../data/images/resume-mockup.png";
 import SolidButton from "./Buttons/SolidButton.astro";
 import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf";
 ---
 
-<div class="my-6 inline-flex rounded-lg bg-default-900 shadow-lg">
-  <div class="mx-4 flex items-center p-4">
-    <Image src={ResumeImage} alt="" format={"webp"} />
+<div
+  class="flex items-stretch gap-8 rounded-2xl bg-orange-600 p-8 text-livid-200"
+>
+  <div class="flex flex-col">
+    <h4 class="font-phudu text-lg leading-none">File Download</h4>
+    <h2 class="mb-auto font-phudu text-3xl font-medium leading-tight">
+      See My Resume
+    </h2>
+    <SolidButton
+      text="Download Here"
+      path={Resume}
+      target="_blank"
+      foreground="orange"
+      background="yellow"
+    />
   </div>
-  <div
-    class="space-y-4 bg-opacity-30 bg-[url('../../images/resume-background.png')] bg-contain bg-no-repeat px-8 py-12"
-  >
-    <h4 class="text-xl uppercase tracking-wider">File Download</h4>
-    <h2 class="text-4xl font-bold">See My Resume</h2>
-    <SolidButton text="Download Here" path={Resume} target="_blank" />
-  </div>
+  <Image src={ResumeImage} alt="" format={"webp"} />
 </div>

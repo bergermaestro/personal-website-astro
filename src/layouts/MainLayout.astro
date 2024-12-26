@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import GoogleAnalytics from "../components/googleAnalytics.astro";
 import Hotjar from "../components/hotjar.astro";
 import MetaTags from "../components/metaTags.astro";
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
   title: string;
@@ -15,9 +16,10 @@ const { title } = Astro.props;
 <!doctype html>
 <html
   lang="en"
-  class="selection:bg-brandTeal bg-default-900 font-jakarta text-white"
+  class="selection:bg-brandTeal font-instrument bg-default-900 text-livid-300"
 >
   <head>
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -32,9 +34,10 @@ const { title } = Astro.props;
     <Hotjar id="3496449" version="6" />
     <GoogleAnalytics id="G-ZB1JXTKLB7" />
   </head>
-  <body class="bg-default-400">
+  <body class="bg-livid-900">
     <Nav />
     <div class="mx-auto min-h-screen px-6 md:px-14 lg:max-w-6xl lg:px-6">
+      <!-- <a class="fixed [writing-mode:vertical-lr] rotate-180 left-8 bottom-1/4 text-livid-500">matthew17berger@gmail.com</a> -->
       <slot />
     </div>
     <Footer />

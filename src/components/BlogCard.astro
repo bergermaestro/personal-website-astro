@@ -6,29 +6,37 @@ export interface Props {
   summary: string;
   image: string;
   slug: string;
+  type: string;
 }
 
-const { title, summary, image, slug } = Astro.props;
+const { title, summary, image, slug, type } = Astro.props;
 ---
 
 <a
   href={slug}
-  class="flex transform flex-col rounded-lg bg-white text-default-400 shadow-lg transition-transform duration-300 hover:-translate-x-[-0.25rem] hover:-translate-y-[0.25rem] motion-reduce:transform-none motion-reduce:transition-none xs:flex-row md:flex-col lg:flex-row"
+  class="flex transform flex-col transition-transform duration-300 hover:-translate-y-[0.25rem] motion-reduce:transform-none motion-reduce:transition-none xs:flex-row md:flex-col lg:flex-row"
 >
-  <div class="basis-5/12 bg-default-400">
-    <div class="relative h-full w-full bg-default-400 md:h-44 lg:h-full">
-      <Image
-        src={image}
-        class="h-full rounded-l-lg object-cover"
-        width={"600"}
-        height={"600"}
-        alt={"Blog Header Image"}
-        format={"webp"}
-      />
-    </div>
+  <div class="basis-3/4 p-6">
+    <span class="font-phudu">{type}</span>
+    <h3 class="font-phudu text-2xl font-medium text-orange-600">
+      {title}
+    </h3>
+    <p class="max-w-[70ch] font-width-[90] md:text-lg lg:text-base">
+      {summary}
+    </p>
   </div>
-  <div class="basis-7/12 p-6">
-    <h3 class="my-4 text-3xl font-semibold">{title}</h3>
-    <p class="text-md md:text-lg lg:text-base">{summary}</p>
+  <div class="basis-1/4">
+    {
+      image && (
+        <Image
+          src={image}
+          class="rounded-lg object-cover"
+          width={"300"}
+          height={"300"}
+          alt={"Blog Header Image"}
+          format={"webp"}
+        />
+      )
+    }
   </div>
 </a>

@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogLayout.astro"
 title: "10 Must Have Mac Utilities (Free)"
 summary: "A list of utilities that I find indispensable to my daily productivity"
-image: "https://res.cloudinary.com/matthewberger/image/upload/v1647293359/howard_bouchevereau_S2r2_Ex8jv2o_unsplash_9d5e93e9ab.jpg"
+# image: "https://res.cloudinary.com/matthewberger/image/upload/v1647293359/howard_bouchevereau_S2r2_Ex8jv2o_unsplash_9d5e93e9ab.jpg"
 pubDate: "February 22 2022"
 type: "Tech Adjacent"
 ---
