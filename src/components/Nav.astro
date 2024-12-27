@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import OutlineButton from "./Buttons/OutlineButton.astro";
+import OutlineButton from "./buttons/OutlineButton.astro";
 import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf";
 ---
 
@@ -18,7 +18,7 @@ import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf";
       <input class="peer hidden" type="checkbox" />
       <Icon name="ph:list" class="cursor-pointer" size="30" />
       <div
-        class="absolute right-0 top-10 z-10 max-h-0 overflow-hidden rounded-lg bg-livid-700 text-center text-lg uppercase shadow-2xl transition-all duration-150 peer-checked:max-h-96"
+        class="absolute right-0 top-10 z-10 max-h-0 overflow-hidden rounded-lg bg-livid-700 text-center text-lg shadow-2xl transition-all duration-150 font-width-[87] peer-checked:max-h-96"
       >
         <a
           href="/reading"
@@ -47,11 +47,11 @@ import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf";
     </label>
 
     <div
-      class="hidden w-full flex-row flex-wrap items-center justify-between uppercase sm:w-auto sm:justify-center sm:space-x-12 lg:flex"
+      class="hidden w-full flex-row flex-wrap items-center justify-between font-width-[87] sm:w-auto sm:justify-center sm:space-x-12 lg:flex"
     >
-      <a href="/blog" class="hover:text-brandTeal transition-colors">Blog</a>
-      <a href="/about" class="hover:text-brandTeal transition-colors">About</a>
-      <a href="/reading" class="hover:text-brandTeal transition-colors"
+      <a href="/blog" class="transition-colors hover:text-livid-200">Blog</a>
+      <a href="/about" class="transition-colors hover:text-livid-200">About</a>
+      <a href="/reading" class="transition-colors hover:text-livid-200"
         >Reading</a
       >
       <OutlineButton text="Resume" path={Resume} target="_blank" />

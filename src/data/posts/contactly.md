@@ -1,16 +1,9 @@
 ---
-layout: "../../layouts/ProjectLayout.astro"
 title: "Contactly"
 summary: "A React App to help you reach out to friends and family more often"
 image: "https://res.cloudinary.com/matthewberger/image/upload/v1684610841/contactly-mockup-2_bcgnn7.png"
 pubDate: "May 19 2023"
-projectLinks:
-  [
-    {
-      "name": "github",
-      "url": "https://github.com/bergermaestro/contacts-remix",
-    },
-  ]
+links: ["https://github.com/bergermaestro/contacts-remix"]
 type: "Development"
 ---
 

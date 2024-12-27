@@ -1,6 +1,7 @@
 import { defineCollection, z, type ImageFunction } from "astro:content";
-import { file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 
+// Books
 const bookSchema = (image: ImageFunction) => {
   return z
     .object({
@@ -8,11 +9,11 @@ const bookSchema = (image: ImageFunction) => {
       released: z.number(),
       author: z.string(),
       status: z.enum(["to read", "currently reading", "finished"]),
-      rating: z.number().nullable(),
-      finished_on: z.string().nullable(),
+      rating: z.number().optional(),
+      finished_on: z.string().optional(),
       cover: image(),
     })
-    .refine((data) => data.status !== "finished" || data.finished_on !== null, {
+    .refine((data) => data.status !== "finished" || data.finished_on, {
       message: "If the status is 'finished', 'finished_on' cannot be null.",
       path: ["finished_on"],
     });
@@ -33,8 +34,31 @@ const bookParser = (text: string) => {
 };
 
 const books = defineCollection({
-  loader: file("src/data/json/books.json", { parser: bookParser }),
+  loader: file("src/data/books/books.json", { parser: bookParser }),
   schema: ({ image }) => bookSchema(image),
 });
 
-export const collections = { books };
+// Year Recap Summaries
+const yearRecaps = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/data/books/year_summaries" }),
+  schema: () =>
+    z.object({
+      year: z.number(),
+    }),
+});
+
+// Blog Posts
+const posts = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/data/posts" }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      summary: z.string(),
+      image: z.string().optional(),
+      pubDate: z.string(),
+      links: z.array(z.string()).optional(),
+      type: z.enum(["Development", "Miscellaneous", "Tech Adjacent"]),
+    }),
+});
+
+export const collections = { books, yearRecaps, posts };

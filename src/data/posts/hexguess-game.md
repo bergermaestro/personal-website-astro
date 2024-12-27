@@ -1,13 +1,12 @@
 ---
-layout: "../../layouts/ProjectLayout.astro"
 title: "HexGuess"
 summary: "I made a game using React to practice guessing colours based on their hex codes"
 image: "https://res.cloudinary.com/matthewberger/image/upload/v1647296367/Hex_Guess_Screenshot_eaf42ef385.png"
 pubDate: "Dec 1 2021"
-projectLinks:
+links:
   [
-    { "name": "site", "url": "https://hex-guesser.netlify.app/" },
-    { "name": "github", "url": "https://github.com/bergermaestro/hex-guesser" },
+    "https://github.com/bergermaestro/hex-guesser",
+    "https://hex-guesser.netlify.app/",
   ]
 type: "Development"
 ---

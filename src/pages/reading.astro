@@ -7,8 +7,10 @@ import MainLayout from "../layouts/MainLayout.astro";
 import currentBook from "../data/images/books/dead-wake.jpg";
 
 import { getCollection } from "astro:content";
+import BookCover from "../components/BookCover.astro";
 
 const allBooks = await getCollection("books");
+const yearRecaps = await getCollection("yearRecaps");
 
 const unreadBooks = allBooks.filter((book) => book.data.status === "to read");
 
@@ -28,6 +30,17 @@ const readBooksByYear = allBooks
 const years = Object.keys(readBooksByYear).sort(
   (a, b) => Number(b) - Number(a),
 );
+
+const recapMap: { [key: number]: string } = yearRecaps.reduce(
+  (acc, recap) => {
+    acc[recap.data.year] = recap.body ?? "";
+    return acc;
+  },
+  {} as { [key: number]: string },
+);
+
+// Colors alternating between blue, yellow, and orange
+const yearColors = ["yellow-600", "blue-600", "orange-600"];
 ---
 
 <MainLayout title="Matthew Berger">
@@ -43,7 +56,6 @@ const years = Object.keys(readBooksByYear).sort(
       My Reading List
     </h1>
   </div>
-
   <div class="flex pt-16">
     <div class="grow">
       <h2 class="font-phudu text-5xl font-bold text-yellow-600">Up Next</h2>
@@ -77,50 +89,44 @@ const years = Object.keys(readBooksByYear).sort(
       >
         Current
       </h3>
-      <Picture
-        src={currentBook}
-        formats={["webp"]}
-        alt="A picture of the book I'm currently reading"
-        class="w-56 pb-12 pt-4"
-        width={600}
-      />
+      <div class="w-56 pb-12 pt-4">
+        <BookCover
+          title="Dead Wake"
+          author="Erik Larson"
+          released={2015}
+          cover={currentBook}
+          width={600}
+        />
+      </div>
     </div>
   </div>
 
   <Spacer />
 
   {
-    years.map((year: string) => (
-      <section>
-        <ul class="-mb-6 flex items-end gap-8 px-8">
-          {readBooksByYear[Number(year)].map((book) => (
-            // <li>
-            //   <strong>{book.data.title}</strong> by {book.data.author} (Rating:{" "}
-            //   {book.data.rating || "N/A"})
-            // </li>
-            <Picture
-              src={book.data.cover}
-              format="webp"
-              alt={book.data.title}
-              width={200}
-            />
-          ))}
-        </ul>
-        <div class="h-12 w-full rounded-xl bg-yellow-600" />
-        <h2 class="py-3 font-phudu text-6xl text-yellow-600">{year}</h2>
-        <p class="max-w-[55ch] font-width-[95]">
-          I perpetually think I’m going to be more likely to read than I
-          actually am, and as much as I like to think that I will put in 10
-          minutes of the Hunchback of Notre Dame every night before bed, I
-          realised I’d rather read something ‘fun’ instead of trying to force
-          myself to read a ‘classic’ and ending up not reading anything at all.
-          I’m happy to say this worked pretty well, and did a lot more casual
-          reading this year than I have in years past.
-        </p>
-        <Spacer />
-      </section>
-    ))
+    years.map((year, index) => {
+      const color = yearColors[index % yearColors.length];
+      return (
+        <section class="pb-40">
+          <ul class="-mb-6 flex items-end gap-8 px-8">
+            {readBooksByYear[Number(year)].map((book) => (
+              <BookCover
+                title={book.data.title}
+                rating={book.data.rating}
+                author={book.data.author}
+                released={book.data.released}
+                cover={book.data.cover}
+                width={200}
+              />
+            ))}
+          </ul>
+          <div class={`h-12 w-full rounded-xl bg-${color}`} />
+          <h2 class={`py-3 font-phudu text-6xl text-${color}`}>{year}</h2>
+          <p class="max-w-[55ch] font-width-[95]">
+            {recapMap[Number(year)] || "No recap available for this year."}
+          </p>
+        </section>
+      );
+    })
   }
-
-  <Spacer />
 </MainLayout>

@@ -4,12 +4,14 @@ import { Icon } from "astro-icon/components";
 
 <div class="from-default-900 bg-gradient-to-t">
   <div
-    class="flex max-w-5xl flex-col justify-between space-y-6 px-6 py-16 sm:flex-row md:mx-auto md:px-12 lg:px-0"
+    class="flex max-w-5xl flex-col items-center justify-between px-6 py-16 sm:flex-row md:mx-auto md:px-12 lg:px-0"
   >
-    <div class="flex justify-between gap-8">
-      <Icon name="logo-white" size="90" />
+    <div class="flex items-center justify-between gap-8">
+      <Icon name="logo" size="100" />
       <div>
-        <p class="pb-4">Designed and Developed by <br /> Matthew Berger</p>
+        <p class="pb-2 leading-tight">
+          Designed and Developed by <br /> Matthew Berger
+        </p>
         <p class="inline">
           Made with <Icon
             name="ph:heart-fill"
@@ -20,13 +22,15 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
     <div>
-      <h5 class="mb-4 hidden text-right font-phudu text-2xl font-bold sm:block">
+      <h5
+        class="hidden pb-1 text-right font-phudu text-2xl font-semibold sm:block"
+      >
         Let's get in touch!
       </h5>
-      <ul class="flex justify-between gap-2 md:text-right">
+      <ul class="float-right inline-flex justify-between gap-2 md:text-right">
         <li>
           <a
-            class="hover:text-brandTeal transition-all"
+            class="transition-colors hover:text-livid-200"
             href="https://twitter.com/itsmattberger"
             target="_blank"
             rel="noreferrer"
@@ -36,7 +40,7 @@ import { Icon } from "astro-icon/components";
         </li>
         <li>
           <a
-            class="hover:text-brandTeal transition-all"
+            class="transition-colors hover:text-livid-200"
             href="https://github.com/bergermaestro"
             target="_blank"
             rel="noreferrer"
@@ -46,7 +50,7 @@ import { Icon } from "astro-icon/components";
         </li>
         <li>
           <a
-            class="hover:text-brandTeal transition-all"
+            class="transition-colors hover:text-livid-200"
             href="https://www.linkedin.com/in/matthewaberger/"
             target="_blank"
             rel="noreferrer"
@@ -56,7 +60,7 @@ import { Icon } from "astro-icon/components";
         </li>
         <li>
           <a
-            class="hover:text-brandTeal transition-all"
+            class="transition-colors hover:text-livid-200"
             href="mailto:matthew17berger@gmail.com"
             target="_blank"
             rel="noreferrer"

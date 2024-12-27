@@ -49,8 +49,6 @@
     "released": 2024,
     "author": "Bob Woodward",
     "status": "to read",
-    "rating": null,
-    "finished_on": null,
     "cover": "../images/books/war.jpg"
   },
   {
@@ -58,8 +56,6 @@
     "released": 2024,
     "author": "Rhaina Cohen",
     "status": "to read",
-    "rating": null,
-    "finished_on": null,
     "cover": "../images/books/other-significant-others.jpg"
   },
   {
@@ -67,8 +63,6 @@
     "released": 1851,
     "author": "Herman Melville",
     "status": "currently reading",
-    "rating": null,
-    "finished_on": null,
     "cover": "../images/books/artemis.jpg"
   },
   {
@@ -85,8 +79,6 @@
     "released": 1869,
     "author": "Leo Tolstoy",
     "status": "to read",
-    "rating": null,
-    "finished_on": null,
     "cover": "../images/books/artemis.jpg"
   }
 ]

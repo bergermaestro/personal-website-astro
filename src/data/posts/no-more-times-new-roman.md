@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogLayout.astro"
 title: "Times New Roman: The Default No Longer"
 summary: "A satirical essay on why society should immediately cease the use of Times New Roman"
 image: "https://res.cloudinary.com/matthewberger/image/upload/v1647295380/curtis_thornton_nsq_H_Rbh_Isk_unsplash_43d3da030f.jpg"

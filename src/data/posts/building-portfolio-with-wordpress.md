@@ -1,10 +1,9 @@
 ---
-layout: "../../layouts/ProjectLayout.astro"
 title: "Building My Personal Website with WordPress"
 summary: "Four designs and three platforms later, I finally built my personal portfolio using WordPress"
 # image: "https://res.cloudinary.com/matthewberger/image/upload/v1647296065/justin_morgan_Zj_X_z2_Q5zrk_unsplash_92ff5093b3.jpg"
 pubDate: "April 13 2021"
-projectLinks: [{ "name": "site", "url": "https://matthewberger.ca" }]
+links: ["https://matthewberger.ca"]
 type: "Development"
 ---
 

@@ -1,20 +1,48 @@
 ---
 import { Image } from "astro:assets";
+import SolidButton from "./buttons/SolidButton.astro";
 
 export interface Props {
+  type: string;
   title: string;
   summary: string;
-  image: string;
+  image?: string;
   slug: string;
 }
 
-const { title, summary, image, slug } = Astro.props;
+const { type, title, summary, image, slug } = Astro.props;
 ---
 
-<a
-  href={slug}
-  class="group flex flex-1 rounded-lg bg-blue-600 p-6 transition-all duration-300 hover:translate-y-[-1rem] motion-reduce:transform-none motion-reduce:transition-none xs:flex-row md:flex-col"
+<div
+  class="flex gap-8 border-b border-livid-500 px-4 py-8 transition-transform duration-300"
 >
-  <h3 class="mb-4 font-phudu text-3xl font-semibold text-livid-200">{title}</h3>
-  <p class="text-md md:text-lg lg:text-base">{summary}</p>
-</a>
+  <div class="basis-3/4">
+    <h3 class="font-phudu">{type}</h3>
+    <h2 class="font-phudu text-2xl font-medium text-yellow-600">
+      {title}
+    </h2>
+    <p class="max-w-[55ch] leading-relaxed font-width-[87]">
+      {summary}
+    </p>
+    <SolidButton
+      text="Read More"
+      background="yellow"
+      foreground="livid"
+      path={slug}
+    />
+  </div>
+  <div class="basis-1/4">
+    {
+      image && (
+        <Image
+          src={image}
+          class="aspect-square rounded-lg object-cover"
+          width={"200"}
+          height={"200"}
+          alt={"Blog Header Image"}
+          format={"webp"}
+        />
+      )
+    }
+  </div>
+</div>

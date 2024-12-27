@@ -1,29 +1,43 @@
 ---
-import MainLayout from "../../../layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/ProjectCard.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
 
 export function getStaticPaths() {
   return [
-    { params: { category: "development" } },
-    { params: { category: "tech-adjacent" } },
-    { params: { category: "miscellaneous" } },
+    { params: { blog: "development" } },
+    { params: { blog: "tech-adjacent" } },
+    { params: { blog: "miscellaneous" } },
   ];
 }
 
-const { category } = Astro.params;
+const { blog: category } = Astro.params;
 
-const posts = (await Astro.glob("./../*.{md,mdx}"))
-  .filter(
-    (post) =>
-      post.frontmatter.type.replace(" ", "-").toLowerCase() === category,
-  )
+const posts = (await getCollection("posts"))
+  .filter((post) => post.data.type.replace(" ", "-").toLowerCase() === category)
   .sort(
     (a, b) =>
-      new Date(b.frontmatter.pubDate).valueOf() -
-      new Date(a.frontmatter.pubDate).valueOf(),
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
   );
 ---
 
-<MainLayout title="Matthew Berger | Blog">
+<BlogLayout title=`Matthew Berger | ${category?.replace("-", " ")}`>
+  {
+    posts.map((post) => {
+      return (
+        <ProjectCard
+          title={post.data.title}
+          summary={post.data.summary}
+          image={post.data.image}
+          slug={post.id}
+          type={post.data.type}
+        />
+      );
+    })
+  }
+</BlogLayout>
+
+<!-- <MainLayout title="Matthew Berger | Blog">
   <h1 class="pt-24 text-5xl font-semibold capitalize">
     {category?.replace("-", " ")}
   </h1>
@@ -35,17 +49,17 @@ const posts = (await Astro.glob("./../*.{md,mdx}"))
       <li
         class={`${category === "development" ? "font-semibold text-xl underline underline-offset-[12px]" : ""} hover:underline hover:underline-offset-[12px] py-2`}
       >
-        <a href="/blog/category/development">Development</a>
+        <a href="/blog/development">Development</a>
       </li>
       <li
         class={`${category === "tech-adjacent" ? "font-semibold text-xl underline underline-offset-[12px]" : ""} hover:underline hover:underline-offset-[12px] py-2`}
       >
-        <a href="/blog/category/tech-adjacent">Tech Adjacent</a>
+        <a href="/blog/tech-adjacent">Tech Adjacent</a>
       </li>
       <li
         class={`${category === "miscellaneous" ? "font-semibold text-xl underline underline-offset-[12px]" : ""} hover:underline hover:underline-offset-[12px] py-2`}
       >
-        <a href="/blog/category/miscellaneous">Miscellaneous</a>
+        <a href="/blog/miscellaneous">Miscellaneous</a>
       </li>
     </ul>
   </div>
@@ -55,17 +69,17 @@ const posts = (await Astro.glob("./../*.{md,mdx}"))
         <a
           href={post.url}
           class={`border-white text-white h-96 overflow-hidden rounded-md bg-cover bg-center transition-transform duration-300 hover:scale-105`}
-          style={`background-image: url("${post.frontmatter.image}");`}
+          style={`background-image: url("${post.data.image}");`}
         >
           <div class="from-default-300 bottom-0 flex h-96 flex-col justify-end bg-gradient-to-t from-20% p-4">
             <div />
             <div class="pb-4">
-              <h2 class="mb-2 text-2xl font-bold">{post.frontmatter.title}</h2>
-              <p>{post.frontmatter.summary}</p>
+              <h2 class="mb-2 text-2xl font-bold">{post.data.title}</h2>
+              <p>{post.data.summary}</p>
             </div>
           </div>
         </a>
       ))
     }
   </div>
-</MainLayout>
+</MainLayout> -->

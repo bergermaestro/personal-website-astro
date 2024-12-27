@@ -12,15 +12,14 @@ export interface Props {
   target?: string;
 }
 
-// Define a CVA for the link classes
 const linkClasses = cva(
-  "uppercase rounded-lg tracking-wider border transition-all px-4 py-3 inline-block",
+  "rounded-lg border transition-all px-4 py-3 inline-block font-width-[87]",
   {
     variants: {
       theme: {
-        dark: "text-default-900 border-default-900 hover:text-brandTeal hover:border-brandTeal",
+        dark: "text-default-900 border-default-900 hover:text-livid-200 hover:border-livid-200",
         light:
-          "text-white border-white hover:text-brandTeal hover:border-brandTeal",
+          "text-white border-white hover:text-livid-200 hover:border-livid-200",
       },
     },
     defaultVariants: {

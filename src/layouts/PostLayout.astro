@@ -1,0 +1,33 @@
+---
+import MainLayout from "./MainLayout.astro";
+
+export interface Props {
+  content: {
+    title: string;
+    summary: string;
+    type: string;
+    pubDate?: string;
+    updatedDate?: string;
+    heroImage?: string;
+  };
+}
+
+const {
+  content: { title, summary, type, pubDate, updatedDate, heroImage },
+} = Astro.props;
+---
+
+<MainLayout title={`Matthew Berger | ${title}`}>
+  <nav class="pb-4 font-phudu">
+    <a href="/blog">Blog</a> > <a href=`/blog/${type}`>{type}</a>
+  </nav>
+  <div class="rounded-3xl bg-blue-600 px-8 py-32">
+    <h1 class="text-left font-phudu text-7xl font-extrabold text-yellow-600">
+      {title}
+    </h1>
+    <h2 class="font-phudu text-xl">{pubDate}</h2>
+  </div>
+  <article class="prose prose-cyan prose-invert pt-16">
+    <slot />
+  </article>
+</MainLayout>
