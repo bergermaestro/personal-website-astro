@@ -72,6 +72,3 @@ Since I was already using Github, it was pretty straightforward to deploy to Net
 In conclusion, I enjoyed this project as a way to learn the React mindset, and feel prepared to use it in larger and more complex projects. Although the game itself might seem rather esoteric, (when are you _really_ going to need to look at a hex code and know what colour that is), when I am learning a new technology, I often try to choose a different project from the one presented in any tutorial that I may be watching. Doing this forces me to ensure that I am actually grasping the underlying logic and methods behind a tool, instead of just copying what someone else has done line for line and not really understanding why the code works. Overall, I am happy with how my project turned out, and look forward to using these tools again in the future!
 
 If you have any thoughts about this article, feel free to share them by tweeting me @itsmattberger on Twitter, and otherwise, until the next article!
-
-> 🔗: [http://hex-guesser.netlify.app](http://hex-guesser.netlify.app)  
-> 🖥️: [https://github.com/bergermaestro/hex-guesser](https://github.com/bergermaestro/hex-guesser)

@@ -6,7 +6,7 @@ const { date, title, company, description, tools } = (
 ).data;
 ---
 
-<div class="flex gap-8">
+<div class="flex flex-col lg:flex-row lg:gap-8">
   <div class="whitespace-nowrap font-phudu font-semibold text-livid-500">
     {date}
   </div>
@@ -17,7 +17,7 @@ const { date, title, company, description, tools } = (
     <p class="max-w-[55ch] font-width-[90]">
       {description.join(" ")}
     </p>
-    <ul class="flex gap-2 pt-2">
+    <ul class="flex flex-wrap gap-2 pt-2">
       {
         tools.map((tool) => (
           <li class="rounded-full bg-livid-700 px-3.5 py-1.5 text-xs font-semibold leading-relaxed text-livid-300 font-width-[90]">
