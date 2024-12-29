@@ -6,4 +6,9 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), mdx(), icon()],
+  markdown: {
+    shikiConfig: {
+      theme: 'material-theme',
+    },
+  },
 });

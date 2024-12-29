@@ -17,11 +17,13 @@ const posts = (await getCollection("posts")).sort(
       if (idx === 0) {
         return (
           <div class="rounded-2xl bg-blue-600 p-4">
-            <img
-              src={post.data.image}
-              alt="Project card image"
-              class="aspect-video rounded-xl border-blue-600 object-cover"
-            />
+            {post.data.image && (
+              <img
+                src={post.data.image}
+                alt="Project card image"
+                class="aspect-video rounded-xl border-blue-600 object-cover"
+              />
+            )}
             <div class="p-4">
               <h3 class="font-phudu">{post.data.type}</h3>
               <h2 class="font-phudu text-2xl font-medium text-livid-200">

@@ -22,7 +22,9 @@ module.exports = {
         200: "#D8E4EF",
         300: "#A6C2D6",
         500: "#577A93",
+        600: "#3D5D72",
         700: "#243E50",
+        800: "#1F333F",
         900: "#192329",
       },
     },
@@ -31,6 +33,50 @@ module.exports = {
         phudu: ["Phudu", "sans-serif"],
         instrumentSans: ["'Instrument Sans'", "sans-serif"],
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme("colors.livid.300"),
+            h1: {
+              color: theme("colors.yellow.600"),
+              fontFamily: "phudu",
+            },
+            h2: {
+              color: theme("colors.yellow.600"),
+              fontFamily: "phudu",
+            },
+            h3: {
+              color: theme("colors.yellow.600"),
+            },
+            h4: {
+              color: theme("colors.yellow.600"),
+            },
+            a: {
+              color: theme("colors.livid.500"),
+              "&:hover": {
+                color: theme("colors.livid.600"),
+              },
+            },
+            blockquote: {
+              color: theme("colors.livid.200"),
+              borderInlineStartColor: theme("colors.livid.500"),
+            },
+            code: {
+              color: theme("colors.livid.200"),
+              backgroundColor: "#263238", // to match material theme background
+              padding: `2px ${theme("spacing.1")}`,
+              borderRadius: theme("borderRadius.DEFAULT"),
+              fontWeight: "400",
+            },
+            'code::before': {
+              content: '',
+            },
+            'code::after': {
+              content: '',
+            },
+          },
+        },
+      }),
     },
     screens: {
       xs: "475px",
