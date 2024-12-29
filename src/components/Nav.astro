@@ -2,59 +2,162 @@
 import { Icon } from "astro-icon/components";
 import OutlineButton from "./buttons/OutlineButton.astro";
 import Resume from "/Matthew-Berger-Resume-September-2024.pdf";
+
+const pages = [
+  { name: "Blog", path: "/blog" },
+  { name: "About", path: "/about" },
+  { name: "Reading", path: "/reading" },
+];
 ---
 
-<nav class="from-default-900 bg-gradient-to-b py-6">
+<style>
+  /*   Open state of the dialog  */
+  dialog[open] {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /*   Closed state of the dialog   */
+  dialog {
+    min-width: 100vw;
+    min-height: 100vh;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s allow-discrete;
+  }
+
+  /*   Before-open state  */
+  /* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  /* Transition the :backdrop when the dialog modal is promoted to the top layer */
+  dialog::backdrop {
+    background-color: rgb(25 35 41 / 0%);
+    transition: all 0.3s allow-discrete;
+  }
+
+  dialog[open]::backdrop {
+    background-color: rgb(25 35 41 / 30%);
+  }
+
+  /* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+  @starting-style {
+    dialog[open]::backdrop {
+      background-color: rgb(25 35 41 / 0%);
+    }
+  }
+</style>
+
+<dialog
+  class="bg-transparent h-screen w-screen"
+  style="transition-behavior: allow-discrete;"
+>
   <div
-    class="mx-auto flex flex-row items-center justify-between px-6 md:px-14 lg:max-w-6xl lg:px-6"
+    id="dialog-container"
+    class="ml-auto mr-0 h-full w-full max-w-56 bg-livid-700 p-4 pl-8 text-livid-300"
+    style="transition-behavior: allow-discrete;"
   >
-    <span class="mr-10 cursor-pointer pb-3 sm:py-0">
-      <a href="/">
-        <Icon name="logo" size="80" />
-      </a>
-    </span>
-
-    <label class="relative lg:hidden">
-      <input class="peer hidden" type="checkbox" />
-      <Icon name="ph:list" class="cursor-pointer" size="30" />
-      <div
-        class="absolute right-0 top-10 z-10 max-h-0 overflow-hidden rounded-lg bg-livid-700 text-center text-lg shadow-2xl transition-all duration-150 font-width-[87] peer-checked:max-h-96"
-      >
-        <a
-          href="/reading"
-          class="hover:bg-default-400/25 block px-10 py-4 transition-colors"
-          >Reading</a
-        >
-        <a
-          href="/blog"
-          class="hover:bg-default-400/25 block px-10 py-4 transition-colors"
-          >Blog</a
-        >
-        <a
-          href="/about"
-          class="hover:bg-default-400/25 block px-10 py-4 transition-colors"
-          >About</a
-        >
-        <div class="hover:bg-default-400/25 cursor-pointer pb-2 pt-2">
-          <a
-            href={Resume}
-            target="_blank"
-            class="inline-block rounded-lg border px-4 py-3 tracking-wider transition-colors"
-            >Resume</a
-          >
-        </div>
-      </div>
-    </label>
-
-    <div
-      class="hidden w-full flex-row flex-wrap items-center justify-between font-width-[87] sm:w-auto sm:justify-center sm:space-x-12 lg:flex"
+    <button autofocus class="float-right" id="closeButton"
+      ><Icon name="ph:x" class="cursor-pointer" size="30" /></button
     >
-      <a href="/blog" class="transition-colors hover:text-livid-200">Blog</a>
-      <a href="/about" class="transition-colors hover:text-livid-200">About</a>
-      <a href="/reading" class="transition-colors hover:text-livid-200"
-        >Reading</a
-      >
-      <OutlineButton text="Resume" path={Resume} target="_blank" />
-    </div>
+    <nav class="flex flex-col pt-16 font-width-[87]">
+      {
+        pages.map((page) => (
+          <a
+            href={page.path}
+            class="block py-4 text-lg transition-colors hover:text-livid-200"
+          >
+            {page.name}
+          </a>
+        ))
+      }
+      <div class="pt-4">
+        <OutlineButton text="Resume" path={Resume} target="_blank" />
+      </div>
+    </nav>
   </div>
-</nav>
+</dialog>
+
+<div
+  class="mx-auto flex flex-row items-center justify-between p-6 md:px-14 lg:max-w-6xl lg:px-6"
+>
+  <span class="mr-10 cursor-pointer pb-3 sm:py-0">
+    <a href="/">
+      <Icon name="logo" size="80" />
+    </a>
+  </span>
+
+  <button id="showButton" class="sm:hidden">
+    <Icon name="ph:list" class="cursor-pointer" size="30" />
+  </button>
+  <nav
+    class="hidden w-auto flex-row flex-wrap items-center justify-center space-x-12 font-width-[87] sm:flex"
+  >
+    {
+      pages.map((page) => (
+        <a href={page.path} class="transition-colors hover:text-livid-200">
+          {page.name}
+        </a>
+      ))
+    }
+    <OutlineButton text="Resume" path={Resume} target="_blank" />
+  </nav>
+</div>
+
+<script>
+  function getElement<T extends Element>(selector: string): T {
+    const element = document.querySelector(selector);
+    if (!element) {
+      throw new Error(`Element with selector "${selector}" not found`);
+    }
+    return element as T;
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const dialog = getElement<HTMLDialogElement>("dialog");
+    const showButton = getElement<HTMLButtonElement>("#showButton");
+    const closeButton = getElement<HTMLButtonElement>("#closeButton");
+    const dialogContainer = getElement<HTMLElement>("#dialog-container");
+
+    // Close on outside click
+    document.addEventListener("click", (event) => {
+      if (
+        event.target instanceof Node &&
+        !dialogContainer.contains(event.target) &&
+        dialog.open &&
+        !showButton.contains(event.target)
+      ) {
+        dialog.close();
+        document.body.style.overflow = "auto";
+      }
+    });
+
+    showButton.addEventListener("click", () => {
+      dialog.showModal();
+      document.body.style.overflow = "hidden";
+    });
+
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+      document.body.style.overflow = "auto";
+    });
+
+    document.addEventListener("astro:before-preparation", (event) => {
+      const originalLoader = event.loader;
+      event.loader = async function () {
+        if (dialog.open) {
+          dialog.close();
+          await new Promise((resolve) => setTimeout(resolve, 50));
+        }
+        await originalLoader();
+      };
+    });
+  });
+</script>

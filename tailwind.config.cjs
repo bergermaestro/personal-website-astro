@@ -27,6 +27,9 @@ module.exports = {
         800: "#1F333F",
         900: "#192329",
       },
+      transparent: "transparent",
+      current: "currentColor",
+      inherit: "inherit",
     },
     extend: {
       fontFamily: {

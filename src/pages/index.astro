@@ -28,7 +28,7 @@ const posts = articles
     transition:name="hero"
   >
     <h1
-      class="text-center font-phudu text-6xl font-extrabold text-yellow-600 sm:text-8xl"
+      class="text-center font-phudu text-6xl font-extrabold text-yellow-600 opacity-0 sm:text-8xl"
       transition:name="hero-title"
       id="hero-title"
     >
@@ -127,14 +127,16 @@ const posts = articles
   </section>
 </MainLayout>
 
-<!-- <script>
+<script>
   import { animate, inView, stagger } from "motion";
 
-  inView("#hero-title", (info) => {
-    animate(info.target, { opacity: 1 }, { duration: 0.5 });
-  });
+  document.addEventListener("astro:page-load", () => {
+    inView("#hero-title", (info) => {
+      animate(info.target, { opacity: 1 }, { duration: 0.5 });
+    });
 
-  inView("#resume-items > div", (info) => {
-    animate(info.target, { y: 0, opacity: 1 }, { delay: stagger(4) });
+    inView("#resume-items > div", (info) => {
+      animate(info.target, { y: 0, opacity: 1 }, { delay: stagger(4) });
+    });
   });
-</script> -->
+</script>

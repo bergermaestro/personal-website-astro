@@ -2,77 +2,72 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="from-default-900 bg-gradient-to-t">
+<div
+  class="flex max-w-5xl items-center justify-between px-6 py-16 md:mx-auto md:px-12 lg:px-0"
+>
   <div
-    class="flex max-w-5xl items-center justify-between px-6 py-16 md:mx-auto md:px-12 lg:px-0"
+    class="flex flex-col justify-between md:flex-row md:items-center md:gap-8"
   >
-    <div
-      class="flex flex-col justify-between md:flex-row md:items-center md:gap-8"
+    <Icon name="logo" size="100" />
+    <div>
+      <p class="pb-2 leading-tight">
+        Designed and Developed by <br /> Matthew Berger
+      </p>
+      <p class="inline">
+        Made with <Icon name="ph:heart-fill" size="20" class="mx-0.5 inline" /> in
+        Toronto
+      </p>
+    </div>
+  </div>
+  <div class="flex flex-row-reverse gap-2 xs:flex-col">
+    <h5
+      class="rotate-180 pb-1 text-right font-phudu text-2xl font-semibold [writing-mode:vertical-lr] xs:rotate-0 xs:[writing-mode:horizontal-tb] sm:block"
     >
-      <Icon name="logo" size="100" />
-      <div>
-        <p class="pb-2 leading-tight">
-          Designed and Developed by <br /> Matthew Berger
-        </p>
-        <p class="inline">
-          Made with <Icon
-            name="ph:heart-fill"
-            size="20"
-            class="mx-0.5 inline"
-          /> in Toronto
-        </p>
-      </div>
-    </div>
-    <div class="flex flex-row-reverse gap-2 xs:flex-col">
-      <h5
-        class="rotate-180 pb-1 text-right font-phudu text-2xl font-semibold [writing-mode:vertical-lr] xs:rotate-0 xs:[writing-mode:horizontal-tb] sm:block"
-      >
-        Let's get in touch!
-      </h5>
-      <ul
-        class="float-right inline-flex flex-col-reverse justify-between gap-2 xs:flex-row md:text-right"
-      >
-        <li>
-          <a
-            class="transition-colors hover:text-livid-200"
-            href="https://twitter.com/itsmattberger"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="ri:twitter-fill" size="30" />
-          </a>
-        </li>
-        <li>
-          <a
-            class="transition-colors hover:text-livid-200"
-            href="https://github.com/bergermaestro"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="ri:github-fill" size="30" />
-          </a>
-        </li>
-        <li>
-          <a
-            class="transition-colors hover:text-livid-200"
-            href="https://www.linkedin.com/in/matthewaberger/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="ri:linkedin-box-fill" size="30" />
-          </a>
-        </li>
-        <li>
-          <a
-            class="transition-colors hover:text-livid-200"
-            href="mailto:matthew17berger@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="ph:envelope-bold" size="30" />
-          </a>
-        </li>
-      </ul>
-    </div>
+      Let's get in touch!
+    </h5>
+    <ul
+      class="float-right inline-flex flex-col-reverse justify-between gap-2 xs:flex-row md:text-right"
+    >
+      <li>
+        <a
+          class="transition-colors hover:text-livid-200"
+          href="https://twitter.com/itsmattberger"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon name="ri:twitter-fill" size="30" />
+        </a>
+      </li>
+      <li>
+        <a
+          class="transition-colors hover:text-livid-200"
+          href="https://github.com/bergermaestro"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon name="ri:github-fill" size="30" />
+        </a>
+      </li>
+      <li>
+        <a
+          class="transition-colors hover:text-livid-200"
+          href="https://www.linkedin.com/in/matthewaberger/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon name="ri:linkedin-box-fill" size="30" />
+        </a>
+      </li>
+      <li>
+        <a
+          class="transition-colors hover:text-livid-200"
+          href="mailto:matthew17berger@gmail.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon name="ph:envelope-bold" size="30" />
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
