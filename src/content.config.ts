@@ -61,4 +61,16 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { books, yearRecaps, posts };
+const jobs = defineCollection({
+  loader: file("src/data/jobs.json"),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      company: z.string(),
+      date: z.string(),
+      tools: z.array(z.string()),
+      description: z.array(z.string()),
+    }),
+});
+
+export const collections = { books, yearRecaps, posts, jobs };
