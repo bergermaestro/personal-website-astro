@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-const { date, title, company, description, tools } = (
+const { date, title, company, companyLink, description, tools } = (
   Astro.props.job as CollectionEntry<"jobs">
 ).data;
 ---
@@ -12,11 +12,13 @@ const { date, title, company, description, tools } = (
   </div>
   <div>
     <h3 class="font-phudu text-xl font-semibold text-yellow-600">
-      {title} - {company}
+      {title} &mdash; <a href={companyLink} target="_blank">{company}</a>
     </h3>
-    <p class="max-w-[55ch] font-width-[90]">
-      {description.join(" ")}
-    </p>
+    <ul
+      class="max-w-[55ch] list-['–___'] font-width-[87] marker:mr-2 marker:text-livid-500"
+    >
+      {description.map((desc) => <li class="">{desc}</li>)}
+    </ul>
     <ul class="flex flex-wrap gap-2 pt-2">
       {
         tools.map((tool) => (

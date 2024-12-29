@@ -67,6 +67,7 @@ const jobs = defineCollection({
     z.object({
       title: z.string(),
       company: z.string(),
+      companyLink: z.string().optional(),
       date: z.string(),
       tools: z.array(z.string()),
       description: z.array(z.string()),

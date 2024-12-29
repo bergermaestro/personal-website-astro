@@ -59,26 +59,17 @@
     "cover": "../images/books/other-significant-others.jpg"
   },
   {
-    "title": "Moby Dick",
-    "released": 1851,
-    "author": "Herman Melville",
-    "status": "currently reading",
-    "cover": "../images/books/artemis.jpg"
-  },
-  {
-    "title": "The Alchemist",
-    "released": 1988,
-    "author": "Paulo Coelho",
-    "status": "finished",
-    "rating": 7,
-    "finished_on": "October 2022",
-    "cover": "../images/books/artemis.jpg"
-  },
-  {
-    "title": "War and Peace",
-    "released": 1869,
-    "author": "Leo Tolstoy",
+    "title": "Frankenstein",
+    "released": 1818,
+    "author": "Mary Shelley",
     "status": "to read",
-    "cover": "../images/books/artemis.jpg"
+    "cover": "../images/books/frankenstein.jpg"
+  },
+  {
+    "title": "As I Walked About",
+    "released": 2020,
+    "author": "Phil Jenkins",
+    "status": "to read",
+    "cover": "../images/books/as-i-walked-about.webp"
   }
 ]

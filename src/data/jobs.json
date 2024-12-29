@@ -3,6 +3,7 @@
     "id": 4,
     "title": "Associate AI Engineer",
     "company": "Spellbook",
+    "companyLink": "https://spellbook.legal",
     "date": "May – Aug 2024",
     "tools": ["scikit-learn", "NumPy", "Matplotlib"],
     "description": [
@@ -16,6 +17,7 @@
     "id": 3,
     "title": "Software Developer",
     "company": "Spellbook",
+    "companyLink": "https://spellbook.legal",
     "date": "Sept – Dec 2023",
     "tools": ["React", "TypeScript", "TailwindCSS", "Framer Motion", "Figma"],
     "description": [
@@ -28,8 +30,9 @@
     "id": 2,
     "title": "Full Stack Developer",
     "company": "Tamvoes Health",
+    "companyLink": "https://tamvoes.com",
     "date": "Jan – April 2023",
-    "tools": ["Pyramid", "React"],
+    "tools": ["Pyramid", "Python", "jQuery", "React"],
     "description": [
       "Overhauled event and contact sharing platform by building decoupled, single-purpose API endpoints.",
       "Refactored legacy code from jQuery and Handlebars to React to improve maintainability."
@@ -39,6 +42,7 @@
     "id": 1,
     "title": "Full Stack Web Developer",
     "company": "Tradable Bits Media",
+    "companyLink": "https://tradablebits.com",
     "date": "May – Aug 2022",
     "tools": ["Flask", "jQuery", "Python", "PostgreSQL", "Facebook Graph API"],
     "description": [
