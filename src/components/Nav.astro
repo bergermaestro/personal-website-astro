@@ -55,17 +55,13 @@ because the nesting selector cannot represent pseudo-elements. */
   }
 </style>
 
-<dialog
-  class="bg-transparent h-screen w-screen"
-  style="transition-behavior: allow-discrete;"
->
+<dialog class="h-screen w-screen bg-transparent">
   <div
     id="dialog-container"
     class="ml-auto mr-0 h-full w-full max-w-56 bg-livid-700 p-4 pl-8 text-livid-300"
-    style="transition-behavior: allow-discrete;"
   >
     <button autofocus class="float-right" id="closeButton"
-      ><Icon name="ph:x" class="cursor-pointer" size="30" /></button
+      ><Icon name="ph:x" size="30" /></button
     >
     <nav class="flex flex-col pt-16 font-width-[87]">
       {

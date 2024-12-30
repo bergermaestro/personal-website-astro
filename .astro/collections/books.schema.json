@@ -29,6 +29,12 @@
         },
         "cover": {
           "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "isbn": {
+          "type": "number"
         }
       },
       "required": [

@@ -71,11 +71,11 @@ module.exports = {
               borderRadius: theme("borderRadius.DEFAULT"),
               fontWeight: "400",
             },
-            'code::before': {
-              content: '',
+            "code::before": {
+              content: "",
             },
-            'code::after': {
-              content: '',
+            "code::after": {
+              content: "",
             },
           },
         },

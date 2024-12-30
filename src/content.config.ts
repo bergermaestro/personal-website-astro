@@ -12,6 +12,8 @@ const bookSchema = (image: ImageFunction) => {
       rating: z.number().optional(),
       finished_on: z.string().optional(),
       cover: image(),
+      url: z.string().optional(),
+      isbn: z.number().optional(),
     })
     .refine((data) => data.status !== "finished" || data.finished_on, {
       message: "If the status is 'finished', 'finished_on' cannot be null.",

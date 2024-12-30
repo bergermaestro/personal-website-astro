@@ -138,7 +138,11 @@ const posts = articles
     });
 
     inView("#resume-items > div", (info) => {
-      animate(info.target, { y: 0, opacity: 1 }, { delay: stagger(4) });
+      animate(
+        info.target,
+        { y: 0, opacity: 1 },
+        { delay: stagger(0.2, { startDelay: 0.5 }) },
+      );
     });
   });
 </script>

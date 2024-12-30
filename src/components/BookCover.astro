@@ -1,16 +1,18 @@
 ---
 import { Picture } from "astro:assets";
+import type { InferEntrySchema } from "astro:content";
 
 export interface Props {
-  title: string;
-  rating?: number;
-  author: string;
-  released: number;
-  cover: ImageMetadata;
+  book: InferEntrySchema<"books">;
   width: number;
 }
 
-const { title, rating, author, released, cover, width } = Astro.props;
+const { title, rating, author, released, cover, url, isbn } = Astro.props.book;
+const width = Astro.props.width;
+
+const purchaseLink = url
+  ? url
+  : `https://shoplocal.bookmanager.com/isbn/${isbn}`;
 ---
 
 <div
@@ -20,7 +22,9 @@ const { title, rating, author, released, cover, width } = Astro.props;
     class="absolute left-0 top-0 flex h-full w-full flex-col place-content-between rounded-xl bg-livid-700/70 px-4 py-6 text-center opacity-0 outline -outline-offset-4 outline-livid-500 backdrop-blur-sm transition-[opacity,_outline] duration-200 group-hover:opacity-100 group-hover:outline-4"
   >
     <h3 class="h-[calc(1.875rem_*_2)] font-phudu text-3xl leading-none">
-      {title}
+      <a href={purchaseLink} target="_blank">
+        {title}
+      </a>
     </h3>
     {
       rating && (

@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [tailwind(), mdx(), icon()],
   markdown: {
     shikiConfig: {
-      theme: 'material-theme',
+      theme: "material-theme",
     },
   },
 });
