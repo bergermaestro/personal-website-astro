@@ -20,7 +20,7 @@ const readBooksByYear = allBooks
     (book) => book.data.status === "finished" && book.data.finished_on !== null,
   )
   .reduce((acc: { [key: number]: typeof allBooks }, book) => {
-    const year = new Date(book.data.finished_on!).getFullYear(); // Use non-null assertion here
+    const year = new Date(book.data.finished_on!).getFullYear();
     if (!acc[year]) {
       acc[year] = [];
     }
@@ -63,7 +63,9 @@ const yearColors = ["yellow-600", "blue-600", "orange-600"];
       <div class="grid grid-flow-col grid-rows-3 gap-8 pt-8">
         {
           unreadBooks.slice(0, 6).map((book, idx) => {
-            const purchaseLink = book.data.url ? book.data.url: `https://shoplocal.bookmanager.com/isbn/${book.data.isbn}`;
+            const purchaseLink = book.data.url
+              ? book.data.url
+              : `https://shoplocal.bookmanager.com/isbn/${book.data.isbn}`;
             return (
               <div class="flex items-center gap-4">
                 <h3 class="w-7 text-center font-phudu text-5xl text-yellow-600">
@@ -72,7 +74,7 @@ const yearColors = ["yellow-600", "blue-600", "orange-600"];
                 <div>
                   <h4 class="font-phudu text-2xl font-semibold leading-none text-livid-200">
                     <a href={purchaseLink} target="_blank">
-                    {book.data.title}
+                      {book.data.title}
                     </a>
                   </h4>
                   <p class="font-phudu text-lg leading-tight">
@@ -80,25 +82,25 @@ const yearColors = ["yellow-600", "blue-600", "orange-600"];
                   </p>
                 </div>
               </div>
-          )})
+            );
+          })
         }
       </div>
     </div>
     <div class="relative flex basis-1/3 justify-end">
-      { currentBook && 
-      <div
-        class="absolute right-8 top-0 -z-10 h-full w-64 rounded-2xl bg-orange-600"
-      >
-      </div>
-      <h3
-        class="rotate-180 py-8 pl-8 font-phudu text-6xl text-yellow-600 [writing-mode:vertical-lr]"
-      >
-        Current
-      </h3>
-      <div class="w-56 pb-12 pt-4">
-        <BookCover book={currentBook} width={600} />
-      </div>
-    }
+      {
+        currentBook && (
+          <>
+            <div class="absolute right-8 top-0 -z-10 h-full w-64 rounded-2xl bg-orange-600" />
+            <h3 class="rotate-180 py-8 pl-8 font-phudu text-6xl text-yellow-600 [writing-mode:vertical-lr]">
+              Current
+            </h3>
+            <div class="w-56 pb-12 pt-4">
+              <BookCover book={currentBook} width={600} />
+            </div>
+          </>
+        )
+      }
     </div>
   </div>
 
