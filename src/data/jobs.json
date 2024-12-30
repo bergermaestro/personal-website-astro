@@ -5,7 +5,7 @@
     "company": "Spellbook",
     "companyLink": "https://spellbook.legal",
     "date": "May – Aug 2024",
-    "tools": ["scikit-learn", "NumPy", "Matplotlib"],
+    "tools": ["scikit-learn", "NumPy", "Matplotlib", "OpenAI"],
     "description": [
       "Enhanced contract review efficiency by redesigning LLM-based scoring system; fine-tuned OpenAI models and tested classifiers to significantly improve accuracy.",
       "Delivered weekly analytics presentations translating insights from 1M+ user interactions into actionable recommendations.",
