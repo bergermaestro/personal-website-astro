@@ -1,8 +1,5 @@
 ---
-import OutlineButton from "../components/Buttons/OutlineButton.astro";
-import Footer from "../components/Footer.astro";
-import Nav from "../components/Nav.astro";
-import Spacer from "../components/Spacer.astro";
+import OutlineButton from "../components/buttons/OutlineButton.astro";
 import MainLayout from "./MainLayout.astro";
 
 export interface Props {
@@ -12,39 +9,60 @@ export interface Props {
     pubDate?: string;
     updatedDate?: string;
     heroImage?: string;
-    projectLinks: Array<{url: string, displayText: string}>;
-    rosetta: object;
+    links?: string[];
   };
 }
 
-const rosetta:any = {
-      'github': {icon: 'akar-icons:github-fill', text: 'View Source Code'},
-      'figma': {icon: 'akar-icons:figma-fill', text: 'View on Figma'},
-      'site': {icon: 'akar-icons:link', text: 'View Project'},
-    };
+const getRosettaData = (url: string) => {
+  if (url.includes("figma.com")) {
+    return { icon: "ri:github-fill", text: "View on Figma" };
+  } else if (url.includes("github.com")) {
+    return { icon: "ri:github-fill", text: "View Source Code" };
+  } else {
+    return { icon: "ph:link-simple-bold", text: "View Project" };
+  }
+};
 
 const {
-  content: { title, summary, pubDate, updatedDate, heroImage, projectLinks },
+  content: { title, summary, pubDate, updatedDate, heroImage, links },
 } = Astro.props;
-
 ---
 
 <MainLayout title={`Matthew Berger | ${title}`}>
-  <div class="px-6 md:px-14 lg:px-6 lg:max-w-6xl mx-auto">
-    <h1 class="text-5xl font-bold mb-1 mt-12 leading-[1.2]">
-      {title}
-    </h1>
-    <h2 class="text-1xl mb-6 text-brandTeal">{pubDate}</h2>
-    <div class="mt-16 mb-20">
-      {projectLinks && projectLinks.map((link:any) => (
-          <div class="inline-block mr-6 mb-6">
-            <OutlineButton text={rosetta[link.name].text} path={link.url} icon={rosetta[link.name].icon} theme='light'/>
-          </div>
-      ))}
+  <nav class="pb-4 font-phudu">
+    <a href="/blog">Blog</a> > <a href=`/blog/development`>Development</a>
+  </nav>
+  <div
+    class="flex min-h-96 flex-col justify-between gap-16 rounded-3xl bg-blue-600 px-8 pb-8 pt-24"
+  >
+    <div>
+      <h1
+        class="pt-1/3 text-left font-phudu text-5xl font-extrabold text-yellow-600 sm:text-6xl md:text-7xl"
+      >
+        {title}
+      </h1>
+      <h2 class="font-phudu text-xl">{pubDate}</h2>
     </div>
-    <article class="prose prose-invert prose-cyan">
-      <slot />
-    </article>
+    <div>
+      {
+        links &&
+          links.map((link) => {
+            const { icon, text } = getRosettaData(link);
+            return (
+              <div class="mr-6 inline-block">
+                <OutlineButton
+                  text={text}
+                  path={link}
+                  icon={icon}
+                  theme="light"
+                />
+              </div>
+            );
+          })
+      }
+    </div>
   </div>
-  <Spacer />
+  <article class="prose prose-slate prose-invert pt-16">
+    <slot />
+  </article>
 </MainLayout>

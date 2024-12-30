@@ -1,0 +1,128 @@
+---
+import { fade } from "astro:transitions";
+import Spacer from "../components/Spacer.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+import { getCollection } from "astro:content";
+import BookCover from "../components/BookCover.astro";
+
+const allBooks = await getCollection("books");
+const yearRecaps = await getCollection("yearRecaps");
+
+const unreadBooks = allBooks.filter((book) => book.data.status === "to read");
+
+const currentBook = allBooks.find(
+  (book) => book.data.status === "currently reading",
+)?.data;
+
+const readBooksByYear = allBooks
+  .filter(
+    (book) => book.data.status === "finished" && book.data.finished_on !== null,
+  )
+  .reduce((acc: { [key: number]: typeof allBooks }, book) => {
+    const year = new Date(book.data.finished_on!).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(book);
+    return acc;
+  }, {});
+
+const years = Object.keys(readBooksByYear).sort(
+  (a, b) => Number(b) - Number(a),
+);
+
+const recapMap: { [key: number]: string } = yearRecaps.reduce(
+  (acc, recap) => {
+    acc[recap.data.year] = recap.body ?? "";
+    return acc;
+  },
+  {} as { [key: number]: string },
+);
+
+// Colors alternating between blue, yellow, and orange
+const yearColors = ["yellow-600", "blue-600", "orange-600"];
+---
+
+<MainLayout title="Matthew Berger">
+  <div
+    class="flex items-center justify-center gap-8 rounded-3xl bg-blue-600 py-32"
+    transition:name="hero"
+  >
+    <h1
+      class="text-center font-phudu text-8xl font-extrabold text-yellow-600"
+      transition:name="hero-title"
+      transition:animate={fade({ duration: "0.1s" })}
+    >
+      My Reading List
+    </h1>
+  </div>
+  <div class="flex flex-col gap-8 pt-16 sm:flex-row">
+    <div class="grow">
+      <h2 class="font-phudu text-5xl font-bold text-yellow-600">Up Next</h2>
+      <div class="grid grid-flow-col grid-rows-3 gap-8 pt-8">
+        {
+          unreadBooks.slice(0, 6).map((book, idx) => {
+            const purchaseLink = book.data.url
+              ? book.data.url
+              : `https://shoplocal.bookmanager.com/isbn/${book.data.isbn}`;
+            return (
+              <div class="flex items-center gap-4">
+                <h3 class="w-7 text-center font-phudu text-5xl text-yellow-600">
+                  {idx + 1}
+                </h3>
+                <div>
+                  <h4 class="font-phudu text-2xl font-semibold leading-none text-livid-200">
+                    <a href={purchaseLink} target="_blank">
+                      {book.data.title}
+                    </a>
+                  </h4>
+                  <p class="font-phudu text-lg leading-tight">
+                    {book.data.author}, {book.data.released}
+                  </p>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+    <div class="relative flex basis-1/3 justify-end">
+      {
+        currentBook && (
+          <>
+            <div class="absolute right-8 top-0 -z-10 h-full w-64 rounded-2xl bg-orange-600" />
+            <h3 class="rotate-180 py-8 pl-8 font-phudu text-6xl text-yellow-600 [writing-mode:vertical-lr]">
+              Current
+            </h3>
+            <div class="w-56 pb-12 pt-4">
+              <BookCover book={currentBook} width={600} />
+            </div>
+          </>
+        )
+      }
+    </div>
+  </div>
+
+  <Spacer />
+
+  {
+    years.map((year, index) => {
+      const color = yearColors[index % yearColors.length];
+      return (
+        <section class="pb-40">
+          <ul class="-mb-6 flex items-end gap-8 px-8">
+            {readBooksByYear[Number(year)].map((book) => (
+              <BookCover book={book.data} width={200} />
+            ))}
+          </ul>
+          <div class={`h-12 w-full rounded-xl bg-${color}`} />
+          <h2 class={`py-3 font-phudu text-6xl text-${color}`}>{year}</h2>
+          <p class="max-w-[55ch] font-width-[95]">
+            {recapMap[Number(year)] || "No recap available for this year."}
+          </p>
+        </section>
+      );
+    })
+  }
+</MainLayout>

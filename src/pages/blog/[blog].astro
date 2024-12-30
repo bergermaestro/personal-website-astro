@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/ProjectCard.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { blog: "development" } },
+    { params: { blog: "tech-adjacent" } },
+    { params: { blog: "miscellaneous" } },
+  ];
+}
+
+const { blog: category } = Astro.params;
+
+const posts = (await getCollection("posts"))
+  .filter((post) => post.data.type.replace(" ", "-").toLowerCase() === category)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  );
+---
+
+<BlogLayout title=`Matthew Berger | ${category?.replace("-", " ")}`>
+  {
+    posts.map((post) => {
+      return (
+        <ProjectCard
+          title={post.data.title}
+          summary={post.data.summary}
+          image={post.data.image}
+          slug={post.id}
+          type={post.data.type}
+        />
+      );
+    })
+  }
+</BlogLayout>

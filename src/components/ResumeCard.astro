@@ -1,23 +1,25 @@
 ---
-import { Image } from "@astrojs/image/components";
-import ResumeImage from "../images/resume-mockup.png";
-import SolidButton from "./Buttons/SolidButton.astro";
-import Resume from "../../public/Matthew-Berger-Resume-April-2023.pdf"
+import { Image } from "astro:assets";
+import ResumeImage from "../data/images/resume-mockup.png";
+import SolidButton from "./buttons/SolidButton.astro";
+import Resume from "/Matthew-Berger-Resume-September-2024.pdf";
 ---
 
-<div class="inline-flex bg-default-900 rounded-lg shadow-lg my-6">
-  <div class="p-4 mx-4 flex items-center">
-    <Image src={ResumeImage} alt="" format={"webp"} />
-  </div>
-  <div
-    class="px-8 py-12 space-y-4 bg-[url('../../images/resume-background.png')] bg-contain bg-no-repeat bg-opacity-30"
-  >
-    <h4 class="uppercase text-xl tracking-wider">File Download</h4>
-    <h2 class="font-bold text-4xl">See My Resume</h2>
+<div
+  class="flex items-stretch gap-8 rounded-2xl bg-orange-600 p-8 text-livid-200"
+>
+  <div class="flex flex-col">
+    <h4 class="font-phudu text-lg leading-none">File Download</h4>
+    <h2 class="mb-auto font-phudu text-3xl font-medium leading-tight">
+      See My Resume
+    </h2>
     <SolidButton
       text="Download Here"
       path={Resume}
       target="_blank"
+      foreground="orange"
+      background="yellow"
     />
   </div>
+  <Image src={ResumeImage} alt="" format={"webp"} />
 </div>

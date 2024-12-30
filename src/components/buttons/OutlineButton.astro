@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+import { cva } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
+
+export interface Props {
+  text: string;
+  icon?: string;
+  path: string;
+  additionalProps?: string;
+  theme?: "dark" | "light";
+  target?: string;
+}
+
+const linkClasses = cva(
+  "rounded-lg border transition-all px-4 py-3 inline-block font-width-[87]",
+  {
+    variants: {
+      theme: {
+        dark: "text-livid-900 hover:text-livid-700 hover:border-livid-700",
+        light: "hover:text-livid-200 hover:border-livid-200",
+      },
+    },
+    defaultVariants: {
+      theme: "light",
+    },
+  },
+);
+
+const {
+  text,
+  icon,
+  path,
+  additionalProps,
+  theme = "light",
+  target,
+} = Astro.props;
+---
+
+<a
+  href={path}
+  target={target ? target : "_self"}
+  class={twMerge(linkClasses({ theme }), additionalProps)}
+>
+  {icon ? <Icon name={icon} class="mr-2 inline h-6 w-6" /> : null}
+  {text}
+</a>

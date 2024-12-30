@@ -1,0 +1,43 @@
+---
+import { Picture } from "astro:assets";
+import type { InferEntrySchema } from "astro:content";
+
+export interface Props {
+  book: InferEntrySchema<"books">;
+  width: number;
+}
+
+const { title, rating, author, released, cover, url, isbn } = Astro.props.book;
+const width = Astro.props.width;
+
+const purchaseLink = url
+  ? url
+  : `https://shoplocal.bookmanager.com/isbn/${isbn}`;
+---
+
+<div
+  class="group relative overflow-hidden transition-[border-radius] duration-200 hover:rounded-xl"
+>
+  <div
+    class="absolute left-0 top-0 flex h-full w-full flex-col place-content-between rounded-xl bg-livid-700/70 px-4 py-6 text-center opacity-0 outline -outline-offset-4 outline-livid-500 backdrop-blur-sm transition-[opacity,_outline] duration-200 group-hover:opacity-100 group-hover:outline-4"
+  >
+    <h3 class="h-[calc(1.875rem_*_2)] font-phudu text-3xl leading-none">
+      <a href={purchaseLink} target="_blank">
+        {title}
+      </a>
+    </h3>
+    {
+      rating && (
+        <h4 class="font-phudu text-4xl font-semibold text-livid-200">
+          {rating}/10
+        </h4>
+      )
+    }
+    <div class="flex h-16 items-end justify-center">
+      <h3 class="text-lg leading-tight font-width-[80]">
+        {author}, {released}
+      </h3>
+    </div>
+  </div>
+  <Picture src={cover} format="webp" alt={title} width={width} />
+</div>

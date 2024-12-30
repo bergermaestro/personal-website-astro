@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Artemis",
+    "released": 2017,
+    "author": "Andy Weir",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "August 2024",
+    "cover": "../images/books/artemis.jpg",
+    "isbn": 9780553448146
+  },
+  {
+    "title": "Fractal Noise",
+    "released": 2023,
+    "author": "Christopher Paolini",
+    "status": "finished",
+    "rating": 5,
+    "finished_on": "August 2024",
+    "cover": "../images/books/fractal-noise.jpg",
+    "isbn": 9781250292100
+  },
+  {
+    "title": "The Apollo Murders",
+    "released": 2021,
+    "author": "Chris Hadfield",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "December 2023",
+    "cover": "../images/books/the-apollo-murders.webp",
+    "isbn": 9780316264532
+  },
+  {
+    "title": "The Martian",
+    "released": 2011,
+    "author": "Andy Weir",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "July 2024",
+    "cover": "../images/books/the-martian.webp",
+    "isbn": 9780553418026
+  },
+  {
+    "title": "The Rural Voter",
+    "released": 2023,
+    "author": "Nicholas F. Jacobs and Daniel M. Shea",
+    "status": "finished",
+    "rating": 8,
+    "finished_on": "December 2024",
+    "cover": "../images/books/the-rural-voter.jpg",
+    "isbn": 9780231218573
+  },
+  {
+    "title": "War",
+    "released": 2024,
+    "author": "Bob Woodward",
+    "status": "to read",
+    "cover": "../images/books/war.jpg",
+    "isbn": 9781668052273
+  },
+  {
+    "title": "The Other Significant Others",
+    "released": 2024,
+    "author": "Rhaina Cohen",
+    "status": "to read",
+    "cover": "../images/books/other-significant-others.jpg",
+    "isbn": 9781250280916
+  },
+  {
+    "title": "Frankenstein",
+    "released": 1818,
+    "author": "Mary Shelley",
+    "status": "to read",
+    "cover": "../images/books/frankenstein.jpg",
+    "url": "https://www.gutenberg.org/files/84/84-h/84-h.htm"
+  },
+  {
+    "title": "As I Walked About",
+    "released": 2020,
+    "author": "Phil Jenkins",
+    "status": "to read",
+    "cover": "../images/books/as-i-walked-about.webp",
+    "isbn": 9781988437392
+  },
+  {
+    "title": "Dead Wake",
+    "released": 2015,
+    "author": "Erik Larson",
+    "status": "currently reading",
+    "cover": "../images/books/dead-wake.jpg",
+    "isbn": 9780307408877
+  }
+]

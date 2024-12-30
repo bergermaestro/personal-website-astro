@@ -1,0 +1,54 @@
+[
+  {
+    "id": 4,
+    "title": "Associate AI Engineer",
+    "company": "Spellbook",
+    "companyLink": "https://spellbook.legal",
+    "date": "May – Aug 2024",
+    "tools": ["scikit-learn", "NumPy", "Matplotlib", "OpenAI"],
+    "description": [
+      "Enhanced contract review efficiency by redesigning LLM-based scoring system; fine-tuned OpenAI models and tested classifiers to significantly improve accuracy.",
+      "Delivered weekly analytics presentations translating insights from 1M+ user interactions into actionable recommendations.",
+      "Queried data from AWS Athena and visualized trends to inform product enhancements.",
+      "Implemented ONNX-based Python-to-TypeScript model conversion for A/B testing in production."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Software Developer",
+    "company": "Spellbook",
+    "companyLink": "https://spellbook.legal",
+    "date": "Sept – Dec 2023",
+    "tools": ["React", "TypeScript", "TailwindCSS", "Framer Motion", "Figma"],
+    "description": [
+      "Contributed to a complete UI overhaul within a two-month timeframe.",
+      "Introduced Framer Motion for animations and microinteractions.",
+      "Built complex primitives and atomic components with interactive Storybook tests."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Full Stack Developer",
+    "company": "Tamvoes Health",
+    "companyLink": "https://tamvoes.com",
+    "date": "Jan – April 2023",
+    "tools": ["Pyramid", "Python", "jQuery", "React"],
+    "description": [
+      "Overhauled event and contact sharing platform by building decoupled, single-purpose API endpoints.",
+      "Refactored legacy code from jQuery and Handlebars to React to improve maintainability."
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Full Stack Web Developer",
+    "company": "Tradable Bits Media",
+    "companyLink": "https://tradablebits.com",
+    "date": "May – Aug 2022",
+    "tools": ["Flask", "jQuery", "Python", "PostgreSQL", "Facebook Graph API"],
+    "description": [
+      "Deployed a sales funnel builder to track fan engagement flows, resulting in a 25% increase in conversions.",
+      "Optimized user experience using the Facebook Graph API to repurpose ad templates as posts.",
+      "Constructed efficient PostgreSQL queries adhering to ACID principles."
+    ]
+  }
+]

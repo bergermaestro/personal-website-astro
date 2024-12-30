@@ -1,28 +1,48 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
+import SolidButton from "./buttons/SolidButton.astro";
 
 export interface Props {
-    title: string;
-    summary: string;
-    image: string;
-    slug: string;
+  type: string;
+  title: string;
+  summary: string;
+  image?: string;
+  slug: string;
 }
 
-const { title, summary, image, slug } = Astro.props;
+const { type, title, summary, image, slug } = Astro.props;
 ---
 
-
-<a href={slug} class='group bg-white text-default-400 rounded-lg shadow-lg flex flex-col xs:flex-row md:flex-col hover:translate-y-[-1.3rem] transition-all duration-300 motion-reduce:transition-none motion-reduce:transform-none h-full'>
-    <div class=" overflow-hidden h-full lg:h-64 flex-1">
-        <Image src={image} class='rounded-t-lg' width={400} height={400} format={'webp'} alt='Project card image'/>
-    </div>
-    <div class="p-6 flex-1">
-        <h3 class="text-3xl mb-4 font-semibold">{title}</h3>
-        <p class="text-md md:text-lg lg:text-base">{summary}</p>    
-    </div>
-</a>
-    
-    
-    
-    
-    
+<div
+  class="flex gap-8 border-b border-livid-500 px-4 py-8 transition-transform duration-300"
+>
+  <div class="basis-3/4">
+    <h3 class="font-phudu">{type}</h3>
+    <h2 class="font-phudu text-2xl font-medium text-yellow-600">
+      {title}
+    </h2>
+    <p class="max-w-[55ch] leading-relaxed font-width-[87]">
+      {summary}
+    </p>
+    <SolidButton
+      text="Read More"
+      background="yellow"
+      foreground="livid"
+      path={slug}
+    />
+  </div>
+  <div class="basis-1/4">
+    {
+      image && (
+        <Image
+          src={image}
+          class="aspect-square rounded-lg object-cover"
+          width={"200"}
+          height={"200"}
+          alt={"Blog Header Image"}
+          format={"webp"}
+        />
+      )
+    }
+  </div>
+</div>

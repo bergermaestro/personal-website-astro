@@ -1,14 +1,14 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), image(), mdx()],
-  vite: {
-    ssr: {
-      external: ["svgo"]
-    }
-  }
+  integrations: [tailwind(), mdx(), icon()],
+  markdown: {
+    shikiConfig: {
+      theme: "material-theme",
+    },
+  },
 });

@@ -1,36 +1,42 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 export interface Props {
   title: string;
   summary: string;
-  image: string;
+  image?: string;
   slug: string;
+  type: string;
 }
 
-const { title, summary, image, slug } = Astro.props;
+const { title, summary, image, slug, type } = Astro.props;
 ---
 
 <a
   href={slug}
-  class="bg-white text-default-400 rounded-lg shadow-lg flex flex-col xs:flex-row md:flex-col lg:flex-row 
-  transition-transform transform hover:-translate-y-[0.25rem] hover:-translate-x-[-0.25rem] duration-300 motion-reduce:transition-none 
-  motion-reduce:transform-none"
+  class="flex transform flex-col gap-8 border-b border-livid-700 p-6 transition-transform duration-300 hover:-translate-y-[0.25rem] motion-reduce:transform-none motion-reduce:transition-none xs:flex-row md:flex-col lg:flex-row"
 >
-  <div class="basis-5/12 bg-default-400">
-    <div class="w-full relative bg-default-400 h-full md:h-44 lg:h-full">
-      <Image
-        src={image}
-        class="rounded-l-lg h-full object-cover"
-        width={"600"}
-        height={"600"}
-        alt={"Blog Header Image"}
-        format={"webp"}
-      />
-    </div>
+  <div class="basis-3/4">
+    <span class="font-phudu">{type}</span>
+    <h3 class="font-phudu text-2xl font-medium text-orange-600">
+      {title}
+    </h3>
+    <p class="max-w-[70ch] font-width-[90] md:text-lg lg:text-base">
+      {summary}
+    </p>
   </div>
-  <div class="p-6 basis-7/12">
-    <h3 class="text-3xl my-4 font-semibold">{title}</h3>
-    <p class="text-md md:text-lg lg:text-base">{summary}</p>
+  <div class="basis-1/4">
+    {
+      image && (
+        <Image
+          src={image}
+          class="rounded-lg object-cover"
+          width={"200"}
+          height={"200"}
+          alt={"Blog Header Image"}
+          format={"webp"}
+        />
+      )
+    }
   </div>
 </a>
