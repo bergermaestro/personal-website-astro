@@ -118,9 +118,9 @@ const yearColors = ["yellow-600", "blue-600", "orange-600"];
           </ul>
           <div class={`h-12 w-full rounded-xl bg-${color}`} />
           <h2 class={`py-3 font-phudu text-6xl text-${color}`}>{year}</h2>
-          <p class="max-w-[55ch] font-width-[95]">
-            {recapMap[Number(year)] || "No recap available for this year."}
-          </p>
+          {recapMap[Number(year)] && (
+            <p class="max-w-[55ch] font-width-[95]">{recapMap[Number(year)]}</p>
+          )}
         </section>
       );
     })

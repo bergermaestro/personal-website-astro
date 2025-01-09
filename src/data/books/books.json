@@ -61,7 +61,9 @@
     "title": "The Other Significant Others",
     "released": 2024,
     "author": "Rhaina Cohen",
-    "status": "to read",
+    "status": "finished",
+    "rating": 10,
+    "finished_on": "January 2025",
     "cover": "../images/books/other-significant-others.jpg",
     "isbn": 9781250280916
   },
