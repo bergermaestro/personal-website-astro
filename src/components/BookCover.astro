@@ -16,13 +16,17 @@ const purchaseLink = url
 ---
 
 <div
-  class="group relative overflow-hidden transition-[border-radius] duration-200 hover:rounded-xl"
+  class="group relative w-56 overflow-hidden transition-[border-radius] duration-200 hover:rounded-xl"
 >
   <div
     class="absolute left-0 top-0 flex h-full w-full flex-col place-content-between rounded-xl bg-livid-700/70 px-4 py-6 text-center opacity-0 outline -outline-offset-4 outline-livid-500 backdrop-blur-sm transition-[opacity,_outline] duration-200 group-hover:opacity-100 group-hover:outline-4"
   >
     <h3 class="h-[calc(1.875rem_*_2)] font-phudu text-3xl leading-none">
-      <a href={purchaseLink} target="_blank">
+      <a
+        href={purchaseLink}
+        target="_blank"
+        class="transition-colors hover:text-livid-200"
+      >
         {title}
       </a>
     </h3>

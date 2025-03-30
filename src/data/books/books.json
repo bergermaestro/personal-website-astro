@@ -87,8 +87,44 @@
     "title": "Dead Wake",
     "released": 2015,
     "author": "Erik Larson",
-    "status": "currently reading",
+    "status": "finished",
+    "rating": 9,
+    "finished_on": "March 2025",
     "cover": "../images/books/dead-wake.jpg",
     "isbn": 9780307408877
+  },
+  {
+    "title": "When We Cease to Understand the World",
+    "released": 2020,
+    "author": "Benjamín Labatut",
+    "status": "currently reading",
+    "cover": "../images/books/cease-to-understand-the-world.jpg",
+    "isbn": 9781681375663
+  },
+  {
+    "title": "The Revenge of Power",
+    "released": 2022,
+    "author": "Moisés Naim",
+    "status": "finished",
+    "cover": "../images/books/revenge-of-power.jpg",
+    "isbn": 9781250875822,
+    "rating": 9,
+    "finished_on": "March 2025"
+  },
+  {
+    "title": "The War We Won Apart",
+    "released": 2024,
+    "author": "Nahlah Ayed",
+    "status": "to read",
+    "cover": "../images/books/war-we-won-apart.jpg",
+    "isbn": 9780735242067
+  },
+  {
+    "title": "Lessons in Chemistry",
+    "released": 2022,
+    "author": "Bonnie Garmus",
+    "status": "to read",
+    "cover": "../images/books/lessons-in-chemistry.jpg",
+    "isbn": 9780385697378
   }
 ]
