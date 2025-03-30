@@ -113,7 +113,7 @@ const yearColors = ["yellow-600", "blue-600", "orange-600"];
         <section class="pb-40">
           <ul class="-mb-6 flex items-end gap-8 px-8">
             {readBooksByYear[Number(year)].map((book) => (
-              <BookCover book={book.data} width={200} />
+              <BookCover book={book.data} width={600} />
             ))}
           </ul>
           <div class={`h-12 w-full rounded-xl bg-${color}`} />
