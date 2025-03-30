@@ -126,5 +126,15 @@
     "status": "to read",
     "cover": "../images/books/lessons-in-chemistry.jpg",
     "isbn": 9780385697378
+  },
+  {
+    "title": "Who Moved My Cheese?",
+    "author": "Spencer Johnson",
+    "released": 1998,
+    "status": "finished",
+    "cover": "../images/books/who-moved-my-cheese.jpg",
+    "rating": 7,
+    "finished_on": "March 2025",
+    "isbn": 9780091816971
   }
 ]
