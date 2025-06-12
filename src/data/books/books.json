@@ -136,5 +136,15 @@
     "rating": 7,
     "finished_on": "March 2025",
     "isbn": 9780091816971
+  },
+  {
+    "title": "Original Sin",
+    "author": "Jake Tapper and Alex Thompson",
+    "released": 2025,
+    "status": "finished",
+    "cover": "../images/books/original-sin.jpg",
+    "rating": 8,
+    "finished_on": "June 2025",
+    "isbn": 9781529155488
   }
 ]
