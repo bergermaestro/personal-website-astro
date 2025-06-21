@@ -8,16 +8,22 @@ export interface Props {
 }
 
 const { books, color } = Astro.props;
-
-// Duplicate books for infinite scrolling (only when needed)
-const duplicatedBooks = [...books, ...books, ...books];
 ---
 
-<div class="carousel-container relative overflow-hidden">
-  <div class="carousel-track flex items-end gap-8 will-change-transform">
+<div class="carousel">
+  <div class="carousel-group">
     {
-      duplicatedBooks.map((book) => (
-        <div class="carousel-item flex-shrink-0">
+      books.map((book) => (
+        <div class="card perspective">
+          <BookCover book={book.data} width={600} />
+        </div>
+      ))
+    }
+  </div>
+  <div aria-hidden class="carousel-group">
+    {
+      books.map((book) => (
+        <div class="card perspective">
           <BookCover book={book.data} width={600} />
         </div>
       ))
@@ -26,35 +32,49 @@ const duplicatedBooks = [...books, ...books, ...books];
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const containers = document.querySelectorAll(".carousel-container");
+  document.addEventListener("astro:page-load", () => {
+    const containers = document.querySelectorAll(".carousel");
 
     containers.forEach((container) => {
-      const track = container.querySelector(".carousel-track") as HTMLElement;
-      if (!track) return;
+      const groups = container.querySelectorAll(
+        ".carousel-group",
+      ) as NodeListOf<HTMLElement>;
+      if (!groups.length) return;
 
-      const items = track.querySelectorAll(".carousel-item");
+      const items = groups[0].querySelectorAll(
+        ".card",
+      ) as NodeListOf<HTMLElement>;
+      if (!items.length) return;
 
-      // Calculate if content overflows
+      // Calculate if content overflows by measuring actual elements
       const containerWidth = (container as HTMLElement).offsetWidth;
-      const itemWidth = 224 + 32; // w-56 (224px) + gap-8 (32px)
-      const originalBooksCount = items.length / 3; // We duplicate 3 times
-      const contentWidth = originalBooksCount * itemWidth;
+
+      // Measure the actual width of items including gaps
+      const firstItem = items[0];
+      const lastItem = items[items.length - 1];
+      const firstItemRect = firstItem.getBoundingClientRect();
+      const lastItemRect = lastItem.getBoundingClientRect();
+
+      // Total content width = distance from start of first item to end of last item
+      const contentWidth = lastItemRect.right - firstItemRect.left;
 
       // Only enable scrolling if content overflows
       if (contentWidth > containerWidth) {
-        track.classList.add("scroll-enabled");
-        container.classList.add("has-gradient");
+        container.classList.add("scroll-enabled");
 
         // Set custom duration based on content width for consistent speed
-        const pixelsPerSecond = 50; // Adjust this for speed (lower = slower)
+        const pixelsPerSecond = 40; // Adjust this for speed (lower = slower)
         const duration = contentWidth / pixelsPerSecond;
-        track.style.setProperty("--scroll-duration", `${duration}s`);
+        (container as HTMLElement).style.setProperty(
+          "--scroll-duration",
+          `${duration}s`,
+        );
       } else {
-        // If no overflow, show only original books without duplicates
-        track.innerHTML = "";
-        for (let i = 0; i < originalBooksCount; i++) {
-          track.appendChild(items[i].cloneNode(true));
+        // If no overflow, show only original books without animation
+        container.classList.add("no-scroll");
+        // Hide the duplicate group
+        if (groups[1]) {
+          groups[1].style.display = "none";
         }
       }
     });
@@ -62,45 +82,53 @@ const duplicatedBooks = [...books, ...books, ...books];
 </script>
 
 <style>
-  :root {
-    --scroll-speed: 5s;
+  .carousel-group {
+    display: flex;
+    gap: 1rem;
+    padding-right: 1rem;
+    will-change: transform;
+    align-items: end;
   }
 
-  .carousel-container.has-gradient {
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
+  .carousel.scroll-enabled .carousel-group {
+    animation: scrolling var(--scroll-duration) linear infinite;
   }
 
-  .carousel-track.scroll-enabled {
-    animation: scroll-infinite var(--scroll-duration, 60s) linear infinite;
-  }
-
-  .carousel-track.scroll-enabled:hover {
+  .carousel.scroll-enabled:hover .carousel-group {
     animation-play-state: paused;
   }
 
-  @keyframes scroll-infinite {
+  @keyframes scrolling {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-100% / 3));
+      transform: translateX(-100%);
     }
   }
 
-  .carousel-item {
-    width: 224px; /* w-56 equivalent */
+  .carousel {
+    flex: 0 0 100%;
+    margin: 0 auto -2em auto;
+    padding-right: 1em;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .card {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .perspective:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -0.5em;
+    width: 100%;
+    height: 2em;
+    background: rgba(0, 0, 0, 0.2);
+    transform: skew(-20deg);
+    mix-blend-mode: multiply;
   }
 </style>
