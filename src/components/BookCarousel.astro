@@ -32,7 +32,7 @@ const { books, color } = Astro.props;
 </div>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  function initCarousel() {
     const containers = document.querySelectorAll(".carousel");
 
     containers.forEach((container) => {
@@ -78,6 +78,12 @@ const { books, color } = Astro.props;
         }
       }
     });
+  }
+
+  initCarousel();
+
+  document.addEventListener("astro:page-load", () => {
+    initCarousel();
   });
 </script>
 
