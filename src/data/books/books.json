@@ -145,6 +145,16 @@
     "cover": "../images/books/original-sin.jpg",
     "rating": 8,
     "finished_on": "June 2025",
-    "isbn": 9781529155488
+    "isbn": 9798217060672
+  },
+  {
+    "title": "Amusing Ourselves to Death",
+    "author": "Neil Postman",
+    "released": 1985,
+    "status": "finished",
+    "cover": "../images/books/amusing-ourselves-to-death.jpg",
+    "rating": 10,
+    "finished_on": "April 2025",
+    "isbn": 9780143036531
   }
 ]

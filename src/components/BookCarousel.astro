@@ -1,0 +1,106 @@
+---
+import BookCover from "./BookCover.astro";
+import type { InferEntrySchema } from "astro:content";
+
+export interface Props {
+  books: { data: InferEntrySchema<"books"> }[];
+  color: string;
+}
+
+const { books, color } = Astro.props;
+
+// Duplicate books for infinite scrolling (only when needed)
+const duplicatedBooks = [...books, ...books, ...books];
+---
+
+<div class="carousel-container relative overflow-hidden">
+  <div class="carousel-track flex items-end gap-8 will-change-transform">
+    {
+      duplicatedBooks.map((book) => (
+        <div class="carousel-item flex-shrink-0">
+          <BookCover book={book.data} width={600} />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const containers = document.querySelectorAll(".carousel-container");
+
+    containers.forEach((container) => {
+      const track = container.querySelector(".carousel-track") as HTMLElement;
+      if (!track) return;
+
+      const items = track.querySelectorAll(".carousel-item");
+
+      // Calculate if content overflows
+      const containerWidth = (container as HTMLElement).offsetWidth;
+      const itemWidth = 224 + 32; // w-56 (224px) + gap-8 (32px)
+      const originalBooksCount = items.length / 3; // We duplicate 3 times
+      const contentWidth = originalBooksCount * itemWidth;
+
+      // Only enable scrolling if content overflows
+      if (contentWidth > containerWidth) {
+        track.classList.add("scroll-enabled");
+        container.classList.add("has-gradient");
+
+        // Set custom duration based on content width for consistent speed
+        const pixelsPerSecond = 50; // Adjust this for speed (lower = slower)
+        const duration = contentWidth / pixelsPerSecond;
+        track.style.setProperty("--scroll-duration", `${duration}s`);
+      } else {
+        // If no overflow, show only original books without duplicates
+        track.innerHTML = "";
+        for (let i = 0; i < originalBooksCount; i++) {
+          track.appendChild(items[i].cloneNode(true));
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  :root {
+    --scroll-speed: 5s;
+  }
+
+  .carousel-container.has-gradient {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .carousel-track.scroll-enabled {
+    animation: scroll-infinite var(--scroll-duration, 60s) linear infinite;
+  }
+
+  .carousel-track.scroll-enabled:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-infinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  .carousel-item {
+    width: 224px; /* w-56 equivalent */
+  }
+</style>

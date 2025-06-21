@@ -2,6 +2,7 @@
 import { fade } from "astro:transitions";
 import Spacer from "../components/Spacer.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import BookCarousel from "../components/BookCarousel.astro";
 
 import { getCollection } from "astro:content";
 import BookCover from "../components/BookCover.astro";
@@ -111,11 +112,7 @@ const yearColors = ["yellow-600", "blue-600", "orange-600"];
       const color = yearColors[index % yearColors.length];
       return (
         <section class="pb-40">
-          <ul class="-mb-6 flex items-end gap-8 px-8">
-            {readBooksByYear[Number(year)].map((book) => (
-              <BookCover book={book.data} width={600} />
-            ))}
-          </ul>
+          <BookCarousel books={readBooksByYear[Number(year)]} color={color} />
           <div class={`h-12 w-full rounded-xl bg-${color}`} />
           <h2 class={`py-3 font-phudu text-6xl text-${color}`}>{year}</h2>
           {recapMap[Number(year)] && (
