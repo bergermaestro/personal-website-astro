@@ -1,0 +1,140 @@
+---
+import BookCover from "./BookCover.astro";
+import type { InferEntrySchema } from "astro:content";
+
+export interface Props {
+  books: { data: InferEntrySchema<"books"> }[];
+  color: string;
+}
+
+const { books, color } = Astro.props;
+---
+
+<div class="carousel">
+  <div class="carousel-group">
+    {
+      books.map((book) => (
+        <div class="card perspective">
+          <BookCover book={book.data} width={600} />
+        </div>
+      ))
+    }
+  </div>
+  <div aria-hidden class="carousel-group">
+    {
+      books.map((book) => (
+        <div class="card perspective">
+          <BookCover book={book.data} width={600} />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  function initCarousel() {
+    const containers = document.querySelectorAll(".carousel");
+
+    containers.forEach((container) => {
+      const groups = container.querySelectorAll(
+        ".carousel-group",
+      ) as NodeListOf<HTMLElement>;
+      if (!groups.length) return;
+
+      const items = groups[0].querySelectorAll(
+        ".card",
+      ) as NodeListOf<HTMLElement>;
+      if (!items.length) return;
+
+      // Calculate if content overflows by measuring actual elements
+      const containerWidth = (container as HTMLElement).offsetWidth;
+
+      // Measure the actual width of items including gaps
+      const firstItem = items[0];
+      const lastItem = items[items.length - 1];
+      const firstItemRect = firstItem.getBoundingClientRect();
+      const lastItemRect = lastItem.getBoundingClientRect();
+
+      // Total content width = distance from start of first item to end of last item
+      const contentWidth = lastItemRect.right - firstItemRect.left;
+
+      // Only enable scrolling if content overflows
+      if (contentWidth > containerWidth) {
+        container.classList.add("scroll-enabled");
+
+        // Set custom duration based on content width for consistent speed
+        const pixelsPerSecond = 40; // Adjust this for speed (lower = slower)
+        const duration = contentWidth / pixelsPerSecond;
+        (container as HTMLElement).style.setProperty(
+          "--scroll-duration",
+          `${duration}s`,
+        );
+      } else {
+        // If no overflow, show only original books without animation
+        container.classList.add("no-scroll");
+        // Hide the duplicate group
+        if (groups[1]) {
+          groups[1].style.display = "none";
+        }
+      }
+    });
+  }
+
+  initCarousel();
+
+  document.addEventListener("astro:page-load", () => {
+    initCarousel();
+  });
+</script>
+
+<style>
+  .carousel-group {
+    display: flex;
+    gap: 1rem;
+    padding-right: 1rem;
+    will-change: transform;
+    align-items: end;
+  }
+
+  .carousel.scroll-enabled .carousel-group {
+    animation: scrolling var(--scroll-duration) linear infinite;
+  }
+
+  .carousel.scroll-enabled:hover .carousel-group {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .carousel {
+    flex: 0 0 100%;
+    margin: 0 auto -2em auto;
+    padding-right: 1em;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .card {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .perspective:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -0.5em;
+    width: 100%;
+    height: 2em;
+    background: rgba(0, 0, 0, 0.2);
+    transform: skew(-20deg);
+    mix-blend-mode: multiply;
+  }
+</style>
