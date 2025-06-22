@@ -17,7 +17,7 @@ const { title } = Astro.props;
 <!doctype html>
 <html
   lang="en"
-  class="font-instrument bg-livid-900 text-livid-300 selection:bg-blue-500"
+  class="font-instrument bg-livid-900 text-livid-300 [color-scheme:dark] selection:bg-blue-500"
 >
   <head>
     <ClientRouter />
@@ -38,7 +38,7 @@ const { title } = Astro.props;
   <body>
     <Nav />
     <div class="mx-auto px-6 md:px-14 lg:max-w-6xl lg:px-6">
-      <!-- <a class="fixed [writing-mode:vertical-lr] rotate-180 left-8 bottom-1/4 text-livid-500">matthew17berger@gmail.com</a> -->
+      <!-- <a class="fixed [writing-mode:vertical-lr] rotate-180 left-8 bottom-1/4 text-livid-500">hi@matthewberger.ca</a> -->
       <slot />
       <Spacer />
     </div>
