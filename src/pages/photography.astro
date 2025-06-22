@@ -4,7 +4,6 @@ import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import ImageLightbox from "../components/ImageLightbox.astro";
 
-// Dynamically import all images from the photographs folder
 const images = await Astro.glob(
   "../data/images/photographs/*.{png,jpg,jpeg,webp,avif}",
 );
@@ -24,7 +23,6 @@ const images = await Astro.glob(
     </h1>
   </div>
 
-  <!-- Simple CSS Columns Layout -->
   <div class="photo-masonry pt-16">
     {
       images.map((image: any, index: number) => (
@@ -42,7 +40,6 @@ const images = await Astro.glob(
     }
   </div>
 
-  <!-- Include the lightbox component -->
   <ImageLightbox images={images} />
 </MainLayout>
 
@@ -59,7 +56,6 @@ const images = await Astro.glob(
     break-inside: avoid;
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .photo-masonry {
       column-count: 1;

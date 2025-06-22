@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "astro": "^5.1.1",
-    "imagesloaded": "^5.0.0",
-    "masonry-layout": "^4.2.2",
     "motion": "^11.15.0"
   },
   "devDependencies": {
