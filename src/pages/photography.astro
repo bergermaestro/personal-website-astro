@@ -2,6 +2,7 @@
 import { fade } from "astro:transitions";
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
+import ImageLightbox from "../components/ImageLightbox.astro";
 
 // Dynamically import all images from the photographs folder
 const images = await Astro.glob(
@@ -9,13 +10,13 @@ const images = await Astro.glob(
 );
 ---
 
-<MainLayout title="Matthew Berger">
+<MainLayout title="Matthew Berger | Photography">
   <div
     class="flex items-center justify-center rounded-3xl bg-blue-600 py-32"
     transition:name="hero"
   >
     <h1
-      class="text-center font-phudu text-8xl font-extrabold text-yellow-600"
+      class="break-all text-center font-phudu text-5xl font-extrabold text-yellow-600 xs:text-7xl sm:text-8xl"
       transition:name="hero-title"
       transition:animate={fade({ duration: "0.1s" })}
     >
@@ -23,180 +24,51 @@ const images = await Astro.glob(
     </h1>
   </div>
 
-  <!-- Masonry Grid -->
-  <div id="masonry-container" class="masonry-grid">
+  <!-- Simple CSS Columns Layout -->
+  <div class="photo-masonry pt-16">
     {
       images.map((image: any, index: number) => (
-        <div class="masonry-item" data-index={index}>
+        <div class="photo-item">
           <Image
             src={image.default}
             alt={`Photography ${index + 1}`}
-            class="masonry-image w-full rounded-lg object-cover transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            class="w-full cursor-pointer rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
             format="webp"
             loading={index < 6 ? "eager" : "lazy"}
+            onclick={`openLightbox(${index})`}
           />
         </div>
       ))
     }
   </div>
+
+  <!-- Include the lightbox component -->
+  <ImageLightbox images={images} />
 </MainLayout>
 
 <style>
-  .masonry-grid {
-    margin: 2rem auto;
-    padding: 0 1rem;
-    width: 100%;
+  .photo-masonry {
+    column-count: 3;
+    column-gap: 20px;
   }
 
-  .masonry-item {
-    width: calc(33.333% - 14px); /* 1/3 width minus gutter adjustment */
+  .photo-item {
+    display: inline-block;
+    width: 100%;
     margin-bottom: 20px;
     break-inside: avoid;
   }
 
-  .masonry-item.wide {
-    width: calc(66.666% - 7px); /* 2/3 width minus gutter adjustment */
-  }
-
-  .masonry-item.double-square {
-    width: calc(66.666% - 7px); /* 2/3 width minus gutter adjustment */
-  }
-
-  .masonry-item.double-square .masonry-image {
-    aspect-ratio: 2/1; /* Two horizontal squares */
-    object-fit: cover;
-  }
-
-  /* Responsive adjustments */
+  /* Responsive */
   @media (max-width: 768px) {
-    .masonry-item {
-      width: calc(50% - 10px); /* 1/2 width on tablets */
-    }
-
-    .masonry-item.wide,
-    .masonry-item.double-square {
-      width: 100%; /* Full width on tablets */
+    .photo-masonry {
+      column-count: 1;
     }
   }
 
-  @media (max-width: 480px) {
-    .masonry-item,
-    .masonry-item.wide,
-    .masonry-item.double-square {
-      width: 100%; /* All full width on mobile */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .photo-masonry {
+      column-count: 2;
     }
   }
 </style>
-
-<script>
-  // @ts-ignore
-  import Masonry from "masonry-layout";
-  // @ts-ignore
-  import imagesLoaded from "imagesloaded";
-
-  let masonryInstance: any = null;
-
-  function calculateAspectRatio(img: HTMLImageElement) {
-    const width = img.naturalWidth;
-    const height = img.naturalHeight;
-    console.log(
-      `Image dimensions: ${width}x${height}, aspect ratio: ${width / height}`,
-    );
-    return width / height;
-  }
-
-  function getColumnSpanClass(aspectRatio: number) {
-    // If image is wider than tall (ratio > 1)
-    if (aspectRatio > 1) {
-      // Check if ratio is between 1:2 and 1:3 (inverted, so between 2:1 and 3:1)
-      if (aspectRatio >= 2 && aspectRatio < 3) {
-        console.log(`Image gets double-square class (ratio: ${aspectRatio})`);
-        return "double-square";
-      }
-      console.log(`Image gets wide class (ratio: ${aspectRatio})`);
-      return "wide";
-    }
-    console.log(`Image stays single column (ratio: ${aspectRatio})`);
-    return ""; // Single column for vertical images
-  }
-
-  function initializeMasonry() {
-    const grid = document.querySelector("#masonry-container");
-    if (!grid) return;
-
-    // Calculate column width based on container width
-    const containerWidth = grid.clientWidth;
-    const gutter = 20;
-    const columnWidth = Math.floor((containerWidth - 2 * gutter) / 3); // 3 columns with gutters
-
-    console.log(
-      `Container width: ${containerWidth}, Column width: ${columnWidth}`,
-    );
-
-    // Wait for all images to load
-    imagesLoaded(grid, function () {
-      console.log("All images loaded, processing...");
-
-      // Process each image to determine column span
-      const items = grid.querySelectorAll(".masonry-item");
-      console.log(`Found ${items.length} masonry items`);
-
-      items.forEach((item: any, index: number) => {
-        // Try multiple selectors to find the actual img element
-        let img = item.querySelector(".masonry-image img") as HTMLImageElement;
-        if (!img) {
-          img = item.querySelector("img") as HTMLImageElement;
-        }
-        if (!img) {
-          img = item.querySelector(".masonry-image") as HTMLImageElement;
-        }
-
-        console.log(`Item ${index}:`, {
-          img,
-          tagName: img?.tagName,
-          complete: img?.complete,
-        });
-
-        if (img && img.complete && img.naturalWidth > 0) {
-          const aspectRatio = calculateAspectRatio(img);
-          const spanClass = getColumnSpanClass(aspectRatio);
-
-          if (spanClass) {
-            item.classList.add(spanClass);
-            console.log(`Added class "${spanClass}" to item ${index}`);
-          }
-        } else {
-          console.log(`Item ${index}: Image not ready or not found`);
-        }
-      });
-
-      // Initialize Masonry after processing images
-      masonryInstance = new Masonry(grid, {
-        itemSelector: ".masonry-item",
-        columnWidth: columnWidth,
-        gutter: gutter,
-        horizontalOrder: true,
-        fitWidth: true,
-        percentPosition: false,
-      });
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    initializeMasonry();
-  });
-
-  // Reinitialize on window resize
-  window.addEventListener("resize", function () {
-    const grid = document.querySelector("#masonry-container");
-    if (grid) {
-      // Destroy existing masonry instance
-      if (masonryInstance) {
-        masonryInstance.destroy();
-        masonryInstance = null;
-      }
-      // Reinitialize with new dimensions
-      setTimeout(initializeMasonry, 100);
-    }
-  });
-</script>

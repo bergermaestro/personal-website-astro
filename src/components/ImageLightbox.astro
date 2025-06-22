@@ -1,0 +1,158 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  images: any[];
+}
+
+const { images } = Astro.props;
+---
+
+<dialog
+  id="lightbox-modal"
+  class="h-screen max-h-screen w-screen bg-[#777]/55 text-livid-200 backdrop-blur-md transition-all duration-300 ease-in-out"
+>
+  <div class="relative flex h-full flex-col items-center justify-center p-2">
+    <button
+      class="absolute right-4 top-4 cursor-pointer rounded-full p-2 transition-all ease-in-out hover:rotate-90 hover:bg-livid-800 focus:scale-110 focus:bg-livid-700 focus:outline-none"
+      onclick="closeLightbox()"
+      aria-label="Close lightbox"
+    >
+      <Icon name="ph:x" size="25" />
+    </button>
+    <img
+      id="lightbox-image"
+      src=""
+      alt=""
+      class="max-h-[75vh] max-w-[96vw] scale-50 transform select-none rounded-lg object-contain opacity-0 transition-all duration-500 ease-in-out lg:max-h-[80vh] lg:max-w-[90vw]"
+    />
+    <div class="mt-8 flex items-center gap-8 rounded-full bg-livid-900 p-2.5">
+      <button
+        id="prev-btn"
+        class="scale-90 rounded-full p-1.5 transition-colors hover:scale-100 hover:bg-livid-700 focus:scale-100 focus:bg-livid-700 focus:outline-none"
+        onclick="navigateImage(-1)"
+        aria-label="Previous image"
+      >
+        <Icon name="ph:arrow-left" size="30" />
+      </button>
+      <span
+        id="image-counter"
+        class="min-w-20 text-center text-lg font-medium transition-all duration-300 ease-in-out"
+      ></span>
+      <button
+        id="next-btn"
+        class="scale-90 rounded-full p-1.5 transition-colors hover:scale-100 hover:bg-livid-700 focus:scale-100 focus:bg-livid-700 focus:outline-none"
+        onclick="navigateImage(1)"
+        aria-label="Next image"
+      >
+        <Icon name="ph:arrow-right" size="30" />
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script define:vars={{ images }}>
+  function getElement(selector) {
+    const element = document.querySelector(selector);
+    if (!element) {
+      throw new Error(`Element with selector "${selector}" not found`);
+    }
+    return element;
+  }
+
+  let currentImageIndex = 0;
+  const imageUrls = images.map((img) => img.default?.src || img.default);
+
+  function openLightbox(index) {
+    currentImageIndex = index;
+    const modal = getElement("#lightbox-modal");
+    const image = document.getElementById("lightbox-image");
+    const counter = document.getElementById("image-counter");
+
+    image.src = imageUrls[currentImageIndex];
+    image.alt = `Photography ${currentImageIndex + 1}`;
+    counter.textContent = `${currentImageIndex + 1} / ${imageUrls.length}`;
+
+    modal.showModal();
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    const modal = getElement("#lightbox-modal");
+    modal.close();
+    document.body.style.overflow = "unset";
+  }
+
+  function navigateImage(direction) {
+    currentImageIndex += direction;
+
+    if (currentImageIndex >= imageUrls.length) {
+      currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+      currentImageIndex = imageUrls.length - 1;
+    }
+
+    const image = document.getElementById("lightbox-image");
+    const counter = document.getElementById("image-counter");
+
+    image.src = imageUrls[currentImageIndex];
+    image.alt = `Photography ${currentImageIndex + 1}`;
+    counter.textContent = `${currentImageIndex + 1} / ${imageUrls.length}`;
+  }
+
+  // Close modal when clicking outside the image
+  getElement("#lightbox-modal").addEventListener("click", (e) => {
+    if (e.target.id === "lightbox-modal") {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("lightbox-modal");
+    if (modal.open) {
+      switch (e.key) {
+        case "Escape":
+          closeLightbox();
+          break;
+        case "ArrowRight":
+          navigateImage(1);
+          break;
+        case "ArrowLeft":
+          navigateImage(-1);
+          break;
+      }
+    }
+  });
+
+  // Make openLightbox globally available
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.navigateImage = navigateImage;
+</script>
+
+<style>
+  dialog[open] {
+    opacity: 1;
+  }
+
+  dialog {
+    min-width: 100vw;
+    min-height: 100vh;
+    opacity: 0;
+    transition: all 0.3s allow-discrete;
+  }
+
+  /* Starting style for opening animation */
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+    }
+  }
+
+  dialog[open] #lightbox-image {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.1s;
+  }
+</style>
