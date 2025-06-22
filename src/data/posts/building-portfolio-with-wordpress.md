@@ -62,7 +62,3 @@ Although I looked at many alternatives, including Github Pages (which I still th
 Along the way I did look at other frameworks such as tailwindcss and bootstrap, though I figured that in order to make sure I actually finished the project, learning wordpress was enough.
 
 Of course, there are still more things I plan to add, such as using threeJS to make the hamburger machine on the homepage interactive, but I have to say I’m happy to finally have a corner of the internet that I can call my own.
-
-## Conclusion
-
-Thanks for reading! If you have any comments or ideas feel free to reach out to me on Twitter @itsmattberger. Otherwise, until next time!

@@ -1,0 +1,74 @@
+---
+import { fade } from "astro:transitions";
+import MainLayout from "../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import ImageLightbox from "../components/ImageLightbox.astro";
+
+// Dynamically import all images from the photographs folder
+const images = await Astro.glob(
+  "../data/images/photographs/*.{png,jpg,jpeg,webp,avif}",
+);
+---
+
+<MainLayout title="Matthew Berger | Photography">
+  <div
+    class="flex items-center justify-center rounded-3xl bg-blue-600 py-32"
+    transition:name="hero"
+  >
+    <h1
+      class="break-all text-center font-phudu text-5xl font-extrabold text-yellow-600 xs:text-7xl sm:text-8xl"
+      transition:name="hero-title"
+      transition:animate={fade({ duration: "0.1s" })}
+    >
+      Photography
+    </h1>
+  </div>
+
+  <!-- Simple CSS Columns Layout -->
+  <div class="photo-masonry pt-16">
+    {
+      images.map((image: any, index: number) => (
+        <div class="photo-item">
+          <Image
+            src={image.default}
+            alt={`Photography ${index + 1}`}
+            class="w-full cursor-pointer rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            format="webp"
+            loading={index < 6 ? "eager" : "lazy"}
+            onclick={`openLightbox(${index})`}
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Include the lightbox component -->
+  <ImageLightbox images={images} />
+</MainLayout>
+
+<style>
+  .photo-masonry {
+    column-count: 3;
+    column-gap: 20px;
+  }
+
+  .photo-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    break-inside: avoid;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .photo-masonry {
+      column-count: 1;
+    }
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .photo-masonry {
+      column-count: 2;
+    }
+  }
+</style>
