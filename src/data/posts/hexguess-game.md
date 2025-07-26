@@ -6,7 +6,7 @@ pubDate: "Dec 1 2021"
 links:
   [
     "https://github.com/bergermaestro/hex-guesser",
-    "https://hex-guesser.netlify.app/",
+    "https://hexguess.matthewberger.ca/",
   ]
 type: "Development"
 ---

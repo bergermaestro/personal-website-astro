@@ -59,12 +59,12 @@ because the nesting selector cannot represent pseudo-elements. */
 <dialog class="h-screen w-screen bg-transparent">
   <div
     id="dialog-container"
-    class="ml-auto mr-0 h-full w-full max-w-56 bg-livid-700 p-4 pl-8 text-livid-300"
+    class="ml-auto mr-0 h-dvh w-full max-w-56 bg-livid-700 p-4 pl-8 text-livid-300"
   >
     <button autofocus class="float-right" id="closeButton"
       ><Icon name="ph:x" size="30" /></button
     >
-    <nav class="flex flex-col pt-16 font-width-[87]">
+    <nav class="flex flex-col pt-16 font-width-[92]">
       {
         pages.map((page) => (
           <a
@@ -85,7 +85,7 @@ because the nesting selector cannot represent pseudo-elements. */
 <div
   class="mx-auto flex flex-row items-center justify-between p-6 md:px-14 lg:max-w-6xl lg:px-6"
 >
-  <span class="mr-10 cursor-pointer pb-3 sm:py-0">
+  <span class="mr-10 cursor-pointer sm:py-0">
     <a href="/">
       <Icon name="logo" size="80" />
     </a>
@@ -95,7 +95,7 @@ because the nesting selector cannot represent pseudo-elements. */
     <Icon name="ph:list" class="cursor-pointer" size="30" />
   </button>
   <nav
-    class="hidden w-auto flex-row flex-wrap items-center justify-center space-x-12 font-width-[87] sm:flex"
+    class="hidden w-auto flex-row flex-wrap items-center justify-center space-x-12 font-width-[92] sm:flex"
   >
     {
       pages.map((page) => (
