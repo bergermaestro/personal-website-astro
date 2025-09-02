@@ -1,5 +1,18 @@
 [
   {
+    "id": 5,
+    "title": "Computer Scientist",
+    "company": "Innovation, Science and Economic Development Canada (AI Accelerator Lab)",
+    "companyLink": "https://ised-isde.canada.ca/site/ised/en",
+    "date": "Jan – Aug 2025",
+    "tools": ["Python", "React", "OpenAI", "Flask"],
+    "description": [
+      "Refactored intranet-facing AI chatbot frontend into a lightweight React application, reducing bundle size from 20MB to 500KB and reducing lines of code by 75%, which delivered faster load times and simplified feature development.",
+      "Developed interventions module for a parliamentary committee transcription and summarization tool, leveraging LLMs to extract MPs’ key lines of questioning and reducing analyst overtime in preparing reports for the Privy Council Office.",
+      "Optimized transcription pipeline by benchmarking libraries and resolving memory bottlenecks, reducing processing time for 2-hour meetings from 45 minutes to 10 minutes"
+    ]
+  },
+  {
     "id": 4,
     "title": "Associate AI Engineer",
     "company": "Spellbook",
@@ -8,9 +21,7 @@
     "tools": ["scikit-learn", "NumPy", "Matplotlib", "OpenAI"],
     "description": [
       "Enhanced contract review efficiency by redesigning LLM-based scoring system; fine-tuned OpenAI models and tested classifiers to significantly improve accuracy.",
-      "Delivered weekly analytics presentations translating insights from 1M+ user interactions into actionable recommendations.",
-      "Queried data from AWS Athena and visualized trends to inform product enhancements.",
-      "Implemented ONNX-based Python-to-TypeScript model conversion for A/B testing in production."
+      "Delivered weekly analytics presentations translating insights from 1M+ user interactions into actionable recommendations."
     ]
   },
   {
