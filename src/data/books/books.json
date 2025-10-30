@@ -166,5 +166,15 @@
     "status": "currently reading",
     "cover": "../images/books/the-ascent-of-money.jpg",
     "isbn": 9780143116172
+  },
+  {
+    "title": "The Whisper on the Night Wind",
+    "author": "Adam Shoalts",
+    "released": 2021,
+    "status": "finished",
+    "cover": "../images/books/whisper-night-wind.jpg",
+    "isbn": 9780735241060,
+    "rating": 9,
+    "finished_on": "October 2025"
   }
 ]
