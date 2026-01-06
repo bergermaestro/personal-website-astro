@@ -1,0 +1,52 @@
+import type { InferEntrySchema } from "astro:content";
+import { motion } from "motion/react";
+
+export interface Props {
+  book: InferEntrySchema<"books">;
+  width: number;
+}
+
+export const BookCover = ({ book, width }: Props) => {
+  const { title, rating, author, released, cover, url, isbn } = book;
+
+  const purchaseLink = url
+    ? url
+    : `https://shoplocal.bookmanager.com/isbn/${isbn}`;
+
+  // Handle Astro image type - it may have .src property or be a string
+  const coverSrc = typeof cover === "string" ? cover : cover?.src || "";
+
+  return (
+    <motion.div layout className="group relative w-56 overflow-hidden transition-[border-radius] duration-200 hover:rounded-xl">
+      <div className="absolute left-0 top-0 flex h-full w-full flex-col place-content-between rounded-xl bg-livid-700/70 px-4 py-6 text-center opacity-0 outline -outline-offset-4 outline-livid-500 backdrop-blur-sm transition-[opacity,_outline] duration-200 group-hover:opacity-100 group-hover:outline-4">
+        <h3 className="h-[calc(1.875rem_*_2)] font-phudu text-3xl leading-none">
+          <a
+            href={purchaseLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-livid-200"
+          >
+            {title}
+          </a>
+        </h3>
+        {rating && (
+          <h4 className="font-phudu text-4xl font-semibold text-livid-200">
+            {rating}/10
+          </h4>
+        )}
+        <div className="flex h-16 items-end justify-center">
+          <h3 className="text-lg leading-tight font-width-[90]">
+            {author}, {released}
+          </h3>
+        </div>
+      </div>
+      <img
+        src={coverSrc}
+        alt={title}
+        width={width}
+        className="h-auto w-full"
+        loading="lazy"
+      />
+    </motion.div>
+  );
+};

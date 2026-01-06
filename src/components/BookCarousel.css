@@ -1,0 +1,57 @@
+.book-wrapper {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+  
+.book-carousel {
+    display: flex;
+
+    > * {
+        flex: 0 0 100%;
+    }
+
+    &:hover .book-group {
+        animation-play-state: paused;
+    }
+}
+  
+.book-group {
+    display: flex;
+    gap: 1em;  
+    will-change: transform; /* We should be nice to the browser - let it know what we're going to animate. */
+    animation: scrolling 70s linear infinite;
+    align-items: end;
+    padding-right: 1em;
+    /* margin-bottom: -2em; */
+}
+  
+@keyframes scrolling {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+  
+.book-group.show-all {
+    flex-wrap: wrap;
+    animation: none;
+}
+  
+.book-group.no-scroll {
+    animation: none;
+}
+
+.perspective:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -0.5em;
+    width: 100%;
+    height: 2em;
+    background: rgba(0, 0, 0, 0.2);
+    transform: skew(-20deg);
+    mix-blend-mode: multiply;
+  }

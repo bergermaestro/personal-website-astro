@@ -117,9 +117,11 @@
     "title": "The War We Won Apart",
     "released": 2024,
     "author": "Nahlah Ayed",
-    "status": "to read",
+    "status": "finished",
     "cover": "../images/books/war-we-won-apart.jpg",
-    "isbn": 9780735242067
+    "isbn": 9780735242067,
+    "rating": 9,
+    "finished_on": "September 2025"
   },
   {
     "title": "Lessons in Chemistry",
@@ -176,5 +178,25 @@
     "isbn": 9780735241060,
     "rating": 9,
     "finished_on": "October 2025"
+  },
+  {
+    "title": "Vanished Beyond the Map",
+    "author": "Adam Shoalts",
+    "released": 2025,
+    "status": "finished",
+    "cover": "../images/books/vanished-beyond-the-map.avif",
+    "isbn": 9780735236868,
+    "rating": 10,
+    "finished_on": "November 2025"
+  },
+  {
+    "title": "The Shortest History of Economics",
+    "author": "Andrew Leigh",
+    "released": 2024,
+    "status": "finished",
+    "cover": "../images/books/shortest-history-economics.jpg",
+    "isbn": 9781760644000,
+    "rating": 10,
+    "finished_on": "December 2025"
   }
 ]

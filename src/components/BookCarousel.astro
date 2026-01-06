@@ -10,24 +10,29 @@ export interface Props {
 const { books, color } = Astro.props;
 ---
 
-<div class="carousel">
-  <div class="carousel-group">
-    {
-      books.map((book) => (
-        <div class="card perspective">
-          <BookCover book={book.data} width={600} />
-        </div>
-      ))
-    }
+<div class="book-carousel-container">
+  <div class="carousel">
+    <div class="carousel-group">
+      {
+        books.map((book) => (
+          <div class="card perspective">
+            <BookCover book={book.data} width={600} />
+          </div>
+        ))
+      }
+    </div>
+    <div aria-hidden class="carousel-group">
+      {
+        books.map((book) => (
+          <div class="card perspective">
+            <BookCover book={book.data} width={600} />
+          </div>
+        ))
+      }
+    </div>
   </div>
-  <div aria-hidden class="carousel-group">
-    {
-      books.map((book) => (
-        <div class="card perspective">
-          <BookCover book={book.data} width={600} />
-        </div>
-      ))
-    }
+  <div class="books-static-view" style="display: none;">
+    {books.map((book) => <BookCover book={book.data} width={600} />)}
   </div>
 </div>
 
@@ -113,12 +118,23 @@ const { books, color } = Astro.props;
     }
   }
 
+  .book-carousel-container {
+    position: relative;
+  }
+
   .carousel {
     flex: 0 0 100%;
     margin: 0 auto -2em auto;
     padding-right: 1em;
     overflow: hidden;
     display: flex;
+  }
+
+  .books-static-view {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 2rem;
   }
 
   .card {
