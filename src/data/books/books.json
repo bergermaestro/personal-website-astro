@@ -223,8 +223,18 @@
     "title": "Six of Crows",
     "author": "Leigh Bardugo",
     "released": 2015,
-    "status": "currently reading",
+    "status": "finished",
     "cover": "../images/books/six-of-crows.avif",
-    "isbn": 9781250076960
+    "isbn": 9781250076960,
+    "rating": 9,
+    "finished_on": "April 2026"
+  },
+  {
+    "title": "Crooked Kingdom",
+    "author": "Leigh Bardugo",
+    "released": 2016,
+    "status": "currently reading",
+    "cover": "../images/books/crooked-kingdom.avif",
+    "isbn": 9781250076977
   }
 ]
